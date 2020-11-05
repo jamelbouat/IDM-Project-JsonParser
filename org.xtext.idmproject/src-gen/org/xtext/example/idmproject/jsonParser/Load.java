@@ -24,25 +24,25 @@ import org.eclipse.emf.ecore.EObject;
 public interface Load extends EObject
 {
   /**
-   * Returns the value of the '<em><b>File</b></em>' containment reference.
+   * Returns the value of the '<em><b>File</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>File</em>' containment reference.
-   * @see #setFile(File)
+   * @return the value of the '<em>File</em>' attribute.
+   * @see #setFile(String)
    * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getLoad_File()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  File getFile();
+  String getFile();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Load#getFile <em>File</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Load#getFile <em>File</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>File</em>' containment reference.
+   * @param value the new value of the '<em>File</em>' attribute.
    * @see #getFile()
    * @generated
    */
-  void setFile(File value);
+  void setFile(String value);
 
 } // Load

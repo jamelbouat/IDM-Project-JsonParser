@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getLoad <em>Load</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getSelect <em>Select</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getStore <em>Store</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getSave <em>Save</em>}</li>
@@ -30,28 +29,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Instruction extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Load</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Load</em>' containment reference.
-   * @see #setLoad(Load)
-   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction_Load()
-   * @model containment="true"
-   * @generated
-   */
-  Load getLoad();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Instruction#getLoad <em>Load</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Load</em>' containment reference.
-   * @see #getLoad()
-   * @generated
-   */
-  void setLoad(Load value);
-
   /**
    * Returns the value of the '<em><b>Select</b></em>' containment reference.
    * <!-- begin-user-doc -->

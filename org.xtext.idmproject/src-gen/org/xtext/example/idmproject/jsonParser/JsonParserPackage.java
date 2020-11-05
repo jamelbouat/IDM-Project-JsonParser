@@ -105,22 +105,13 @@ public interface JsonParserPackage extends EPackage
   int INSTRUCTION = 1;
 
   /**
-   * The feature id for the '<em><b>Load</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INSTRUCTION__LOAD = 0;
-
-  /**
    * The feature id for the '<em><b>Select</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSTRUCTION__SELECT = 1;
+  int INSTRUCTION__SELECT = 0;
 
   /**
    * The feature id for the '<em><b>Store</b></em>' containment reference.
@@ -129,7 +120,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION__STORE = 2;
+  int INSTRUCTION__STORE = 1;
 
   /**
    * The feature id for the '<em><b>Save</b></em>' attribute.
@@ -138,7 +129,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION__SAVE = 3;
+  int INSTRUCTION__SAVE = 2;
 
   /**
    * The feature id for the '<em><b>Print</b></em>' containment reference.
@@ -147,7 +138,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION__PRINT = 4;
+  int INSTRUCTION__PRINT = 3;
 
   /**
    * The feature id for the '<em><b>Insert</b></em>' containment reference.
@@ -156,7 +147,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION__INSERT = 5;
+  int INSTRUCTION__INSERT = 4;
 
   /**
    * The feature id for the '<em><b>Modify</b></em>' containment reference.
@@ -165,7 +156,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION__MODIFY = 6;
+  int INSTRUCTION__MODIFY = 5;
 
   /**
    * The feature id for the '<em><b>Compute</b></em>' containment reference.
@@ -174,7 +165,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION__COMPUTE = 7;
+  int INSTRUCTION__COMPUTE = 6;
 
   /**
    * The number of structural features of the '<em>Instruction</em>' class.
@@ -183,7 +174,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION_FEATURE_COUNT = 8;
+  int INSTRUCTION_FEATURE_COUNT = 7;
 
   /**
    * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.LoadImpl <em>Load</em>}' class.
@@ -196,7 +187,7 @@ public interface JsonParserPackage extends EPackage
   int LOAD = 2;
 
   /**
-   * The feature id for the '<em><b>File</b></em>' containment reference.
+   * The feature id for the '<em><b>File</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -252,7 +243,7 @@ public interface JsonParserPackage extends EPackage
   int STORE = 4;
 
   /**
-   * The feature id for the '<em><b>File</b></em>' containment reference.
+   * The feature id for the '<em><b>File</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -270,34 +261,6 @@ public interface JsonParserPackage extends EPackage
   int STORE_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.FileImpl <em>File</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.idmproject.jsonParser.impl.FileImpl
-   * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getFile()
-   * @generated
-   */
-  int FILE = 5;
-
-  /**
-   * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FILE__EXPRESSIONS = 0;
-
-  /**
-   * The number of structural features of the '<em>File</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FILE_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.PrintImpl <em>Print</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -305,7 +268,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getPrint()
    * @generated
    */
-  int PRINT = 6;
+  int PRINT = 5;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -333,7 +296,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getInsert()
    * @generated
    */
-  int INSERT = 7;
+  int INSERT = 6;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -361,7 +324,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getModify()
    * @generated
    */
-  int MODIFY = 8;
+  int MODIFY = 7;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -398,7 +361,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getCompute()
    * @generated
    */
-  int COMPUTE = 9;
+  int COMPUTE = 8;
 
   /**
    * The feature id for the '<em><b>Expression1</b></em>' containment reference.
@@ -435,7 +398,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getSum()
    * @generated
    */
-  int SUM = 10;
+  int SUM = 9;
 
   /**
    * The feature id for the '<em><b>Expression1</b></em>' containment reference.
@@ -472,7 +435,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getProduct()
    * @generated
    */
-  int PRODUCT = 11;
+  int PRODUCT = 10;
 
   /**
    * The feature id for the '<em><b>Expression1</b></em>' containment reference.
@@ -509,7 +472,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 12;
+  int EXPRESSION = 11;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -546,7 +509,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getValue()
    * @generated
    */
-  int VALUE = 13;
+  int VALUE = 12;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' attribute.
@@ -608,17 +571,6 @@ public interface JsonParserPackage extends EPackage
    * @generated
    */
   EClass getInstruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Instruction#getLoad <em>Load</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Load</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Instruction#getLoad()
-   * @see #getInstruction()
-   * @generated
-   */
-  EReference getInstruction_Load();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Instruction#getSelect <em>Select</em>}'.
@@ -708,15 +660,15 @@ public interface JsonParserPackage extends EPackage
   EClass getLoad();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Load#getFile <em>File</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Load#getFile <em>File</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>File</em>'.
+   * @return the meta object for the attribute '<em>File</em>'.
    * @see org.xtext.example.idmproject.jsonParser.Load#getFile()
    * @see #getLoad()
    * @generated
    */
-  EReference getLoad_File();
+  EAttribute getLoad_File();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Select <em>Select</em>}'.
@@ -750,36 +702,15 @@ public interface JsonParserPackage extends EPackage
   EClass getStore();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Store#getFile <em>File</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Store#getFile <em>File</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>File</em>'.
+   * @return the meta object for the attribute '<em>File</em>'.
    * @see org.xtext.example.idmproject.jsonParser.Store#getFile()
    * @see #getStore()
    * @generated
    */
-  EReference getStore_File();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.File <em>File</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>File</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.File
-   * @generated
-   */
-  EClass getFile();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.idmproject.jsonParser.File#getExpressions <em>Expressions</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Expressions</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.File#getExpressions()
-   * @see #getFile()
-   * @generated
-   */
-  EReference getFile_Expressions();
+  EAttribute getStore_File();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Print <em>Print</em>}'.
@@ -1020,14 +951,6 @@ public interface JsonParserPackage extends EPackage
     EClass INSTRUCTION = eINSTANCE.getInstruction();
 
     /**
-     * The meta object literal for the '<em><b>Load</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference INSTRUCTION__LOAD = eINSTANCE.getInstruction_Load();
-
-    /**
      * The meta object literal for the '<em><b>Select</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1094,12 +1017,12 @@ public interface JsonParserPackage extends EPackage
     EClass LOAD = eINSTANCE.getLoad();
 
     /**
-     * The meta object literal for the '<em><b>File</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>File</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference LOAD__FILE = eINSTANCE.getLoad_File();
+    EAttribute LOAD__FILE = eINSTANCE.getLoad_File();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.SelectImpl <em>Select</em>}' class.
@@ -1130,30 +1053,12 @@ public interface JsonParserPackage extends EPackage
     EClass STORE = eINSTANCE.getStore();
 
     /**
-     * The meta object literal for the '<em><b>File</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>File</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference STORE__FILE = eINSTANCE.getStore_File();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.FileImpl <em>File</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.idmproject.jsonParser.impl.FileImpl
-     * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getFile()
-     * @generated
-     */
-    EClass FILE = eINSTANCE.getFile();
-
-    /**
-     * The meta object literal for the '<em><b>Expressions</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FILE__EXPRESSIONS = eINSTANCE.getFile_Expressions();
+    EAttribute STORE__FILE = eINSTANCE.getStore_File();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.PrintImpl <em>Print</em>}' class.

@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.idmproject.jsonParser.Compute;
 import org.xtext.example.idmproject.jsonParser.Expression;
-import org.xtext.example.idmproject.jsonParser.File;
 import org.xtext.example.idmproject.jsonParser.Insert;
 import org.xtext.example.idmproject.jsonParser.Instruction;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
@@ -69,13 +68,6 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   private EClass storeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass fileEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -246,7 +238,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getInstruction_Load()
+  public EReference getInstruction_Select()
   {
     return (EReference)instructionEClass.getEStructuralFeatures().get(0);
   }
@@ -257,7 +249,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getInstruction_Select()
+  public EReference getInstruction_Store()
   {
     return (EReference)instructionEClass.getEStructuralFeatures().get(1);
   }
@@ -268,20 +260,9 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getInstruction_Store()
-  {
-    return (EReference)instructionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getInstruction_Save()
   {
-    return (EAttribute)instructionEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)instructionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -292,7 +273,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
   @Override
   public EReference getInstruction_Print()
   {
-    return (EReference)instructionEClass.getEStructuralFeatures().get(4);
+    return (EReference)instructionEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -303,7 +284,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
   @Override
   public EReference getInstruction_Insert()
   {
-    return (EReference)instructionEClass.getEStructuralFeatures().get(5);
+    return (EReference)instructionEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -314,7 +295,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
   @Override
   public EReference getInstruction_Modify()
   {
-    return (EReference)instructionEClass.getEStructuralFeatures().get(6);
+    return (EReference)instructionEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -325,7 +306,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
   @Override
   public EReference getInstruction_Compute()
   {
-    return (EReference)instructionEClass.getEStructuralFeatures().get(7);
+    return (EReference)instructionEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -345,9 +326,9 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getLoad_File()
+  public EAttribute getLoad_File()
   {
-    return (EReference)loadEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)loadEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -389,31 +370,9 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getStore_File()
+  public EAttribute getStore_File()
   {
-    return (EReference)storeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getFile()
-  {
-    return fileEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getFile_Expressions()
-  {
-    return (EReference)fileEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)storeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -639,7 +598,6 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     createEReference(jsonModelEClass, JSON_MODEL__INSTRUCTIONS);
 
     instructionEClass = createEClass(INSTRUCTION);
-    createEReference(instructionEClass, INSTRUCTION__LOAD);
     createEReference(instructionEClass, INSTRUCTION__SELECT);
     createEReference(instructionEClass, INSTRUCTION__STORE);
     createEAttribute(instructionEClass, INSTRUCTION__SAVE);
@@ -649,16 +607,13 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     createEReference(instructionEClass, INSTRUCTION__COMPUTE);
 
     loadEClass = createEClass(LOAD);
-    createEReference(loadEClass, LOAD__FILE);
+    createEAttribute(loadEClass, LOAD__FILE);
 
     selectEClass = createEClass(SELECT);
     createEReference(selectEClass, SELECT__EXPRESSION);
 
     storeEClass = createEClass(STORE);
-    createEReference(storeEClass, STORE__FILE);
-
-    fileEClass = createEClass(FILE);
-    createEReference(fileEClass, FILE__EXPRESSIONS);
+    createEAttribute(storeEClass, STORE__FILE);
 
     printEClass = createEClass(PRINT);
     createEReference(printEClass, PRINT__EXPRESSION);
@@ -724,7 +679,6 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     initEReference(getJsonModel_Instructions(), this.getInstruction(), null, "instructions", null, 0, -1, JsonModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(instructionEClass, Instruction.class, "Instruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getInstruction_Load(), this.getLoad(), null, "load", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstruction_Select(), this.getSelect(), null, "select", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstruction_Store(), this.getStore(), null, "store", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getInstruction_Save(), ecorePackage.getEString(), "save", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -734,16 +688,13 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     initEReference(getInstruction_Compute(), this.getCompute(), null, "compute", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(loadEClass, Load.class, "Load", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getLoad_File(), this.getFile(), null, "file", null, 0, 1, Load.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLoad_File(), ecorePackage.getEString(), "file", null, 0, 1, Load.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(selectEClass, Select.class, "Select", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSelect_Expression(), this.getExpression(), null, "expression", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(storeEClass, Store.class, "Store", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getStore_File(), this.getFile(), null, "file", null, 0, 1, Store.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFile_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStore_File(), ecorePackage.getEString(), "file", null, 0, 1, Store.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(printEClass, Print.class, "Print", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPrint_Expression(), this.getExpression(), null, "expression", null, 0, 1, Print.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

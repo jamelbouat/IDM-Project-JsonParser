@@ -6,6 +6,7 @@ package org.xtext.example.idmproject.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
+import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Grammar;
@@ -53,77 +54,69 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	public class InstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Instruction");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cLoadAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cLoadLoadParserRuleCall_0_0 = (RuleCall)cLoadAssignment_0.eContents().get(0);
-		private final Assignment cSelectAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cSelectSelectParserRuleCall_1_0 = (RuleCall)cSelectAssignment_1.eContents().get(0);
-		private final Assignment cStoreAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cStoreStoreParserRuleCall_2_0 = (RuleCall)cStoreAssignment_2.eContents().get(0);
-		private final Assignment cSaveAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cSaveSaveParserRuleCall_3_0 = (RuleCall)cSaveAssignment_3.eContents().get(0);
-		private final Assignment cPrintAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
-		private final RuleCall cPrintPrintParserRuleCall_4_0 = (RuleCall)cPrintAssignment_4.eContents().get(0);
-		private final Assignment cInsertAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cInsertInsertParserRuleCall_5_0 = (RuleCall)cInsertAssignment_5.eContents().get(0);
-		private final Assignment cModifyAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
-		private final RuleCall cModifyModifyParserRuleCall_6_0 = (RuleCall)cModifyAssignment_6.eContents().get(0);
-		private final Assignment cComputeAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
-		private final RuleCall cComputeComputeParserRuleCall_7_0 = (RuleCall)cComputeAssignment_7.eContents().get(0);
+		private final Assignment cSelectAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cSelectSelectParserRuleCall_0_0 = (RuleCall)cSelectAssignment_0.eContents().get(0);
+		private final Assignment cStoreAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cStoreStoreParserRuleCall_1_0 = (RuleCall)cStoreAssignment_1.eContents().get(0);
+		private final Assignment cSaveAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cSaveSaveParserRuleCall_2_0 = (RuleCall)cSaveAssignment_2.eContents().get(0);
+		private final Assignment cPrintAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cPrintPrintParserRuleCall_3_0 = (RuleCall)cPrintAssignment_3.eContents().get(0);
+		private final Assignment cInsertAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cInsertInsertParserRuleCall_4_0 = (RuleCall)cInsertAssignment_4.eContents().get(0);
+		private final Assignment cModifyAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
+		private final RuleCall cModifyModifyParserRuleCall_5_0 = (RuleCall)cModifyAssignment_5.eContents().get(0);
+		private final Assignment cComputeAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
+		private final RuleCall cComputeComputeParserRuleCall_6_0 = (RuleCall)cComputeAssignment_6.eContents().get(0);
 		
 		//Instruction:
-		//	load=Load | select=Select | store=Store | save=Save | print=Print | insert=Insert | modify=Modify | compute=Compute;
+		//	select=Select | store=Store | save=Save | print=Print | insert=Insert | modify=Modify | compute=Compute;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//load=Load | select=Select | store=Store | save=Save | print=Print | insert=Insert | modify=Modify | compute=Compute
+		//select=Select | store=Store | save=Save | print=Print | insert=Insert | modify=Modify | compute=Compute
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//load=Load
-		public Assignment getLoadAssignment_0() { return cLoadAssignment_0; }
-		
-		//Load
-		public RuleCall getLoadLoadParserRuleCall_0_0() { return cLoadLoadParserRuleCall_0_0; }
-		
 		//select=Select
-		public Assignment getSelectAssignment_1() { return cSelectAssignment_1; }
+		public Assignment getSelectAssignment_0() { return cSelectAssignment_0; }
 		
 		//Select
-		public RuleCall getSelectSelectParserRuleCall_1_0() { return cSelectSelectParserRuleCall_1_0; }
+		public RuleCall getSelectSelectParserRuleCall_0_0() { return cSelectSelectParserRuleCall_0_0; }
 		
 		//store=Store
-		public Assignment getStoreAssignment_2() { return cStoreAssignment_2; }
+		public Assignment getStoreAssignment_1() { return cStoreAssignment_1; }
 		
 		//Store
-		public RuleCall getStoreStoreParserRuleCall_2_0() { return cStoreStoreParserRuleCall_2_0; }
+		public RuleCall getStoreStoreParserRuleCall_1_0() { return cStoreStoreParserRuleCall_1_0; }
 		
 		//save=Save
-		public Assignment getSaveAssignment_3() { return cSaveAssignment_3; }
+		public Assignment getSaveAssignment_2() { return cSaveAssignment_2; }
 		
 		//Save
-		public RuleCall getSaveSaveParserRuleCall_3_0() { return cSaveSaveParserRuleCall_3_0; }
+		public RuleCall getSaveSaveParserRuleCall_2_0() { return cSaveSaveParserRuleCall_2_0; }
 		
 		//print=Print
-		public Assignment getPrintAssignment_4() { return cPrintAssignment_4; }
+		public Assignment getPrintAssignment_3() { return cPrintAssignment_3; }
 		
 		//Print
-		public RuleCall getPrintPrintParserRuleCall_4_0() { return cPrintPrintParserRuleCall_4_0; }
+		public RuleCall getPrintPrintParserRuleCall_3_0() { return cPrintPrintParserRuleCall_3_0; }
 		
 		//insert=Insert
-		public Assignment getInsertAssignment_5() { return cInsertAssignment_5; }
+		public Assignment getInsertAssignment_4() { return cInsertAssignment_4; }
 		
 		//Insert
-		public RuleCall getInsertInsertParserRuleCall_5_0() { return cInsertInsertParserRuleCall_5_0; }
+		public RuleCall getInsertInsertParserRuleCall_4_0() { return cInsertInsertParserRuleCall_4_0; }
 		
 		//modify=Modify
-		public Assignment getModifyAssignment_6() { return cModifyAssignment_6; }
+		public Assignment getModifyAssignment_5() { return cModifyAssignment_5; }
 		
 		//Modify
-		public RuleCall getModifyModifyParserRuleCall_6_0() { return cModifyModifyParserRuleCall_6_0; }
+		public RuleCall getModifyModifyParserRuleCall_5_0() { return cModifyModifyParserRuleCall_5_0; }
 		
 		//compute=Compute
-		public Assignment getComputeAssignment_7() { return cComputeAssignment_7; }
+		public Assignment getComputeAssignment_6() { return cComputeAssignment_6; }
 		
 		//Compute
-		public RuleCall getComputeComputeParserRuleCall_7_0() { return cComputeComputeParserRuleCall_7_0; }
+		public RuleCall getComputeComputeParserRuleCall_6_0() { return cComputeComputeParserRuleCall_6_0; }
 	}
 	public class LoadElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Load");
@@ -220,18 +213,14 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	public class FileElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.File");
-		private final Assignment cExpressionsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cExpressionsExpressionParserRuleCall_0 = (RuleCall)cExpressionsAssignment.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//File:
-		//	expressions+=Expression+;
+		//	STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//expressions+=Expression+
-		public Assignment getExpressionsAssignment() { return cExpressionsAssignment; }
-		
-		//Expression
-		public RuleCall getExpressionsExpressionParserRuleCall_0() { return cExpressionsExpressionParserRuleCall_0; }
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall() { return cSTRINGTerminalRuleCall; }
 	}
 	public class SaveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Save");
@@ -495,23 +484,39 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	public class ValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Value");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cSTRINGTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cValueAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final RuleCall cSTRINGTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cValueAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final RuleCall cINTTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		private final Assignment cArrayAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cArrayArrayParserRuleCall_2_0 = (RuleCall)cArrayAssignment_2.eContents().get(0);
 		
 		//Value:
-		//	STRING | INT | array=Array;
+		//	{Value} STRING | {Value} INT | array=Array;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//STRING | INT | array=Array
+		//{Value} STRING | {Value} INT | array=Array
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//{Value} STRING
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//{Value}
+		public Action getValueAction_0_0() { return cValueAction_0_0; }
+		
 		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_0() { return cSTRINGTerminalRuleCall_0; }
+		public RuleCall getSTRINGTerminalRuleCall_0_1() { return cSTRINGTerminalRuleCall_0_1; }
+		
+		//{Value} INT
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{Value}
+		public Action getValueAction_1_0() { return cValueAction_1_0; }
 		
 		//INT
-		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
+		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
 		
 		//array=Array
 		public Assignment getArrayAssignment_2() { return cArrayAssignment_2; }
@@ -654,7 +659,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Instruction:
-	//	load=Load | select=Select | store=Store | save=Save | print=Print | insert=Insert | modify=Modify | compute=Compute;
+	//	select=Select | store=Store | save=Save | print=Print | insert=Insert | modify=Modify | compute=Compute;
 	public InstructionElements getInstructionAccess() {
 		return pInstruction;
 	}
@@ -694,7 +699,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//File:
-	//	expressions+=Expression+;
+	//	STRING;
 	public FileElements getFileAccess() {
 		return pFile;
 	}
@@ -794,7 +799,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Value:
-	//	STRING | INT | array=Array;
+	//	{Value} STRING | {Value} INT | array=Array;
 	public ValueElements getValueAccess() {
 		return pValue;
 	}

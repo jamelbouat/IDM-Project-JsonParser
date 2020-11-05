@@ -9,7 +9,6 @@
         eType="#//Instruction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Instruction">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="load" eType="#//Load" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="select" eType="#//Select"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="store" eType="#//Store"
@@ -25,18 +24,14 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Load">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//File" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Select">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Store">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//File" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="File">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
-        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Print">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"

@@ -7,7 +7,7 @@ JsonModel:
 	instructions+=Instruction*;
 	
 Instruction:
-	load = Load | select = Select | store = Store | save = Save | print = Print | insert = Insert | modify = Modify | compute = Compute;
+	select = Select | store = Store | save = Save | print = Print | insert = Insert | modify = Modify | compute = Compute;
 
 
 Load:
@@ -20,7 +20,7 @@ Store:
 	'.store(' file = File ')' EOL
 ;	
 File:
-	expressions += Expression+
+	STRING
 ;
 Save:
 	'.save()' EOL
@@ -43,11 +43,11 @@ Compute:
 ;
 
 Sum:
-	expression1=Expression '+' expression2=Expression EOL
+	expression1 = Expression '+' expression2 = Expression EOL
 ;
 
 Product:
-	expression1=Expression '*' expression2=Expression EOL
+	expression1 = Expression '*' expression2 = Expression EOL
 ;
 
 Expression:
@@ -59,7 +59,7 @@ Key:
 ;
 
 Value:
-	STRING | INT | array = Array
+	{Value} STRING | {Value} INT | array = Array
 ;
 
 Array:

@@ -16,7 +16,6 @@ import org.xtext.example.idmproject.jsonParser.Compute;
 import org.xtext.example.idmproject.jsonParser.Insert;
 import org.xtext.example.idmproject.jsonParser.Instruction;
 import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
-import org.xtext.example.idmproject.jsonParser.Load;
 import org.xtext.example.idmproject.jsonParser.Modify;
 import org.xtext.example.idmproject.jsonParser.Print;
 import org.xtext.example.idmproject.jsonParser.Select;
@@ -30,7 +29,6 @@ import org.xtext.example.idmproject.jsonParser.Store;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getLoad <em>Load</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getSelect <em>Select</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getStore <em>Store</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getSave <em>Save</em>}</li>
@@ -44,16 +42,6 @@ import org.xtext.example.idmproject.jsonParser.Store;
  */
 public class InstructionImpl extends MinimalEObjectImpl.Container implements Instruction
 {
-  /**
-   * The cached value of the '{@link #getLoad() <em>Load</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLoad()
-   * @generated
-   * @ordered
-   */
-  protected Load load;
-
   /**
    * The cached value of the '{@link #getSelect() <em>Select</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -153,56 +141,6 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
   protected EClass eStaticClass()
   {
     return JsonParserPackage.Literals.INSTRUCTION;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Load getLoad()
-  {
-    return load;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetLoad(Load newLoad, NotificationChain msgs)
-  {
-    Load oldLoad = load;
-    load = newLoad;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__LOAD, oldLoad, newLoad);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setLoad(Load newLoad)
-  {
-    if (newLoad != load)
-    {
-      NotificationChain msgs = null;
-      if (load != null)
-        msgs = ((InternalEObject)load).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__LOAD, null, msgs);
-      if (newLoad != null)
-        msgs = ((InternalEObject)newLoad).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__LOAD, null, msgs);
-      msgs = basicSetLoad(newLoad, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__LOAD, newLoad, newLoad));
   }
 
   /**
@@ -540,8 +478,6 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
   {
     switch (featureID)
     {
-      case JsonParserPackage.INSTRUCTION__LOAD:
-        return basicSetLoad(null, msgs);
       case JsonParserPackage.INSTRUCTION__SELECT:
         return basicSetSelect(null, msgs);
       case JsonParserPackage.INSTRUCTION__STORE:
@@ -568,8 +504,6 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
   {
     switch (featureID)
     {
-      case JsonParserPackage.INSTRUCTION__LOAD:
-        return getLoad();
       case JsonParserPackage.INSTRUCTION__SELECT:
         return getSelect();
       case JsonParserPackage.INSTRUCTION__STORE:
@@ -598,9 +532,6 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
   {
     switch (featureID)
     {
-      case JsonParserPackage.INSTRUCTION__LOAD:
-        setLoad((Load)newValue);
-        return;
       case JsonParserPackage.INSTRUCTION__SELECT:
         setSelect((Select)newValue);
         return;
@@ -636,9 +567,6 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
   {
     switch (featureID)
     {
-      case JsonParserPackage.INSTRUCTION__LOAD:
-        setLoad((Load)null);
-        return;
       case JsonParserPackage.INSTRUCTION__SELECT:
         setSelect((Select)null);
         return;
@@ -674,8 +602,6 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
   {
     switch (featureID)
     {
-      case JsonParserPackage.INSTRUCTION__LOAD:
-        return load != null;
       case JsonParserPackage.INSTRUCTION__SELECT:
         return select != null;
       case JsonParserPackage.INSTRUCTION__STORE:

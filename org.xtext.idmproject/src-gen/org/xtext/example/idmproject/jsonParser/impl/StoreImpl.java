@@ -4,15 +4,12 @@
 package org.xtext.example.idmproject.jsonParser.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.idmproject.jsonParser.File;
 import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
 import org.xtext.example.idmproject.jsonParser.Store;
 
@@ -32,14 +29,24 @@ import org.xtext.example.idmproject.jsonParser.Store;
 public class StoreImpl extends MinimalEObjectImpl.Container implements Store
 {
   /**
-   * The cached value of the '{@link #getFile() <em>File</em>}' containment reference.
+   * The default value of the '{@link #getFile() <em>File</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getFile()
    * @generated
    * @ordered
    */
-  protected File file;
+  protected static final String FILE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getFile() <em>File</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFile()
+   * @generated
+   * @ordered
+   */
+  protected String file = FILE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,7 +75,7 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store
    * @generated
    */
   @Override
-  public File getFile()
+  public String getFile()
   {
     return file;
   }
@@ -78,54 +85,13 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetFile(File newFile, NotificationChain msgs)
+  @Override
+  public void setFile(String newFile)
   {
-    File oldFile = file;
+    String oldFile = file;
     file = newFile;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.STORE__FILE, oldFile, newFile);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setFile(File newFile)
-  {
-    if (newFile != file)
-    {
-      NotificationChain msgs = null;
-      if (file != null)
-        msgs = ((InternalEObject)file).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.STORE__FILE, null, msgs);
-      if (newFile != null)
-        msgs = ((InternalEObject)newFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.STORE__FILE, null, msgs);
-      msgs = basicSetFile(newFile, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.STORE__FILE, newFile, newFile));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case JsonParserPackage.STORE__FILE:
-        return basicSetFile(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.STORE__FILE, oldFile, file));
   }
 
   /**
@@ -155,7 +121,7 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store
     switch (featureID)
     {
       case JsonParserPackage.STORE__FILE:
-        setFile((File)newValue);
+        setFile((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -172,7 +138,7 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store
     switch (featureID)
     {
       case JsonParserPackage.STORE__FILE:
-        setFile((File)null);
+        setFile(FILE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -189,9 +155,26 @@ public class StoreImpl extends MinimalEObjectImpl.Container implements Store
     switch (featureID)
     {
       case JsonParserPackage.STORE__FILE:
-        return file != null;
+        return FILE_EDEFAULT == null ? file != null : !FILE_EDEFAULT.equals(file);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (file: ");
+    result.append(file);
+    result.append(')');
+    return result.toString();
   }
 
 } //StoreImpl

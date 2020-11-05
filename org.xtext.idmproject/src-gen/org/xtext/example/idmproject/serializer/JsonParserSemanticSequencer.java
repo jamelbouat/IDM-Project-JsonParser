@@ -15,7 +15,6 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.idmproject.jsonParser.Expression;
-import org.xtext.example.idmproject.jsonParser.File;
 import org.xtext.example.idmproject.jsonParser.Insert;
 import org.xtext.example.idmproject.jsonParser.Instruction;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
@@ -46,9 +45,6 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 			switch (semanticObject.eClass().getClassifierID()) {
 			case JsonParserPackage.EXPRESSION:
 				sequence_Expression(context, (Expression) semanticObject); 
-				return; 
-			case JsonParserPackage.FILE:
-				sequence_File(context, (File) semanticObject); 
 				return; 
 			case JsonParserPackage.INSERT:
 				sequence_Insert(context, (Insert) semanticObject); 
@@ -111,18 +107,6 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	
 	/**
 	 * Contexts:
-	 *     File returns File
-	 *
-	 * Constraint:
-	 *     expressions+=Expression+
-	 */
-	protected void sequence_File(ISerializationContext context, File semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Insert returns Insert
 	 *
 	 * Constraint:
@@ -145,7 +129,6 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *
 	 * Constraint:
 	 *     (
-	 *         load=Load | 
 	 *         select=Select | 
 	 *         store=Store | 
 	 *         save=Save | 
@@ -314,16 +297,10 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Value returns Value
 	 *
 	 * Constraint:
-	 *     array=Array
+	 *     array=Array?
 	 */
 	protected void sequence_Value(ISerializationContext context, Value semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.VALUE__ARRAY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.VALUE__ARRAY));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getValueAccess().getArrayArrayParserRuleCall_2_0(), semanticObject.getArray());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

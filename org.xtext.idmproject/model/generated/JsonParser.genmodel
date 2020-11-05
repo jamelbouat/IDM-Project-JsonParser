@@ -11,7 +11,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//JsonModel/instructions"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Instruction">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/load"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/select"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/store"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Instruction/save"/>
@@ -21,16 +20,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/compute"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Load">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Load/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Load/file"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Select">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Select/expression"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Store">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Store/file"/>
-    </genClasses>
-    <genClasses ecoreClass="JsonParser.ecore#//File">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//File/expressions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Store/file"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Print">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Print/expression"/>

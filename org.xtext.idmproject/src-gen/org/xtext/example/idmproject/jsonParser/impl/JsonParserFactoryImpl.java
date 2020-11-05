@@ -70,7 +70,6 @@ public class JsonParserFactoryImpl extends EFactoryImpl implements JsonParserFac
       case JsonParserPackage.LOAD: return createLoad();
       case JsonParserPackage.SELECT: return createSelect();
       case JsonParserPackage.STORE: return createStore();
-      case JsonParserPackage.FILE: return createFile();
       case JsonParserPackage.PRINT: return createPrint();
       case JsonParserPackage.INSERT: return createInsert();
       case JsonParserPackage.MODIFY: return createModify();
@@ -142,18 +141,6 @@ public class JsonParserFactoryImpl extends EFactoryImpl implements JsonParserFac
   {
     StoreImpl store = new StoreImpl();
     return store;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public File createFile()
-  {
-    FileImpl file = new FileImpl();
-    return file;
   }
 
   /**

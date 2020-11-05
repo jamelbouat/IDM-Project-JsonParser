@@ -101,11 +101,6 @@ public class JsonParserAdapterFactory extends AdapterFactoryImpl
         return createStoreAdapter();
       }
       @Override
-      public Adapter caseFile(File object)
-      {
-        return createFileAdapter();
-      }
-      @Override
       public Adapter casePrint(Print object)
       {
         return createPrintAdapter();
@@ -238,21 +233,6 @@ public class JsonParserAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStoreAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.idmproject.jsonParser.File <em>File</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.idmproject.jsonParser.File
-   * @generated
-   */
-  public Adapter createFileAdapter()
   {
     return null;
   }

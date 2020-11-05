@@ -21,12 +21,12 @@ import org.xtext.example.idmproject.services.JsonParserGrammarAccess;
 public class JsonParserSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected JsonParserGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Value_INTTerminalRuleCall_1_or_STRINGTerminalRuleCall_0;
+	protected AbstractElementAlias match_Value_INTTerminalRuleCall_1_1_or_STRINGTerminalRuleCall_0_1;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (JsonParserGrammarAccess) access;
-		match_Value_INTTerminalRuleCall_1_or_STRINGTerminalRuleCall_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getValueAccess().getINTTerminalRuleCall_1()), new TokenAlias(false, false, grammarAccess.getValueAccess().getSTRINGTerminalRuleCall_0()));
+		match_Value_INTTerminalRuleCall_1_1_or_STRINGTerminalRuleCall_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getValueAccess().getINTTerminalRuleCall_1_1()), new TokenAlias(false, false, grammarAccess.getValueAccess().getSTRINGTerminalRuleCall_0_1()));
 	}
 	
 	@Override
@@ -78,8 +78,8 @@ public class JsonParserSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Value_INTTerminalRuleCall_1_or_STRINGTerminalRuleCall_0.equals(syntax))
-				emit_Value_INTTerminalRuleCall_1_or_STRINGTerminalRuleCall_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Value_INTTerminalRuleCall_1_1_or_STRINGTerminalRuleCall_0_1.equals(syntax))
+				emit_Value_INTTerminalRuleCall_1_1_or_STRINGTerminalRuleCall_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -91,7 +91,7 @@ public class JsonParserSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) (rule start)
 	 */
-	protected void emit_Value_INTTerminalRuleCall_1_or_STRINGTerminalRuleCall_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Value_INTTerminalRuleCall_1_1_or_STRINGTerminalRuleCall_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
