@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="jsonParser" nsURI="http://www.xtext.org/example/idmproject/JsonParser"
+    nsPrefix="jsonParser">
+  <eClassifiers xsi:type="ecore:EClass" name="JsonModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="baseLoad" eType="#//Load"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instructions" upperBound="-1"
+        eType="#//Instruction" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Instruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="load" eType="#//Load" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="select" eType="#//Select"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store" eType="#//Store"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="save" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="print" eType="#//Print"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insert" eType="#//Insert"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modify" eType="#//Modify"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compute" eType="#//Compute"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Load">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//File" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Select">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Store">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//File" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="File">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Print">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Insert">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Modify">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="newExpression" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Compute">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression1" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression2" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sum" eSuperTypes="#//Compute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//Compute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="array" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

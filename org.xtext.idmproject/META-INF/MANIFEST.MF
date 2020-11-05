@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.idmproject
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.idmproject
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.idmproject; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.xtext.example.idmproject,
+ org.xtext.example.idmproject.jsonParser.impl,
+ org.xtext.example.idmproject.services,
+ org.xtext.example.idmproject.jsonParser.util,
+ org.xtext.example.idmproject.jsonParser,
+ org.xtext.example.idmproject.serializer,
+ org.xtext.example.idmproject.validation,
+ org.xtext.example.idmproject.scoping,
+ org.xtext.example.idmproject.generator,
+ org.xtext.example.idmproject.parser.antlr,
+ org.xtext.example.idmproject.parser.antlr.internal
+Import-Package: org.apache.log4j

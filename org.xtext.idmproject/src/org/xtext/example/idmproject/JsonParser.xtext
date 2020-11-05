@@ -1,0 +1,70 @@
+grammar org.xtext.example.idmproject.JsonParser with org.eclipse.xtext.common.Terminals
+
+generate jsonParser "http://www.xtext.org/example/idmproject/JsonParser"
+
+JsonModel:
+	baseLoad = Load
+	instructions+=Instruction*;
+	
+Instruction:
+	load = Load | select = Select | store = Store | save = Save | print = Print | insert = Insert | modify = Modify | compute = Compute;
+
+
+Load:
+	'.load(' file = File ')' EOL
+;
+Select:
+	'.select('expression = Expression')' EOL
+;
+Store:
+	'.store(' file = File ')' EOL
+;	
+File:
+	expressions += Expression+
+;
+Save:
+	'.save()' EOL
+;
+Print:
+	'.print('expression = Expression')' EOL
+;
+
+Insert:
+	'.insert(' expression = Expression ')' EOL
+;
+
+
+Modify:
+	'.modify('expression = Expression',' newExpression = Expression ')' EOL
+;
+
+Compute:
+	Sum | Product 
+;
+
+Sum:
+	expression1=Expression '+' expression2=Expression EOL
+;
+
+Product:
+	expression1=Expression '*' expression2=Expression EOL
+;
+
+Expression:
+	key = Key ':' value = Value EOL
+;
+
+Key:
+	STRING
+;
+
+Value:
+	STRING | INT | array = Array
+;
+
+Array:
+	'[' INT* | STRING* ']'
+;
+EOL:
+	'\n'
+;
