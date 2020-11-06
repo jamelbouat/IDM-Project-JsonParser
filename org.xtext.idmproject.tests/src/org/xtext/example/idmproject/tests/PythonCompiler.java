@@ -26,43 +26,63 @@ public class PythonCompiler {
 		Files.write(pythonCode.getBytes(), JsonParserTest);
 
 		for(Instruction i : _model.getInstructions()) {
-			generateCode(i);
-			Files.write(pythonCode.getBytes(), JsonParserTest);
+			String instructionCode = generateCode(i);
+			Files.write(instructionCode.getBytes(), JsonParserTest);
 
 		}
 		
 	}
-	private void generateCode(Instruction i) {
+	private String generateCode(Instruction i) {
 			if(i instanceof Select) {
-				generateCode((Select)i);
+				return generateCode((Select)i);
 			}
 			if(i instanceof Store) {
-				generateCode((Store)i);
+				return generateCode((Store)i);
 			}
 			if(i instanceof Print) {
-				generateCode((Print)i);
+				return generateCode((Print)i);
 			}
 			if(i instanceof Insert) {
-				generateCode((Insert)i);
+				return generateCode((Insert)i);
 			}
 			if(i instanceof Modify) {
-				generateCode((Modify)i);
+				return generateCode((Modify)i);
 			}
 			if(i instanceof Compute) {
-				generateCode((Compute)i);
+				return generateCode((Compute)i);
 			}
+			return "";
 	}
-	private void generateCode(Select s) {
+	private String generateCode(Select s) {
+		String generatedCode = "";
+		return generatedCode;
 		
 	}
-	private void generateCode(Store s) {
+	private String generateCode(Store s) {
+		String generatedCode = "";
+		String pathToFile = s.getFile();
+		generatedCode+="f = open("+pathToFile+", 'a')\n"
+				+ "f.write(data)\n"
+				+ "f.close()\n";
+		return generatedCode;
 	}
-	private void generateCode(Print p) {
+	private String generateCode(Print p) {
+		String generatedCode = "";
+		Expression expr = p.getExpression();
+		String key = expr.getKey();
+		generatedCode += "";
+		return generatedCode;
 	}
-	private void generateCode(Insert i) {
+	private String generateCode(Insert i) {
+		String generatedCode = "";
+		return generatedCode;
 	}
-	private void generateCode(Modify m) {
+	private String generateCode(Modify m) {
+		String generatedCode = "";
+		return generatedCode;
 	}
-	private void generateCode(Compute c) {
+	private String generateCode(Compute c) {
+		String generatedCode = "";
+		return generatedCode;
 	}
 }

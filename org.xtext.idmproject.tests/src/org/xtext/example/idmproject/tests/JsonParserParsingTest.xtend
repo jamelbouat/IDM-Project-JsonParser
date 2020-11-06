@@ -30,4 +30,17 @@ class JsonParserParsingTest {
 		val PythonCompiler cmpPython = new PythonCompiler(result)
 		cmpPython.compileAndRun	
 	}
+	@Test
+	def void storeData() {
+		val result = parseHelper.parse('''
+			.load("file.json")
+			.store("newFile.json")
+		''')
+		Assertions.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+		
+		val PythonCompiler cmpPython = new PythonCompiler(result)
+		cmpPython.compileAndRun	
+	}
 }
