@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
 import org.xtext.example.idmproject.tests.JsonParserInjectorProvider;
+import org.xtext.example.idmproject.tests.PythonCompiler;
 
 @ExtendWith(InjectionExtension.class)
 @InjectWith(JsonParserInjectorProvider.class)
@@ -26,7 +27,7 @@ public class JsonParserParsingTest {
   private ParseHelper<JsonModel> parseHelper;
   
   @Test
-  public void loadModel() {
+  public void loadBaseFile() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"mfile.json\")");
@@ -40,6 +41,8 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      final PythonCompiler cmpPython = new PythonCompiler(result);
+      cmpPython.compileAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

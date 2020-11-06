@@ -53,6 +53,7 @@ public class PythonCompiler {
 			}
 	}
 	private void generateCode(Select s) {
+		
 	}
 	private void generateCode(Store s) {
 	}

@@ -19,12 +19,15 @@ class JsonParserParsingTest {
 	ParseHelper<JsonModel> parseHelper
 	
 	@Test
-	def void loadModel() {
+	def void loadBaseFile() {
 		val result = parseHelper.parse('''
 			.load("mfile.json")
 		''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+		
+		val PythonCompiler cmpPython = new PythonCompiler(result)
+		cmpPython.compileAndRun	
 	}
 }
