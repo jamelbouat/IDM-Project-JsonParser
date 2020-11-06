@@ -3,10 +3,18 @@
  */
 package org.xtext.example.idmproject.generator;
 
+import java.util.Arrays;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.xtext.example.idmproject.jsonParser.Compute;
+import org.xtext.example.idmproject.jsonParser.Insert;
+import org.xtext.example.idmproject.jsonParser.Modify;
+import org.xtext.example.idmproject.jsonParser.Print;
+import org.xtext.example.idmproject.jsonParser.Select;
+import org.xtext.example.idmproject.jsonParser.Store;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +25,48 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class JsonParserGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+  }
+  
+  protected Object _genInstruction(final Select select) {
+    return null;
+  }
+  
+  protected Object _genInstruction(final Store store) {
+    return null;
+  }
+  
+  protected Object _genInstruction(final Print print) {
+    return null;
+  }
+  
+  protected Object _genInstruction(final Insert insert) {
+    return null;
+  }
+  
+  protected Object _genInstruction(final Modify print) {
+    return null;
+  }
+  
+  protected Object _genInstruction(final Compute print) {
+    return null;
+  }
+  
+  public Object genInstruction(final EObject print) {
+    if (print instanceof Compute) {
+      return _genInstruction((Compute)print);
+    } else if (print instanceof Insert) {
+      return _genInstruction((Insert)print);
+    } else if (print instanceof Modify) {
+      return _genInstruction((Modify)print);
+    } else if (print instanceof Print) {
+      return _genInstruction((Print)print);
+    } else if (print instanceof Select) {
+      return _genInstruction((Select)print);
+    } else if (print instanceof Store) {
+      return _genInstruction((Store)print);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(print).toString());
+    }
   }
 }

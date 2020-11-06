@@ -29,7 +29,7 @@ public class JsonParserParsingTest {
   public void loadModel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Hello Xtext!");
+      _builder.append(".load(\"mfile.json\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
       Assertions.assertNotNull(result);
