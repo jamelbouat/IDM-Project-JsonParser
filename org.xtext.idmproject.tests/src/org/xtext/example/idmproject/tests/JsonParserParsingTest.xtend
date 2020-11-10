@@ -21,7 +21,7 @@ class JsonParserParsingTest {
 	@Test
 	def void loadBaseFile() {
 		val result = parseHelper.parse('''
-			.load("mfile.json")
+			.load("file.json")
 		''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors

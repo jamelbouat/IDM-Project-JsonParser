@@ -30,7 +30,7 @@ public class JsonParserParsingTest {
   public void loadBaseFile() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append(".load(\"mfile.json\")");
+      _builder.append(".load(\"file.json\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
       Assertions.assertNotNull(result);

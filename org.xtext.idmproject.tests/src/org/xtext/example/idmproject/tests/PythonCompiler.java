@@ -1,7 +1,10 @@
 package org.xtext.example.idmproject.tests;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+
 import com.google.common.io.Files;
 
 import org.xtext.example.idmproject.jsonParser.Instruction;
@@ -20,7 +23,7 @@ public class PythonCompiler {
 		File JsonParserTest = new File(PYTHON_OUTPUT);
 		String baseFile = _model.getBaseLoad().getFile();
 		String pythonCode = "import json\n" + 
-				"with open('"+baseFile+"') as f:\n"
+				"with open("+baseFile+") as f:\n"
 				+ "  data = json.load(f)\n";
 		
 		Files.write(pythonCode.getBytes(), JsonParserTest);
@@ -31,6 +34,25 @@ public class PythonCompiler {
 
 		}
 		
+Process p = Runtime.getRuntime().exec("python " + PYTHON_OUTPUT);
+	    
+		// output
+	    BufferedReader stdInput = new BufferedReader(new 
+	         InputStreamReader(p.getInputStream()));
+	
+	    // error
+	    BufferedReader stdError = new BufferedReader(new 
+	         InputStreamReader(p.getErrorStream()));
+	
+	    String o;
+		while ((o = stdInput.readLine()) != null) {
+	        System.out.println(o);
+	    }
+	    
+		String err; 
+		while ((err = stdError.readLine()) != null) {
+	        System.out.println(err);
+	    }
 	}
 	private String generateCode(Instruction i) {
 			if(i instanceof Select) {
