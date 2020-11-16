@@ -23,7 +23,7 @@ Load:
 	'.load(' file = File ')' EOL
 ;
 Select:
-	'.select('key = Key')' EOL
+	'expr' ID = '.select('key = Key')' EOL
 ;
 Store:
 	'.store(' file = File ')' EOL
