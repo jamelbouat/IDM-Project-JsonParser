@@ -49,6 +49,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Expression/value"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Value">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Value/stringValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Value/integerValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Value/array"/>
     </genClasses>
   </genPackages>

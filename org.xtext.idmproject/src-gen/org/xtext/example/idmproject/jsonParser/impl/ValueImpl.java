@@ -21,6 +21,8 @@ import org.xtext.example.idmproject.jsonParser.Value;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.ValueImpl#getStringValue <em>String Value</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.ValueImpl#getIntegerValue <em>Integer Value</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.ValueImpl#getArray <em>Array</em>}</li>
  * </ul>
  *
@@ -28,6 +30,46 @@ import org.xtext.example.idmproject.jsonParser.Value;
  */
 public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 {
+  /**
+   * The default value of the '{@link #getStringValue() <em>String Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStringValue()
+   * @generated
+   * @ordered
+   */
+  protected static final String STRING_VALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getStringValue() <em>String Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStringValue()
+   * @generated
+   * @ordered
+   */
+  protected String stringValue = STRING_VALUE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getIntegerValue() <em>Integer Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIntegerValue()
+   * @generated
+   * @ordered
+   */
+  protected static final int INTEGER_VALUE_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getIntegerValue() <em>Integer Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIntegerValue()
+   * @generated
+   * @ordered
+   */
+  protected int integerValue = INTEGER_VALUE_EDEFAULT;
+
   /**
    * The default value of the '{@link #getArray() <em>Array</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -75,6 +117,56 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
    * @generated
    */
   @Override
+  public String getStringValue()
+  {
+    return stringValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setStringValue(String newStringValue)
+  {
+    String oldStringValue = stringValue;
+    stringValue = newStringValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.VALUE__STRING_VALUE, oldStringValue, stringValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int getIntegerValue()
+  {
+    return integerValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setIntegerValue(int newIntegerValue)
+  {
+    int oldIntegerValue = integerValue;
+    integerValue = newIntegerValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.VALUE__INTEGER_VALUE, oldIntegerValue, integerValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getArray()
   {
     return array;
@@ -104,6 +196,10 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
   {
     switch (featureID)
     {
+      case JsonParserPackage.VALUE__STRING_VALUE:
+        return getStringValue();
+      case JsonParserPackage.VALUE__INTEGER_VALUE:
+        return getIntegerValue();
       case JsonParserPackage.VALUE__ARRAY:
         return getArray();
     }
@@ -120,6 +216,12 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
   {
     switch (featureID)
     {
+      case JsonParserPackage.VALUE__STRING_VALUE:
+        setStringValue((String)newValue);
+        return;
+      case JsonParserPackage.VALUE__INTEGER_VALUE:
+        setIntegerValue((Integer)newValue);
+        return;
       case JsonParserPackage.VALUE__ARRAY:
         setArray((String)newValue);
         return;
@@ -137,6 +239,12 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
   {
     switch (featureID)
     {
+      case JsonParserPackage.VALUE__STRING_VALUE:
+        setStringValue(STRING_VALUE_EDEFAULT);
+        return;
+      case JsonParserPackage.VALUE__INTEGER_VALUE:
+        setIntegerValue(INTEGER_VALUE_EDEFAULT);
+        return;
       case JsonParserPackage.VALUE__ARRAY:
         setArray(ARRAY_EDEFAULT);
         return;
@@ -154,6 +262,10 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
   {
     switch (featureID)
     {
+      case JsonParserPackage.VALUE__STRING_VALUE:
+        return STRING_VALUE_EDEFAULT == null ? stringValue != null : !STRING_VALUE_EDEFAULT.equals(stringValue);
+      case JsonParserPackage.VALUE__INTEGER_VALUE:
+        return integerValue != INTEGER_VALUE_EDEFAULT;
       case JsonParserPackage.VALUE__ARRAY:
         return ARRAY_EDEFAULT == null ? array != null : !ARRAY_EDEFAULT.equals(array);
     }
@@ -171,7 +283,11 @@ public class ValueImpl extends MinimalEObjectImpl.Container implements Value
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (array: ");
+    result.append(" (stringValue: ");
+    result.append(stringValue);
+    result.append(", integerValue: ");
+    result.append(integerValue);
+    result.append(", array: ");
     result.append(array);
     result.append(')');
     return result.toString();

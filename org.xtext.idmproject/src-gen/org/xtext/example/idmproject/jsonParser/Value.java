@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Value#getStringValue <em>String Value</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Value#getIntegerValue <em>Integer Value</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Value#getArray <em>Array</em>}</li>
  * </ul>
  *
@@ -23,6 +25,50 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Value extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>String Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>String Value</em>' attribute.
+   * @see #setStringValue(String)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getValue_StringValue()
+   * @model
+   * @generated
+   */
+  String getStringValue();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Value#getStringValue <em>String Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>String Value</em>' attribute.
+   * @see #getStringValue()
+   * @generated
+   */
+  void setStringValue(String value);
+
+  /**
+   * Returns the value of the '<em><b>Integer Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Integer Value</em>' attribute.
+   * @see #setIntegerValue(int)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getValue_IntegerValue()
+   * @model
+   * @generated
+   */
+  int getIntegerValue();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Value#getIntegerValue <em>Integer Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Integer Value</em>' attribute.
+   * @see #getIntegerValue()
+   * @generated
+   */
+  void setIntegerValue(int value);
+
   /**
    * Returns the value of the '<em><b>Array</b></em>' attribute.
    * <!-- begin-user-doc -->

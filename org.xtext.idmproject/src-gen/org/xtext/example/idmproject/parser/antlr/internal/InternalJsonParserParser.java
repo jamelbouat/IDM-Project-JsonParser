@@ -2308,34 +2308,34 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValue"
-    // InternalJsonParser.g:949:1: ruleValue returns [EObject current=null] : ( ( () this_STRING_1= RULE_STRING ) | ( () this_INT_3= RULE_INT ) | ( (lv_array_4_0= ruleArray ) ) ) ;
+    // InternalJsonParser.g:949:1: ruleValue returns [EObject current=null] : ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_integerValue_1_0= RULE_INT ) ) | ( (lv_array_2_0= ruleArray ) ) ) ;
     public final EObject ruleValue() throws RecognitionException {
         EObject current = null;
 
-        Token this_STRING_1=null;
-        Token this_INT_3=null;
-        AntlrDatatypeRuleToken lv_array_4_0 = null;
+        Token lv_stringValue_0_0=null;
+        Token lv_integerValue_1_0=null;
+        AntlrDatatypeRuleToken lv_array_2_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalJsonParser.g:955:2: ( ( ( () this_STRING_1= RULE_STRING ) | ( () this_INT_3= RULE_INT ) | ( (lv_array_4_0= ruleArray ) ) ) )
-            // InternalJsonParser.g:956:2: ( ( () this_STRING_1= RULE_STRING ) | ( () this_INT_3= RULE_INT ) | ( (lv_array_4_0= ruleArray ) ) )
+            // InternalJsonParser.g:955:2: ( ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_integerValue_1_0= RULE_INT ) ) | ( (lv_array_2_0= ruleArray ) ) ) )
+            // InternalJsonParser.g:956:2: ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_integerValue_1_0= RULE_INT ) ) | ( (lv_array_2_0= ruleArray ) ) )
             {
-            // InternalJsonParser.g:956:2: ( ( () this_STRING_1= RULE_STRING ) | ( () this_INT_3= RULE_INT ) | ( (lv_array_4_0= ruleArray ) ) )
+            // InternalJsonParser.g:956:2: ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_integerValue_1_0= RULE_INT ) ) | ( (lv_array_2_0= ruleArray ) ) )
             int alt4=3;
             switch ( input.LA(1) ) {
             case RULE_STRING:
                 {
                 int LA4_1 = input.LA(2);
 
-                if ( (LA4_1==EOF||LA4_1==25) ) {
-                    alt4=1;
-                }
-                else if ( (LA4_1==RULE_STRING||LA4_1==24) ) {
+                if ( (LA4_1==RULE_STRING||LA4_1==24) ) {
                     alt4=3;
+                }
+                else if ( (LA4_1==EOF||LA4_1==25) ) {
+                    alt4=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -2365,26 +2365,31 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
             switch (alt4) {
                 case 1 :
-                    // InternalJsonParser.g:957:3: ( () this_STRING_1= RULE_STRING )
+                    // InternalJsonParser.g:957:3: ( (lv_stringValue_0_0= RULE_STRING ) )
                     {
-                    // InternalJsonParser.g:957:3: ( () this_STRING_1= RULE_STRING )
-                    // InternalJsonParser.g:958:4: () this_STRING_1= RULE_STRING
+                    // InternalJsonParser.g:957:3: ( (lv_stringValue_0_0= RULE_STRING ) )
+                    // InternalJsonParser.g:958:4: (lv_stringValue_0_0= RULE_STRING )
                     {
-                    // InternalJsonParser.g:958:4: ()
-                    // InternalJsonParser.g:959:5: 
+                    // InternalJsonParser.g:958:4: (lv_stringValue_0_0= RULE_STRING )
+                    // InternalJsonParser.g:959:5: lv_stringValue_0_0= RULE_STRING
                     {
+                    lv_stringValue_0_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getValueAccess().getValueAction_0_0(),
-                    						current);
+                    					newLeafNode(lv_stringValue_0_0, grammarAccess.getValueAccess().getStringValueSTRINGTerminalRuleCall_0_0());
+                    				
+
+                    					if (current==null) {
+                    						current = createModelElement(grammarAccess.getValueRule());
+                    					}
+                    					setWithLastConsumed(
+                    						current,
+                    						"stringValue",
+                    						lv_stringValue_0_0,
+                    						"org.eclipse.xtext.common.Terminals.STRING");
                     				
 
                     }
 
-                    this_STRING_1=(Token)match(input,RULE_STRING,FOLLOW_2); 
-
-                    				newLeafNode(this_STRING_1, grammarAccess.getValueAccess().getSTRINGTerminalRuleCall_0_1());
-                    			
 
                     }
 
@@ -2392,26 +2397,31 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalJsonParser.g:971:3: ( () this_INT_3= RULE_INT )
+                    // InternalJsonParser.g:976:3: ( (lv_integerValue_1_0= RULE_INT ) )
                     {
-                    // InternalJsonParser.g:971:3: ( () this_INT_3= RULE_INT )
-                    // InternalJsonParser.g:972:4: () this_INT_3= RULE_INT
+                    // InternalJsonParser.g:976:3: ( (lv_integerValue_1_0= RULE_INT ) )
+                    // InternalJsonParser.g:977:4: (lv_integerValue_1_0= RULE_INT )
                     {
-                    // InternalJsonParser.g:972:4: ()
-                    // InternalJsonParser.g:973:5: 
+                    // InternalJsonParser.g:977:4: (lv_integerValue_1_0= RULE_INT )
+                    // InternalJsonParser.g:978:5: lv_integerValue_1_0= RULE_INT
                     {
+                    lv_integerValue_1_0=(Token)match(input,RULE_INT,FOLLOW_2); 
 
-                    					current = forceCreateModelElement(
-                    						grammarAccess.getValueAccess().getValueAction_1_0(),
-                    						current);
+                    					newLeafNode(lv_integerValue_1_0, grammarAccess.getValueAccess().getIntegerValueINTTerminalRuleCall_1_0());
+                    				
+
+                    					if (current==null) {
+                    						current = createModelElement(grammarAccess.getValueRule());
+                    					}
+                    					setWithLastConsumed(
+                    						current,
+                    						"integerValue",
+                    						lv_integerValue_1_0,
+                    						"org.eclipse.xtext.common.Terminals.INT");
                     				
 
                     }
 
-                    this_INT_3=(Token)match(input,RULE_INT,FOLLOW_2); 
-
-                    				newLeafNode(this_INT_3, grammarAccess.getValueAccess().getINTTerminalRuleCall_1_1());
-                    			
 
                     }
 
@@ -2419,19 +2429,19 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalJsonParser.g:985:3: ( (lv_array_4_0= ruleArray ) )
+                    // InternalJsonParser.g:995:3: ( (lv_array_2_0= ruleArray ) )
                     {
-                    // InternalJsonParser.g:985:3: ( (lv_array_4_0= ruleArray ) )
-                    // InternalJsonParser.g:986:4: (lv_array_4_0= ruleArray )
+                    // InternalJsonParser.g:995:3: ( (lv_array_2_0= ruleArray ) )
+                    // InternalJsonParser.g:996:4: (lv_array_2_0= ruleArray )
                     {
-                    // InternalJsonParser.g:986:4: (lv_array_4_0= ruleArray )
-                    // InternalJsonParser.g:987:5: lv_array_4_0= ruleArray
+                    // InternalJsonParser.g:996:4: (lv_array_2_0= ruleArray )
+                    // InternalJsonParser.g:997:5: lv_array_2_0= ruleArray
                     {
 
                     					newCompositeNode(grammarAccess.getValueAccess().getArrayArrayParserRuleCall_2_0());
                     				
                     pushFollow(FOLLOW_2);
-                    lv_array_4_0=ruleArray();
+                    lv_array_2_0=ruleArray();
 
                     state._fsp--;
 
@@ -2442,7 +2452,7 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
                     					set(
                     						current,
                     						"array",
-                    						lv_array_4_0,
+                    						lv_array_2_0,
                     						"org.xtext.example.idmproject.JsonParser.Array");
                     					afterParserOrEnumRuleCall();
                     				
@@ -2478,7 +2488,7 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleArray"
-    // InternalJsonParser.g:1008:1: entryRuleArray returns [String current=null] : iv_ruleArray= ruleArray EOF ;
+    // InternalJsonParser.g:1018:1: entryRuleArray returns [String current=null] : iv_ruleArray= ruleArray EOF ;
     public final String entryRuleArray() throws RecognitionException {
         String current = null;
 
@@ -2486,8 +2496,8 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalJsonParser.g:1008:45: (iv_ruleArray= ruleArray EOF )
-            // InternalJsonParser.g:1009:2: iv_ruleArray= ruleArray EOF
+            // InternalJsonParser.g:1018:45: (iv_ruleArray= ruleArray EOF )
+            // InternalJsonParser.g:1019:2: iv_ruleArray= ruleArray EOF
             {
              newCompositeNode(grammarAccess.getArrayRule()); 
             pushFollow(FOLLOW_1);
@@ -2514,7 +2524,7 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleArray"
-    // InternalJsonParser.g:1015:1: ruleArray returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '[' (this_INT_1= RULE_INT )* ) | ( (this_STRING_2= RULE_STRING )* kw= ']' ) ) ;
+    // InternalJsonParser.g:1025:1: ruleArray returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '[' (this_INT_1= RULE_INT )* ) | ( (this_STRING_2= RULE_STRING )* kw= ']' ) ) ;
     public final AntlrDatatypeRuleToken ruleArray() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2526,10 +2536,10 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalJsonParser.g:1021:2: ( ( (kw= '[' (this_INT_1= RULE_INT )* ) | ( (this_STRING_2= RULE_STRING )* kw= ']' ) ) )
-            // InternalJsonParser.g:1022:2: ( (kw= '[' (this_INT_1= RULE_INT )* ) | ( (this_STRING_2= RULE_STRING )* kw= ']' ) )
+            // InternalJsonParser.g:1031:2: ( ( (kw= '[' (this_INT_1= RULE_INT )* ) | ( (this_STRING_2= RULE_STRING )* kw= ']' ) ) )
+            // InternalJsonParser.g:1032:2: ( (kw= '[' (this_INT_1= RULE_INT )* ) | ( (this_STRING_2= RULE_STRING )* kw= ']' ) )
             {
-            // InternalJsonParser.g:1022:2: ( (kw= '[' (this_INT_1= RULE_INT )* ) | ( (this_STRING_2= RULE_STRING )* kw= ']' ) )
+            // InternalJsonParser.g:1032:2: ( (kw= '[' (this_INT_1= RULE_INT )* ) | ( (this_STRING_2= RULE_STRING )* kw= ']' ) )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2547,17 +2557,17 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
             }
             switch (alt7) {
                 case 1 :
-                    // InternalJsonParser.g:1023:3: (kw= '[' (this_INT_1= RULE_INT )* )
+                    // InternalJsonParser.g:1033:3: (kw= '[' (this_INT_1= RULE_INT )* )
                     {
-                    // InternalJsonParser.g:1023:3: (kw= '[' (this_INT_1= RULE_INT )* )
-                    // InternalJsonParser.g:1024:4: kw= '[' (this_INT_1= RULE_INT )*
+                    // InternalJsonParser.g:1033:3: (kw= '[' (this_INT_1= RULE_INT )* )
+                    // InternalJsonParser.g:1034:4: kw= '[' (this_INT_1= RULE_INT )*
                     {
                     kw=(Token)match(input,23,FOLLOW_12); 
 
                     				current.merge(kw);
                     				newLeafNode(kw, grammarAccess.getArrayAccess().getLeftSquareBracketKeyword_0_0());
                     			
-                    // InternalJsonParser.g:1029:4: (this_INT_1= RULE_INT )*
+                    // InternalJsonParser.g:1039:4: (this_INT_1= RULE_INT )*
                     loop5:
                     do {
                         int alt5=2;
@@ -2570,7 +2580,7 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalJsonParser.g:1030:5: this_INT_1= RULE_INT
+                    	    // InternalJsonParser.g:1040:5: this_INT_1= RULE_INT
                     	    {
                     	    this_INT_1=(Token)match(input,RULE_INT,FOLLOW_12); 
 
@@ -2595,12 +2605,12 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalJsonParser.g:1040:3: ( (this_STRING_2= RULE_STRING )* kw= ']' )
+                    // InternalJsonParser.g:1050:3: ( (this_STRING_2= RULE_STRING )* kw= ']' )
                     {
-                    // InternalJsonParser.g:1040:3: ( (this_STRING_2= RULE_STRING )* kw= ']' )
-                    // InternalJsonParser.g:1041:4: (this_STRING_2= RULE_STRING )* kw= ']'
+                    // InternalJsonParser.g:1050:3: ( (this_STRING_2= RULE_STRING )* kw= ']' )
+                    // InternalJsonParser.g:1051:4: (this_STRING_2= RULE_STRING )* kw= ']'
                     {
-                    // InternalJsonParser.g:1041:4: (this_STRING_2= RULE_STRING )*
+                    // InternalJsonParser.g:1051:4: (this_STRING_2= RULE_STRING )*
                     loop6:
                     do {
                         int alt6=2;
@@ -2613,7 +2623,7 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // InternalJsonParser.g:1042:5: this_STRING_2= RULE_STRING
+                    	    // InternalJsonParser.g:1052:5: this_STRING_2= RULE_STRING
                     	    {
                     	    this_STRING_2=(Token)match(input,RULE_STRING,FOLLOW_13); 
 
@@ -2665,7 +2675,7 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEOL"
-    // InternalJsonParser.g:1060:1: entryRuleEOL returns [String current=null] : iv_ruleEOL= ruleEOL EOF ;
+    // InternalJsonParser.g:1070:1: entryRuleEOL returns [String current=null] : iv_ruleEOL= ruleEOL EOF ;
     public final String entryRuleEOL() throws RecognitionException {
         String current = null;
 
@@ -2673,8 +2683,8 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalJsonParser.g:1060:43: (iv_ruleEOL= ruleEOL EOF )
-            // InternalJsonParser.g:1061:2: iv_ruleEOL= ruleEOL EOF
+            // InternalJsonParser.g:1070:43: (iv_ruleEOL= ruleEOL EOF )
+            // InternalJsonParser.g:1071:2: iv_ruleEOL= ruleEOL EOF
             {
              newCompositeNode(grammarAccess.getEOLRule()); 
             pushFollow(FOLLOW_1);
@@ -2701,7 +2711,7 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEOL"
-    // InternalJsonParser.g:1067:1: ruleEOL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '\\n' ;
+    // InternalJsonParser.g:1077:1: ruleEOL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '\\n' ;
     public final AntlrDatatypeRuleToken ruleEOL() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2711,8 +2721,8 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalJsonParser.g:1073:2: (kw= '\\n' )
-            // InternalJsonParser.g:1074:2: kw= '\\n'
+            // InternalJsonParser.g:1083:2: (kw= '\\n' )
+            // InternalJsonParser.g:1084:2: kw= '\\n'
             {
             kw=(Token)match(input,25,FOLLOW_2); 
 
@@ -2742,21 +2752,21 @@ public class InternalJsonParserParser extends AbstractInternalAntlrParser {
 
     protected DFA3 dfa3 = new DFA3(this);
     static final String dfa_1s = "\14\uffff";
-    static final String dfa_2s = "\1\4\1\26\2\4\1\31\1\5\1\31\1\4\1\24\1\5\2\uffff";
-    static final String dfa_3s = "\1\4\1\26\1\30\4\31\1\30\1\25\1\31\2\uffff";
+    static final String dfa_2s = "\1\4\1\26\2\4\1\31\1\5\1\31\1\24\1\4\1\5\2\uffff";
+    static final String dfa_3s = "\1\4\1\26\1\30\4\31\1\25\1\30\1\31\2\uffff";
     static final String dfa_4s = "\12\uffff\1\1\1\2";
     static final String dfa_5s = "\14\uffff}>";
     static final String[] dfa_6s = {
             "\1\1",
             "\1\2",
             "\1\3\1\4\21\uffff\1\5\1\6",
-            "\1\7\23\uffff\1\6\1\10",
-            "\1\10",
-            "\1\11\23\uffff\1\10",
-            "\1\10",
-            "\1\7\23\uffff\1\6",
+            "\1\10\23\uffff\1\6\1\7",
+            "\1\7",
+            "\1\11\23\uffff\1\7",
+            "\1\7",
             "\1\12\1\13",
-            "\1\11\23\uffff\1\10",
+            "\1\10\23\uffff\1\6",
+            "\1\11\23\uffff\1\7",
             "",
             ""
     };

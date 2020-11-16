@@ -46,8 +46,6 @@ public class JsonParserParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSumAccess().getGroup(), "rule__Sum__Group__0");
 			builder.put(grammarAccess.getProductAccess().getGroup(), "rule__Product__Group__0");
 			builder.put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
-			builder.put(grammarAccess.getValueAccess().getGroup_0(), "rule__Value__Group_0__0");
-			builder.put(grammarAccess.getValueAccess().getGroup_1(), "rule__Value__Group_1__0");
 			builder.put(grammarAccess.getArrayAccess().getGroup_0(), "rule__Array__Group_0__0");
 			builder.put(grammarAccess.getArrayAccess().getGroup_1(), "rule__Array__Group_1__0");
 			builder.put(grammarAccess.getJsonModelAccess().getBaseLoadAssignment_0(), "rule__JsonModel__BaseLoadAssignment_0");
@@ -72,6 +70,8 @@ public class JsonParserParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProductAccess().getExpression2Assignment_2(), "rule__Product__Expression2Assignment_2");
 			builder.put(grammarAccess.getExpressionAccess().getKeyAssignment_0(), "rule__Expression__KeyAssignment_0");
 			builder.put(grammarAccess.getExpressionAccess().getValueAssignment_2(), "rule__Expression__ValueAssignment_2");
+			builder.put(grammarAccess.getValueAccess().getStringValueAssignment_0(), "rule__Value__StringValueAssignment_0");
+			builder.put(grammarAccess.getValueAccess().getIntegerValueAssignment_1(), "rule__Value__IntegerValueAssignment_1");
 			builder.put(grammarAccess.getValueAccess().getArrayAssignment_2(), "rule__Value__ArrayAssignment_2");
 		}
 	}

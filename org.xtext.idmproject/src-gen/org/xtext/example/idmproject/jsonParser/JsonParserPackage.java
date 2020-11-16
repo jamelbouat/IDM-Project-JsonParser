@@ -512,13 +512,31 @@ public interface JsonParserPackage extends EPackage
   int VALUE = 12;
 
   /**
+   * The feature id for the '<em><b>String Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALUE__STRING_VALUE = 0;
+
+  /**
+   * The feature id for the '<em><b>Integer Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALUE__INTEGER_VALUE = 1;
+
+  /**
    * The feature id for the '<em><b>Array</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VALUE__ARRAY = 0;
+  int VALUE__ARRAY = 2;
 
   /**
    * The number of structural features of the '<em>Value</em>' class.
@@ -527,7 +545,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VALUE_FEATURE_COUNT = 1;
+  int VALUE_FEATURE_COUNT = 3;
 
 
   /**
@@ -881,6 +899,28 @@ public interface JsonParserPackage extends EPackage
   EClass getValue();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Value#getStringValue <em>String Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>String Value</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Value#getStringValue()
+   * @see #getValue()
+   * @generated
+   */
+  EAttribute getValue_StringValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Value#getIntegerValue <em>Integer Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Integer Value</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Value#getIntegerValue()
+   * @see #getValue()
+   * @generated
+   */
+  EAttribute getValue_IntegerValue();
+
+  /**
    * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Value#getArray <em>Array</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1203,6 +1243,22 @@ public interface JsonParserPackage extends EPackage
      * @generated
      */
     EClass VALUE = eINSTANCE.getValue();
+
+    /**
+     * The meta object literal for the '<em><b>String Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALUE__STRING_VALUE = eINSTANCE.getValue_StringValue();
+
+    /**
+     * The meta object literal for the '<em><b>Integer Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VALUE__INTEGER_VALUE = eINSTANCE.getValue_IntegerValue();
 
     /**
      * The meta object literal for the '<em><b>Array</b></em>' attribute feature.

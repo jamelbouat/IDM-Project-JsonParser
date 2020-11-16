@@ -6,7 +6,6 @@ package org.xtext.example.idmproject.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
-import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Grammar;
@@ -484,39 +483,31 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	public class ValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Value");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cValueAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final RuleCall cSTRINGTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cValueAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cStringValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cStringValueSTRINGTerminalRuleCall_0_0 = (RuleCall)cStringValueAssignment_0.eContents().get(0);
+		private final Assignment cIntegerValueAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cIntegerValueINTTerminalRuleCall_1_0 = (RuleCall)cIntegerValueAssignment_1.eContents().get(0);
 		private final Assignment cArrayAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cArrayArrayParserRuleCall_2_0 = (RuleCall)cArrayAssignment_2.eContents().get(0);
 		
 		//Value:
-		//	{Value} STRING | {Value} INT | array=Array;
+		//	stringValue=STRING | integerValue=INT | array=Array;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Value} STRING | {Value} INT | array=Array
+		//stringValue=STRING | integerValue=INT | array=Array
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//{Value} STRING
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//{Value}
-		public Action getValueAction_0_0() { return cValueAction_0_0; }
+		//stringValue=STRING
+		public Assignment getStringValueAssignment_0() { return cStringValueAssignment_0; }
 		
 		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_0_1() { return cSTRINGTerminalRuleCall_0_1; }
+		public RuleCall getStringValueSTRINGTerminalRuleCall_0_0() { return cStringValueSTRINGTerminalRuleCall_0_0; }
 		
-		//{Value} INT
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{Value}
-		public Action getValueAction_1_0() { return cValueAction_1_0; }
+		//integerValue=INT
+		public Assignment getIntegerValueAssignment_1() { return cIntegerValueAssignment_1; }
 		
 		//INT
-		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
+		public RuleCall getIntegerValueINTTerminalRuleCall_1_0() { return cIntegerValueINTTerminalRuleCall_1_0; }
 		
 		//array=Array
 		public Assignment getArrayAssignment_2() { return cArrayAssignment_2; }
@@ -799,7 +790,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Value:
-	//	{Value} STRING | {Value} INT | array=Array;
+	//	stringValue=STRING | integerValue=INT | array=Array;
 	public ValueElements getValueAccess() {
 		return pValue;
 	}

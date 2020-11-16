@@ -59,7 +59,7 @@ Key:
 ;
 
 Value:
-	{Value} STRING | {Value} INT | array = Array
+	stringValue =  STRING | integerValue =  INT | array = Array
 ;
 
 Array:

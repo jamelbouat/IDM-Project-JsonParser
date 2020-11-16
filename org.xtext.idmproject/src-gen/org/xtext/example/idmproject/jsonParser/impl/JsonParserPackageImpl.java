@@ -557,9 +557,31 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EAttribute getValue_Array()
+  public EAttribute getValue_StringValue()
   {
     return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getValue_IntegerValue()
+  {
+    return (EAttribute)valueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getValue_Array()
+  {
+    return (EAttribute)valueEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -638,6 +660,8 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     createEReference(expressionEClass, EXPRESSION__VALUE);
 
     valueEClass = createEClass(VALUE);
+    createEAttribute(valueEClass, VALUE__STRING_VALUE);
+    createEAttribute(valueEClass, VALUE__INTEGER_VALUE);
     createEAttribute(valueEClass, VALUE__ARRAY);
   }
 
@@ -719,6 +743,8 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     initEReference(getExpression_Value(), this.getValue(), null, "value", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getValue_StringValue(), ecorePackage.getEString(), "stringValue", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getValue_IntegerValue(), ecorePackage.getEInt(), "integerValue", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getValue_Array(), ecorePackage.getEString(), "array", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource

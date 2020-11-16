@@ -297,7 +297,7 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Value returns Value
 	 *
 	 * Constraint:
-	 *     array=Array?
+	 *     (stringValue=STRING | integerValue=INT | array=Array)
 	 */
 	protected void sequence_Value(ISerializationContext context, Value semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

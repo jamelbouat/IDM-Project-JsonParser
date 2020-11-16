@@ -956,30 +956,40 @@ ruleValue returns [EObject current=null]
 	(
 		(
 			(
+				lv_stringValue_0_0=RULE_STRING
 				{
-					$current = forceCreateModelElement(
-						grammarAccess.getValueAccess().getValueAction_0_0(),
-						$current);
+					newLeafNode(lv_stringValue_0_0, grammarAccess.getValueAccess().getStringValueSTRINGTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getValueRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"stringValue",
+						lv_stringValue_0_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
-			this_STRING_1=RULE_STRING
-			{
-				newLeafNode(this_STRING_1, grammarAccess.getValueAccess().getSTRINGTerminalRuleCall_0_1());
-			}
 		)
 		    |
 		(
 			(
+				lv_integerValue_1_0=RULE_INT
 				{
-					$current = forceCreateModelElement(
-						grammarAccess.getValueAccess().getValueAction_1_0(),
-						$current);
+					newLeafNode(lv_integerValue_1_0, grammarAccess.getValueAccess().getIntegerValueINTTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getValueRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"integerValue",
+						lv_integerValue_1_0,
+						"org.eclipse.xtext.common.Terminals.INT");
 				}
 			)
-			this_INT_3=RULE_INT
-			{
-				newLeafNode(this_INT_3, grammarAccess.getValueAccess().getINTTerminalRuleCall_1_1());
-			}
 		)
 		    |
 		(
@@ -987,7 +997,7 @@ ruleValue returns [EObject current=null]
 				{
 					newCompositeNode(grammarAccess.getValueAccess().getArrayArrayParserRuleCall_2_0());
 				}
-				lv_array_4_0=ruleArray
+				lv_array_2_0=ruleArray
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getValueRule());
@@ -995,7 +1005,7 @@ ruleValue returns [EObject current=null]
 					set(
 						$current,
 						"array",
-						lv_array_4_0,
+						lv_array_2_0,
 						"org.xtext.example.idmproject.JsonParser.Array");
 					afterParserOrEnumRuleCall();
 				}
