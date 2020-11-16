@@ -13,7 +13,6 @@ Instruction:
 	print = Print          | 
 	insert = Insert        |
 	update = Update        |
-	modify = Modify        | 
 	compute = Compute      |
 	get = GetValue
 	;
@@ -41,16 +40,11 @@ GetValue:
 	'.get(' key = Key')' EOL
 ;
 Insert:
-	'.insert(' (key = Key ',')? expression = Expression ')' EOL
+	'.insert('key = Key ',' value = Value ')' EOL
 ;
 Update:
-	'.update('key = Key ',' + expression = Expression ')'
+	'.update('key = Key ',' + newValue = Value ')' EOL
 ;
-
-Modify:
-	'.modify('key = Key',' newExpression = Expression ')' EOL
-;
-
 Compute:
 	Sum | Product 
 ;
