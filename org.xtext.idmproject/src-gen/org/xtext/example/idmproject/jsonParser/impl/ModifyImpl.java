@@ -24,7 +24,7 @@ import org.xtext.example.idmproject.jsonParser.Modify;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.ModifyImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.ModifyImpl#getKey <em>Key</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.ModifyImpl#getNewExpression <em>New Expression</em>}</li>
  * </ul>
  *
@@ -33,14 +33,24 @@ import org.xtext.example.idmproject.jsonParser.Modify;
 public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
 {
   /**
-   * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
+   * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExpression()
+   * @see #getKey()
    * @generated
    * @ordered
    */
-  protected Expression expression;
+  protected static final String KEY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getKey() <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getKey()
+   * @generated
+   * @ordered
+   */
+  protected String key = KEY_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getNewExpression() <em>New Expression</em>}' containment reference.
@@ -79,26 +89,9 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
    * @generated
    */
   @Override
-  public Expression getExpression()
+  public String getKey()
   {
-    return expression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetExpression(Expression newExpression, NotificationChain msgs)
-  {
-    Expression oldExpression = expression;
-    expression = newExpression;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.MODIFY__EXPRESSION, oldExpression, newExpression);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+    return key;
   }
 
   /**
@@ -107,20 +100,12 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
    * @generated
    */
   @Override
-  public void setExpression(Expression newExpression)
+  public void setKey(String newKey)
   {
-    if (newExpression != expression)
-    {
-      NotificationChain msgs = null;
-      if (expression != null)
-        msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.MODIFY__EXPRESSION, null, msgs);
-      if (newExpression != null)
-        msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.MODIFY__EXPRESSION, null, msgs);
-      msgs = basicSetExpression(newExpression, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.MODIFY__EXPRESSION, newExpression, newExpression));
+    String oldKey = key;
+    key = newKey;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.MODIFY__KEY, oldKey, key));
   }
 
   /**
@@ -183,8 +168,6 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__EXPRESSION:
-        return basicSetExpression(null, msgs);
       case JsonParserPackage.MODIFY__NEW_EXPRESSION:
         return basicSetNewExpression(null, msgs);
     }
@@ -201,8 +184,8 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__EXPRESSION:
-        return getExpression();
+      case JsonParserPackage.MODIFY__KEY:
+        return getKey();
       case JsonParserPackage.MODIFY__NEW_EXPRESSION:
         return getNewExpression();
     }
@@ -219,8 +202,8 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__EXPRESSION:
-        setExpression((Expression)newValue);
+      case JsonParserPackage.MODIFY__KEY:
+        setKey((String)newValue);
         return;
       case JsonParserPackage.MODIFY__NEW_EXPRESSION:
         setNewExpression((Expression)newValue);
@@ -239,8 +222,8 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__EXPRESSION:
-        setExpression((Expression)null);
+      case JsonParserPackage.MODIFY__KEY:
+        setKey(KEY_EDEFAULT);
         return;
       case JsonParserPackage.MODIFY__NEW_EXPRESSION:
         setNewExpression((Expression)null);
@@ -259,12 +242,29 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__EXPRESSION:
-        return expression != null;
+      case JsonParserPackage.MODIFY__KEY:
+        return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
       case JsonParserPackage.MODIFY__NEW_EXPRESSION:
         return newExpression != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (key: ");
+    result.append(key);
+    result.append(')');
+    return result.toString();
   }
 
 } //ModifyImpl

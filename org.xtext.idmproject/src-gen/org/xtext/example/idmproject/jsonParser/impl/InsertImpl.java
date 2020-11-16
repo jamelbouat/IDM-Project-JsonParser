@@ -24,6 +24,7 @@ import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InsertImpl#getKey <em>Key</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InsertImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
@@ -31,6 +32,26 @@ import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
  */
 public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
 {
+  /**
+   * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getKey()
+   * @generated
+   * @ordered
+   */
+  protected static final String KEY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getKey() <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getKey()
+   * @generated
+   * @ordered
+   */
+  protected String key = KEY_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -60,6 +81,31 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
   protected EClass eStaticClass()
   {
     return JsonParserPackage.Literals.INSERT;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getKey()
+  {
+    return key;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setKey(String newKey)
+  {
+    String oldKey = key;
+    key = newKey;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSERT__KEY, oldKey, key));
   }
 
   /**
@@ -138,6 +184,8 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
   {
     switch (featureID)
     {
+      case JsonParserPackage.INSERT__KEY:
+        return getKey();
       case JsonParserPackage.INSERT__EXPRESSION:
         return getExpression();
     }
@@ -154,6 +202,9 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
   {
     switch (featureID)
     {
+      case JsonParserPackage.INSERT__KEY:
+        setKey((String)newValue);
+        return;
       case JsonParserPackage.INSERT__EXPRESSION:
         setExpression((Expression)newValue);
         return;
@@ -171,6 +222,9 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
   {
     switch (featureID)
     {
+      case JsonParserPackage.INSERT__KEY:
+        setKey(KEY_EDEFAULT);
+        return;
       case JsonParserPackage.INSERT__EXPRESSION:
         setExpression((Expression)null);
         return;
@@ -188,10 +242,29 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
   {
     switch (featureID)
     {
+      case JsonParserPackage.INSERT__KEY:
+        return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
       case JsonParserPackage.INSERT__EXPRESSION:
         return expression != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (key: ");
+    result.append(key);
+    result.append(')');
+    return result.toString();
   }
 
 } //InsertImpl

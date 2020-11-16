@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Insert#getKey <em>Key</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Insert#getExpression <em>Expression</em>}</li>
  * </ul>
  *
@@ -23,6 +24,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Insert extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Key</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Key</em>' attribute.
+   * @see #setKey(String)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInsert_Key()
+   * @model
+   * @generated
+   */
+  String getKey();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Insert#getKey <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Key</em>' attribute.
+   * @see #getKey()
+   * @generated
+   */
+  void setKey(String value);
+
   /**
    * Returns the value of the '<em><b>Expression</b></em>' containment reference.
    * <!-- begin-user-doc -->

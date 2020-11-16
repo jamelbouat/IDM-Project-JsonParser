@@ -83,7 +83,7 @@ public class JsonParserParsingTest {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
-      _builder.append(".insert(\"newKey:newValue\")");
+      _builder.append(".insert(\"prevKey\",\"\"\"newKey\" : \"newValue\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
       Assertions.assertNotNull(result);

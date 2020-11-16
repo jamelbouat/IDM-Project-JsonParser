@@ -19,8 +19,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getSave <em>Save</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getPrint <em>Print</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsert <em>Insert</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertL <em>Insert L</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertR <em>Insert R</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getModify <em>Modify</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getCompute <em>Compute</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getGet <em>Get</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction()
@@ -140,6 +143,50 @@ public interface Instruction extends EObject
   void setInsert(Insert value);
 
   /**
+   * Returns the value of the '<em><b>Insert L</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Insert L</em>' containment reference.
+   * @see #setInsertL(InsertLeft)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction_InsertL()
+   * @model containment="true"
+   * @generated
+   */
+  InsertLeft getInsertL();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertL <em>Insert L</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Insert L</em>' containment reference.
+   * @see #getInsertL()
+   * @generated
+   */
+  void setInsertL(InsertLeft value);
+
+  /**
+   * Returns the value of the '<em><b>Insert R</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Insert R</em>' containment reference.
+   * @see #setInsertR(InsertRight)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction_InsertR()
+   * @model containment="true"
+   * @generated
+   */
+  InsertRight getInsertR();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertR <em>Insert R</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Insert R</em>' containment reference.
+   * @see #getInsertR()
+   * @generated
+   */
+  void setInsertR(InsertRight value);
+
+  /**
    * Returns the value of the '<em><b>Modify</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -182,5 +229,27 @@ public interface Instruction extends EObject
    * @generated
    */
   void setCompute(Compute value);
+
+  /**
+   * Returns the value of the '<em><b>Get</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Get</em>' containment reference.
+   * @see #setGet(GetValue)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction_Get()
+   * @model containment="true"
+   * @generated
+   */
+  GetValue getGet();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Instruction#getGet <em>Get</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Get</em>' containment reference.
+   * @see #getGet()
+   * @generated
+   */
+  void setGet(GetValue value);
 
 } // Instruction

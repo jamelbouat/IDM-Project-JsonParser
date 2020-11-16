@@ -1,5 +1,6 @@
 import json
 with open("file.json") as f:
  data = json.load(f)
-with open("newFile.json", 'w') as newFile:
- json.dump(data, newFile)
+data[""] = newValue
+with open("file.json", 'w') as f:
+ json.dump(data, f)

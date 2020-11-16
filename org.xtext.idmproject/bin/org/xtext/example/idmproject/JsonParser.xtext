@@ -7,14 +7,24 @@ JsonModel:
 	instructions+=Instruction*;
 	
 Instruction:
-	select = Select | store = Store | save = Save | print = Print | insert = Insert | modify = Modify | compute = Compute;
+	select = Select        |
+	store = Store          |
+	save = Save            |
+	print = Print          | 
+	insert = Insert        |
+	insertL = InsertLeft   |
+	insertR = InsertRight  |
+	modify = Modify        | 
+	compute = Compute      |
+	get = GetValue
+	;
 
 
 Load:
 	'.load(' file = File ')' EOL
 ;
 Select:
-	'.select('expression = Expression')' EOL
+	'.select('key = Key')' EOL
 ;
 Store:
 	'.store(' file = File ')' EOL
@@ -26,16 +36,24 @@ Save:
 	'.save()' EOL
 ;
 Print:
-	'.print('expression = Expression')' EOL
+	'.print('key = Key')' EOL
 ;
-
+GetValue:
+	'.get(' key = Key')' EOL
+;
+InsertLeft:
+	'.insertLt(' expression = Expression ')' EOL
+;
+InsertRight:
+	'.insertRt(' expression = Expression ')' EOL
+;
 Insert:
-	'.insert(' expression = Expression ')' EOL
+	'.insert(' key = Key ',' expression = Expression ')' EOL
 ;
 
 
 Modify:
-	'.modify('expression = Expression',' newExpression = Expression ')' EOL
+	'.modify('key = Key',' newExpression = Expression ')' EOL
 ;
 
 Compute:
@@ -43,15 +61,15 @@ Compute:
 ;
 
 Sum:
-	expression1 = Expression '+' expression2 = Expression EOL
+	key1 = Key '+' key2 = Key EOL
 ;
 
 Product:
-	expression1 = Expression '*' expression2 = Expression EOL
+	key1 = Key '*' key2 = Key EOL
 ;
 
 Expression:
-	key = Key ':' value = Value EOL
+	key = Key ':' value = Value 
 ;
 
 Key:

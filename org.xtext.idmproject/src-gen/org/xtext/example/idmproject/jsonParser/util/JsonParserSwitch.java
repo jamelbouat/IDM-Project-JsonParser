@@ -115,6 +115,27 @@ public class JsonParserSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case JsonParserPackage.GET_VALUE:
+      {
+        GetValue getValue = (GetValue)theEObject;
+        T result = caseGetValue(getValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case JsonParserPackage.INSERT_LEFT:
+      {
+        InsertLeft insertLeft = (InsertLeft)theEObject;
+        T result = caseInsertLeft(insertLeft);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case JsonParserPackage.INSERT_RIGHT:
+      {
+        InsertRight insertRight = (InsertRight)theEObject;
+        T result = caseInsertRight(insertRight);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case JsonParserPackage.INSERT:
       {
         Insert insert = (Insert)theEObject;
@@ -262,6 +283,54 @@ public class JsonParserSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrint(Print object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Get Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Get Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGetValue(GetValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Insert Left</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Insert Left</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInsertLeft(InsertLeft object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Insert Right</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Insert Right</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInsertRight(InsertRight object)
   {
     return null;
   }

@@ -71,6 +71,9 @@ public class JsonParserFactoryImpl extends EFactoryImpl implements JsonParserFac
       case JsonParserPackage.SELECT: return createSelect();
       case JsonParserPackage.STORE: return createStore();
       case JsonParserPackage.PRINT: return createPrint();
+      case JsonParserPackage.GET_VALUE: return createGetValue();
+      case JsonParserPackage.INSERT_LEFT: return createInsertLeft();
+      case JsonParserPackage.INSERT_RIGHT: return createInsertRight();
       case JsonParserPackage.INSERT: return createInsert();
       case JsonParserPackage.MODIFY: return createModify();
       case JsonParserPackage.COMPUTE: return createCompute();
@@ -153,6 +156,42 @@ public class JsonParserFactoryImpl extends EFactoryImpl implements JsonParserFac
   {
     PrintImpl print = new PrintImpl();
     return print;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public GetValue createGetValue()
+  {
+    GetValueImpl getValue = new GetValueImpl();
+    return getValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public InsertLeft createInsertLeft()
+  {
+    InsertLeftImpl insertLeft = new InsertLeftImpl();
+    return insertLeft;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public InsertRight createInsertRight()
+  {
+    InsertRightImpl insertRight = new InsertRightImpl();
+    return insertRight;
   }
 
   /**

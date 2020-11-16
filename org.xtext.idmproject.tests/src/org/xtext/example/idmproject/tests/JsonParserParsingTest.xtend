@@ -58,7 +58,7 @@ class JsonParserParsingTest {
 		val value = "newKey" + " : " + "newValue";
 		val result = parseHelper.parse('''
 			.load("file.json")
-			.insert("newKey:newValue")
+			.insert("prevKey","""newKey" : "newValue")
 		''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors

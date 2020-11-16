@@ -150,13 +150,31 @@ public interface JsonParserPackage extends EPackage
   int INSTRUCTION__INSERT = 4;
 
   /**
+   * The feature id for the '<em><b>Insert L</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION__INSERT_L = 5;
+
+  /**
+   * The feature id for the '<em><b>Insert R</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION__INSERT_R = 6;
+
+  /**
    * The feature id for the '<em><b>Modify</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSTRUCTION__MODIFY = 5;
+  int INSTRUCTION__MODIFY = 7;
 
   /**
    * The feature id for the '<em><b>Compute</b></em>' containment reference.
@@ -165,7 +183,16 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION__COMPUTE = 6;
+  int INSTRUCTION__COMPUTE = 8;
+
+  /**
+   * The feature id for the '<em><b>Get</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION__GET = 9;
 
   /**
    * The number of structural features of the '<em>Instruction</em>' class.
@@ -174,7 +201,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION_FEATURE_COUNT = 7;
+  int INSTRUCTION_FEATURE_COUNT = 10;
 
   /**
    * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.LoadImpl <em>Load</em>}' class.
@@ -215,13 +242,13 @@ public interface JsonParserPackage extends EPackage
   int SELECT = 3;
 
   /**
-   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * The feature id for the '<em><b>Key</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SELECT__EXPRESSION = 0;
+  int SELECT__KEY = 0;
 
   /**
    * The number of structural features of the '<em>Select</em>' class.
@@ -271,13 +298,13 @@ public interface JsonParserPackage extends EPackage
   int PRINT = 5;
 
   /**
-   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * The feature id for the '<em><b>Key</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRINT__EXPRESSION = 0;
+  int PRINT__KEY = 0;
 
   /**
    * The number of structural features of the '<em>Print</em>' class.
@@ -289,14 +316,42 @@ public interface JsonParserPackage extends EPackage
   int PRINT_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.InsertImpl <em>Insert</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.GetValueImpl <em>Get Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.idmproject.jsonParser.impl.InsertImpl
-   * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getInsert()
+   * @see org.xtext.example.idmproject.jsonParser.impl.GetValueImpl
+   * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getGetValue()
    * @generated
    */
-  int INSERT = 6;
+  int GET_VALUE = 6;
+
+  /**
+   * The feature id for the '<em><b>Key</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GET_VALUE__KEY = 0;
+
+  /**
+   * The number of structural features of the '<em>Get Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GET_VALUE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.InsertLeftImpl <em>Insert Left</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.idmproject.jsonParser.impl.InsertLeftImpl
+   * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getInsertLeft()
+   * @generated
+   */
+  int INSERT_LEFT = 7;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -305,7 +360,72 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSERT__EXPRESSION = 0;
+  int INSERT_LEFT__EXPRESSION = 0;
+
+  /**
+   * The number of structural features of the '<em>Insert Left</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSERT_LEFT_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.InsertRightImpl <em>Insert Right</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.idmproject.jsonParser.impl.InsertRightImpl
+   * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getInsertRight()
+   * @generated
+   */
+  int INSERT_RIGHT = 8;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSERT_RIGHT__EXPRESSION = 0;
+
+  /**
+   * The number of structural features of the '<em>Insert Right</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSERT_RIGHT_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.InsertImpl <em>Insert</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.idmproject.jsonParser.impl.InsertImpl
+   * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getInsert()
+   * @generated
+   */
+  int INSERT = 9;
+
+  /**
+   * The feature id for the '<em><b>Key</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSERT__KEY = 0;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSERT__EXPRESSION = 1;
 
   /**
    * The number of structural features of the '<em>Insert</em>' class.
@@ -314,7 +434,7 @@ public interface JsonParserPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSERT_FEATURE_COUNT = 1;
+  int INSERT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.ModifyImpl <em>Modify</em>}' class.
@@ -324,16 +444,16 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getModify()
    * @generated
    */
-  int MODIFY = 7;
+  int MODIFY = 10;
 
   /**
-   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * The feature id for the '<em><b>Key</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODIFY__EXPRESSION = 0;
+  int MODIFY__KEY = 0;
 
   /**
    * The feature id for the '<em><b>New Expression</b></em>' containment reference.
@@ -361,25 +481,25 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getCompute()
    * @generated
    */
-  int COMPUTE = 8;
+  int COMPUTE = 11;
 
   /**
-   * The feature id for the '<em><b>Expression1</b></em>' containment reference.
+   * The feature id for the '<em><b>Key1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPUTE__EXPRESSION1 = 0;
+  int COMPUTE__KEY1 = 0;
 
   /**
-   * The feature id for the '<em><b>Expression2</b></em>' containment reference.
+   * The feature id for the '<em><b>Key2</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPUTE__EXPRESSION2 = 1;
+  int COMPUTE__KEY2 = 1;
 
   /**
    * The number of structural features of the '<em>Compute</em>' class.
@@ -398,25 +518,25 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getSum()
    * @generated
    */
-  int SUM = 9;
+  int SUM = 12;
 
   /**
-   * The feature id for the '<em><b>Expression1</b></em>' containment reference.
+   * The feature id for the '<em><b>Key1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SUM__EXPRESSION1 = COMPUTE__EXPRESSION1;
+  int SUM__KEY1 = COMPUTE__KEY1;
 
   /**
-   * The feature id for the '<em><b>Expression2</b></em>' containment reference.
+   * The feature id for the '<em><b>Key2</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SUM__EXPRESSION2 = COMPUTE__EXPRESSION2;
+  int SUM__KEY2 = COMPUTE__KEY2;
 
   /**
    * The number of structural features of the '<em>Sum</em>' class.
@@ -435,25 +555,25 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getProduct()
    * @generated
    */
-  int PRODUCT = 10;
+  int PRODUCT = 13;
 
   /**
-   * The feature id for the '<em><b>Expression1</b></em>' containment reference.
+   * The feature id for the '<em><b>Key1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRODUCT__EXPRESSION1 = COMPUTE__EXPRESSION1;
+  int PRODUCT__KEY1 = COMPUTE__KEY1;
 
   /**
-   * The feature id for the '<em><b>Expression2</b></em>' containment reference.
+   * The feature id for the '<em><b>Key2</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRODUCT__EXPRESSION2 = COMPUTE__EXPRESSION2;
+  int PRODUCT__KEY2 = COMPUTE__KEY2;
 
   /**
    * The number of structural features of the '<em>Product</em>' class.
@@ -472,7 +592,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 11;
+  int EXPRESSION = 14;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -509,7 +629,7 @@ public interface JsonParserPackage extends EPackage
    * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getValue()
    * @generated
    */
-  int VALUE = 12;
+  int VALUE = 15;
 
   /**
    * The feature id for the '<em><b>String Value</b></em>' attribute.
@@ -646,6 +766,28 @@ public interface JsonParserPackage extends EPackage
   EReference getInstruction_Insert();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertL <em>Insert L</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Insert L</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Instruction#getInsertL()
+   * @see #getInstruction()
+   * @generated
+   */
+  EReference getInstruction_InsertL();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertR <em>Insert R</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Insert R</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Instruction#getInsertR()
+   * @see #getInstruction()
+   * @generated
+   */
+  EReference getInstruction_InsertR();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Instruction#getModify <em>Modify</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -666,6 +808,17 @@ public interface JsonParserPackage extends EPackage
    * @generated
    */
   EReference getInstruction_Compute();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Instruction#getGet <em>Get</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Get</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Instruction#getGet()
+   * @see #getInstruction()
+   * @generated
+   */
+  EReference getInstruction_Get();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Load <em>Load</em>}'.
@@ -699,15 +852,15 @@ public interface JsonParserPackage extends EPackage
   EClass getSelect();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Select#getExpression <em>Expression</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Select#getKey <em>Key</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expression</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Select#getExpression()
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Select#getKey()
    * @see #getSelect()
    * @generated
    */
-  EReference getSelect_Expression();
+  EAttribute getSelect_Key();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Store <em>Store</em>}'.
@@ -741,15 +894,78 @@ public interface JsonParserPackage extends EPackage
   EClass getPrint();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Print#getExpression <em>Expression</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Print#getKey <em>Key</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expression</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Print#getExpression()
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Print#getKey()
    * @see #getPrint()
    * @generated
    */
-  EReference getPrint_Expression();
+  EAttribute getPrint_Key();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.GetValue <em>Get Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Get Value</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.GetValue
+   * @generated
+   */
+  EClass getGetValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.GetValue#getKey <em>Key</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.GetValue#getKey()
+   * @see #getGetValue()
+   * @generated
+   */
+  EAttribute getGetValue_Key();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.InsertLeft <em>Insert Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Insert Left</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.InsertLeft
+   * @generated
+   */
+  EClass getInsertLeft();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.InsertLeft#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.InsertLeft#getExpression()
+   * @see #getInsertLeft()
+   * @generated
+   */
+  EReference getInsertLeft_Expression();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.InsertRight <em>Insert Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Insert Right</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.InsertRight
+   * @generated
+   */
+  EClass getInsertRight();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.InsertRight#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.InsertRight#getExpression()
+   * @see #getInsertRight()
+   * @generated
+   */
+  EReference getInsertRight_Expression();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Insert <em>Insert</em>}'.
@@ -760,6 +976,17 @@ public interface JsonParserPackage extends EPackage
    * @generated
    */
   EClass getInsert();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Insert#getKey <em>Key</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Insert#getKey()
+   * @see #getInsert()
+   * @generated
+   */
+  EAttribute getInsert_Key();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Insert#getExpression <em>Expression</em>}'.
@@ -783,15 +1010,15 @@ public interface JsonParserPackage extends EPackage
   EClass getModify();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Modify#getExpression <em>Expression</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Modify#getKey <em>Key</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expression</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Modify#getExpression()
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Modify#getKey()
    * @see #getModify()
    * @generated
    */
-  EReference getModify_Expression();
+  EAttribute getModify_Key();
 
   /**
    * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Modify#getNewExpression <em>New Expression</em>}'.
@@ -815,26 +1042,26 @@ public interface JsonParserPackage extends EPackage
   EClass getCompute();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Compute#getExpression1 <em>Expression1</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Compute#getKey1 <em>Key1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expression1</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Compute#getExpression1()
+   * @return the meta object for the attribute '<em>Key1</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Compute#getKey1()
    * @see #getCompute()
    * @generated
    */
-  EReference getCompute_Expression1();
+  EAttribute getCompute_Key1();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Compute#getExpression2 <em>Expression2</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Compute#getKey2 <em>Key2</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expression2</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Compute#getExpression2()
+   * @return the meta object for the attribute '<em>Key2</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Compute#getKey2()
    * @see #getCompute()
    * @generated
    */
-  EReference getCompute_Expression2();
+  EAttribute getCompute_Key2();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Sum <em>Sum</em>}'.
@@ -1031,6 +1258,22 @@ public interface JsonParserPackage extends EPackage
     EReference INSTRUCTION__INSERT = eINSTANCE.getInstruction_Insert();
 
     /**
+     * The meta object literal for the '<em><b>Insert L</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSTRUCTION__INSERT_L = eINSTANCE.getInstruction_InsertL();
+
+    /**
+     * The meta object literal for the '<em><b>Insert R</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSTRUCTION__INSERT_R = eINSTANCE.getInstruction_InsertR();
+
+    /**
      * The meta object literal for the '<em><b>Modify</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1045,6 +1288,14 @@ public interface JsonParserPackage extends EPackage
      * @generated
      */
     EReference INSTRUCTION__COMPUTE = eINSTANCE.getInstruction_Compute();
+
+    /**
+     * The meta object literal for the '<em><b>Get</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSTRUCTION__GET = eINSTANCE.getInstruction_Get();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.LoadImpl <em>Load</em>}' class.
@@ -1075,12 +1326,12 @@ public interface JsonParserPackage extends EPackage
     EClass SELECT = eINSTANCE.getSelect();
 
     /**
-     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SELECT__EXPRESSION = eINSTANCE.getSelect_Expression();
+    EAttribute SELECT__KEY = eINSTANCE.getSelect_Key();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.StoreImpl <em>Store</em>}' class.
@@ -1111,12 +1362,66 @@ public interface JsonParserPackage extends EPackage
     EClass PRINT = eINSTANCE.getPrint();
 
     /**
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PRINT__KEY = eINSTANCE.getPrint_Key();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.GetValueImpl <em>Get Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.idmproject.jsonParser.impl.GetValueImpl
+     * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getGetValue()
+     * @generated
+     */
+    EClass GET_VALUE = eINSTANCE.getGetValue();
+
+    /**
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute GET_VALUE__KEY = eINSTANCE.getGetValue_Key();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.InsertLeftImpl <em>Insert Left</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.idmproject.jsonParser.impl.InsertLeftImpl
+     * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getInsertLeft()
+     * @generated
+     */
+    EClass INSERT_LEFT = eINSTANCE.getInsertLeft();
+
+    /**
      * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PRINT__EXPRESSION = eINSTANCE.getPrint_Expression();
+    EReference INSERT_LEFT__EXPRESSION = eINSTANCE.getInsertLeft_Expression();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.InsertRightImpl <em>Insert Right</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.idmproject.jsonParser.impl.InsertRightImpl
+     * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getInsertRight()
+     * @generated
+     */
+    EClass INSERT_RIGHT = eINSTANCE.getInsertRight();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSERT_RIGHT__EXPRESSION = eINSTANCE.getInsertRight_Expression();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.InsertImpl <em>Insert</em>}' class.
@@ -1127,6 +1432,14 @@ public interface JsonParserPackage extends EPackage
      * @generated
      */
     EClass INSERT = eINSTANCE.getInsert();
+
+    /**
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INSERT__KEY = eINSTANCE.getInsert_Key();
 
     /**
      * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
@@ -1147,12 +1460,12 @@ public interface JsonParserPackage extends EPackage
     EClass MODIFY = eINSTANCE.getModify();
 
     /**
-     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODIFY__EXPRESSION = eINSTANCE.getModify_Expression();
+    EAttribute MODIFY__KEY = eINSTANCE.getModify_Key();
 
     /**
      * The meta object literal for the '<em><b>New Expression</b></em>' containment reference feature.
@@ -1173,20 +1486,20 @@ public interface JsonParserPackage extends EPackage
     EClass COMPUTE = eINSTANCE.getCompute();
 
     /**
-     * The meta object literal for the '<em><b>Expression1</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Key1</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference COMPUTE__EXPRESSION1 = eINSTANCE.getCompute_Expression1();
+    EAttribute COMPUTE__KEY1 = eINSTANCE.getCompute_Key1();
 
     /**
-     * The meta object literal for the '<em><b>Expression2</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Key2</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference COMPUTE__EXPRESSION2 = eINSTANCE.getCompute_Expression2();
+    EAttribute COMPUTE__KEY2 = eINSTANCE.getCompute_Key2();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.SumImpl <em>Sum</em>}' class.

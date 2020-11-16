@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.Modify#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Modify#getKey <em>Key</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Modify#getNewExpression <em>New Expression</em>}</li>
  * </ul>
  *
@@ -25,26 +25,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface Modify extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Expression</b></em>' containment reference.
+   * Returns the value of the '<em><b>Key</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Expression</em>' containment reference.
-   * @see #setExpression(Expression)
-   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getModify_Expression()
-   * @model containment="true"
+   * @return the value of the '<em>Key</em>' attribute.
+   * @see #setKey(String)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getModify_Key()
+   * @model
    * @generated
    */
-  Expression getExpression();
+  String getKey();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Modify#getExpression <em>Expression</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Modify#getKey <em>Key</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expression</em>' containment reference.
-   * @see #getExpression()
+   * @param value the new value of the '<em>Key</em>' attribute.
+   * @see #getKey()
    * @generated
    */
-  void setExpression(Expression value);
+  void setKey(String value);
 
   /**
    * Returns the value of the '<em><b>New Expression</b></em>' containment reference.

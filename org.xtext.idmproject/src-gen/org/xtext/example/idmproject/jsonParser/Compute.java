@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.Compute#getExpression1 <em>Expression1</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.Compute#getExpression2 <em>Expression2</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Compute#getKey1 <em>Key1</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Compute#getKey2 <em>Key2</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getCompute()
@@ -25,47 +25,47 @@ import org.eclipse.emf.ecore.EObject;
 public interface Compute extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Expression1</b></em>' containment reference.
+   * Returns the value of the '<em><b>Key1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Expression1</em>' containment reference.
-   * @see #setExpression1(Expression)
-   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getCompute_Expression1()
-   * @model containment="true"
+   * @return the value of the '<em>Key1</em>' attribute.
+   * @see #setKey1(String)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getCompute_Key1()
+   * @model
    * @generated
    */
-  Expression getExpression1();
+  String getKey1();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Compute#getExpression1 <em>Expression1</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Compute#getKey1 <em>Key1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expression1</em>' containment reference.
-   * @see #getExpression1()
+   * @param value the new value of the '<em>Key1</em>' attribute.
+   * @see #getKey1()
    * @generated
    */
-  void setExpression1(Expression value);
+  void setKey1(String value);
 
   /**
-   * Returns the value of the '<em><b>Expression2</b></em>' containment reference.
+   * Returns the value of the '<em><b>Key2</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Expression2</em>' containment reference.
-   * @see #setExpression2(Expression)
-   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getCompute_Expression2()
-   * @model containment="true"
+   * @return the value of the '<em>Key2</em>' attribute.
+   * @see #setKey2(String)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getCompute_Key2()
+   * @model
    * @generated
    */
-  Expression getExpression2();
+  String getKey2();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Compute#getExpression2 <em>Expression2</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Compute#getKey2 <em>Key2</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expression2</em>' containment reference.
-   * @see #getExpression2()
+   * @param value the new value of the '<em>Key2</em>' attribute.
+   * @see #getKey2()
    * @generated
    */
-  void setExpression2(Expression value);
+  void setKey2(String value);
 
 } // Compute

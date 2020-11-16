@@ -93,8 +93,7 @@ public class PythonCompiler {
 	
 	private String generateCode(Print p) {
 		String generatedCode = "";
-		Expression expr = p.getExpression();
-		String key = expr.getKey();
+		String key = p.getKey();
 		generatedCode += "";
 		return generatedCode;
 	}

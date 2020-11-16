@@ -78,6 +78,33 @@ public interface JsonParserFactory extends EFactory
   Print createPrint();
 
   /**
+   * Returns a new object of class '<em>Get Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Get Value</em>'.
+   * @generated
+   */
+  GetValue createGetValue();
+
+  /**
+   * Returns a new object of class '<em>Insert Left</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Insert Left</em>'.
+   * @generated
+   */
+  InsertLeft createInsertLeft();
+
+  /**
+   * Returns a new object of class '<em>Insert Right</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Insert Right</em>'.
+   * @generated
+   */
+  InsertRight createInsertRight();
+
+  /**
    * Returns a new object of class '<em>Insert</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

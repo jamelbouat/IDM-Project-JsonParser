@@ -4,15 +4,12 @@
 package org.xtext.example.idmproject.jsonParser.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.idmproject.jsonParser.Expression;
 import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
 import org.xtext.example.idmproject.jsonParser.Print;
 
@@ -24,7 +21,7 @@ import org.xtext.example.idmproject.jsonParser.Print;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.PrintImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.PrintImpl#getKey <em>Key</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +29,24 @@ import org.xtext.example.idmproject.jsonParser.Print;
 public class PrintImpl extends MinimalEObjectImpl.Container implements Print
 {
   /**
-   * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
+   * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExpression()
+   * @see #getKey()
    * @generated
    * @ordered
    */
-  protected Expression expression;
+  protected static final String KEY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getKey() <em>Key</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getKey()
+   * @generated
+   * @ordered
+   */
+  protected String key = KEY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,9 +75,9 @@ public class PrintImpl extends MinimalEObjectImpl.Container implements Print
    * @generated
    */
   @Override
-  public Expression getExpression()
+  public String getKey()
   {
-    return expression;
+    return key;
   }
 
   /**
@@ -78,54 +85,13 @@ public class PrintImpl extends MinimalEObjectImpl.Container implements Print
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExpression(Expression newExpression, NotificationChain msgs)
+  @Override
+  public void setKey(String newKey)
   {
-    Expression oldExpression = expression;
-    expression = newExpression;
+    String oldKey = key;
+    key = newKey;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.PRINT__EXPRESSION, oldExpression, newExpression);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setExpression(Expression newExpression)
-  {
-    if (newExpression != expression)
-    {
-      NotificationChain msgs = null;
-      if (expression != null)
-        msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.PRINT__EXPRESSION, null, msgs);
-      if (newExpression != null)
-        msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.PRINT__EXPRESSION, null, msgs);
-      msgs = basicSetExpression(newExpression, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.PRINT__EXPRESSION, newExpression, newExpression));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case JsonParserPackage.PRINT__EXPRESSION:
-        return basicSetExpression(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.PRINT__KEY, oldKey, key));
   }
 
   /**
@@ -138,8 +104,8 @@ public class PrintImpl extends MinimalEObjectImpl.Container implements Print
   {
     switch (featureID)
     {
-      case JsonParserPackage.PRINT__EXPRESSION:
-        return getExpression();
+      case JsonParserPackage.PRINT__KEY:
+        return getKey();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -154,8 +120,8 @@ public class PrintImpl extends MinimalEObjectImpl.Container implements Print
   {
     switch (featureID)
     {
-      case JsonParserPackage.PRINT__EXPRESSION:
-        setExpression((Expression)newValue);
+      case JsonParserPackage.PRINT__KEY:
+        setKey((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,8 +137,8 @@ public class PrintImpl extends MinimalEObjectImpl.Container implements Print
   {
     switch (featureID)
     {
-      case JsonParserPackage.PRINT__EXPRESSION:
-        setExpression((Expression)null);
+      case JsonParserPackage.PRINT__KEY:
+        setKey(KEY_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -188,10 +154,27 @@ public class PrintImpl extends MinimalEObjectImpl.Container implements Print
   {
     switch (featureID)
     {
-      case JsonParserPackage.PRINT__EXPRESSION:
-        return expression != null;
+      case JsonParserPackage.PRINT__KEY:
+        return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (key: ");
+    result.append(key);
+    result.append(')');
+    return result.toString();
   }
 
 } //PrintImpl
