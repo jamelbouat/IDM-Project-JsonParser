@@ -12,8 +12,7 @@ Instruction:
 	save = Save            |
 	print = Print          | 
 	insert = Insert        |
-	insertL = InsertLeft   |
-	insertR = InsertRight  |
+	update = Update        |
 	modify = Modify        | 
 	compute = Compute      |
 	get = GetValue
@@ -41,16 +40,12 @@ Print:
 GetValue:
 	'.get(' key = Key')' EOL
 ;
-InsertLeft:
-	'.insertLt(' expression = Expression ')' EOL
-;
-InsertRight:
-	'.insertRt(' expression = Expression ')' EOL
-;
 Insert:
-	'.insert(' key = Key ',' expression = Expression ')' EOL
+	'.insert(' (key = Key ',')? expression = Expression ')' EOL
 ;
-
+Update:
+	'.update('key = Key ',' + expression = Expression ')'
+;
 
 Modify:
 	'.modify('key = Key',' newExpression = Expression ')' EOL
