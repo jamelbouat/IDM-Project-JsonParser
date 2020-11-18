@@ -15,14 +15,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.xtext.example.idmproject.jsonParser.Compute;
 import org.xtext.example.idmproject.jsonParser.GetValue;
 import org.xtext.example.idmproject.jsonParser.Insert;
-import org.xtext.example.idmproject.jsonParser.InsertLeft;
-import org.xtext.example.idmproject.jsonParser.InsertRight;
 import org.xtext.example.idmproject.jsonParser.Instruction;
 import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
-import org.xtext.example.idmproject.jsonParser.Modify;
 import org.xtext.example.idmproject.jsonParser.Print;
 import org.xtext.example.idmproject.jsonParser.Select;
 import org.xtext.example.idmproject.jsonParser.Store;
+import org.xtext.example.idmproject.jsonParser.Update;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,9 +35,7 @@ import org.xtext.example.idmproject.jsonParser.Store;
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getSave <em>Save</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getPrint <em>Print</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getInsert <em>Insert</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getInsertL <em>Insert L</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getInsertR <em>Insert R</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getModify <em>Modify</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getUpdate <em>Update</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getCompute <em>Compute</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getGet <em>Get</em>}</li>
  * </ul>
@@ -109,34 +105,14 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
   protected Insert insert;
 
   /**
-   * The cached value of the '{@link #getInsertL() <em>Insert L</em>}' containment reference.
+   * The cached value of the '{@link #getUpdate() <em>Update</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getInsertL()
+   * @see #getUpdate()
    * @generated
    * @ordered
    */
-  protected InsertLeft insertL;
-
-  /**
-   * The cached value of the '{@link #getInsertR() <em>Insert R</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getInsertR()
-   * @generated
-   * @ordered
-   */
-  protected InsertRight insertR;
-
-  /**
-   * The cached value of the '{@link #getModify() <em>Modify</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getModify()
-   * @generated
-   * @ordered
-   */
-  protected Modify modify;
+  protected Update update;
 
   /**
    * The cached value of the '{@link #getCompute() <em>Compute</em>}' containment reference.
@@ -410,9 +386,9 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
    * @generated
    */
   @Override
-  public InsertLeft getInsertL()
+  public Update getUpdate()
   {
-    return insertL;
+    return update;
   }
 
   /**
@@ -420,13 +396,13 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetInsertL(InsertLeft newInsertL, NotificationChain msgs)
+  public NotificationChain basicSetUpdate(Update newUpdate, NotificationChain msgs)
   {
-    InsertLeft oldInsertL = insertL;
-    insertL = newInsertL;
+    Update oldUpdate = update;
+    update = newUpdate;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__INSERT_L, oldInsertL, newInsertL);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__UPDATE, oldUpdate, newUpdate);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -438,120 +414,20 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
    * @generated
    */
   @Override
-  public void setInsertL(InsertLeft newInsertL)
+  public void setUpdate(Update newUpdate)
   {
-    if (newInsertL != insertL)
+    if (newUpdate != update)
     {
       NotificationChain msgs = null;
-      if (insertL != null)
-        msgs = ((InternalEObject)insertL).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__INSERT_L, null, msgs);
-      if (newInsertL != null)
-        msgs = ((InternalEObject)newInsertL).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__INSERT_L, null, msgs);
-      msgs = basicSetInsertL(newInsertL, msgs);
+      if (update != null)
+        msgs = ((InternalEObject)update).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__UPDATE, null, msgs);
+      if (newUpdate != null)
+        msgs = ((InternalEObject)newUpdate).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__UPDATE, null, msgs);
+      msgs = basicSetUpdate(newUpdate, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__INSERT_L, newInsertL, newInsertL));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public InsertRight getInsertR()
-  {
-    return insertR;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetInsertR(InsertRight newInsertR, NotificationChain msgs)
-  {
-    InsertRight oldInsertR = insertR;
-    insertR = newInsertR;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__INSERT_R, oldInsertR, newInsertR);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setInsertR(InsertRight newInsertR)
-  {
-    if (newInsertR != insertR)
-    {
-      NotificationChain msgs = null;
-      if (insertR != null)
-        msgs = ((InternalEObject)insertR).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__INSERT_R, null, msgs);
-      if (newInsertR != null)
-        msgs = ((InternalEObject)newInsertR).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__INSERT_R, null, msgs);
-      msgs = basicSetInsertR(newInsertR, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__INSERT_R, newInsertR, newInsertR));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Modify getModify()
-  {
-    return modify;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetModify(Modify newModify, NotificationChain msgs)
-  {
-    Modify oldModify = modify;
-    modify = newModify;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__MODIFY, oldModify, newModify);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setModify(Modify newModify)
-  {
-    if (newModify != modify)
-    {
-      NotificationChain msgs = null;
-      if (modify != null)
-        msgs = ((InternalEObject)modify).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__MODIFY, null, msgs);
-      if (newModify != null)
-        msgs = ((InternalEObject)newModify).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__MODIFY, null, msgs);
-      msgs = basicSetModify(newModify, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__MODIFY, newModify, newModify));
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__UPDATE, newUpdate, newUpdate));
   }
 
   /**
@@ -672,12 +548,8 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
         return basicSetPrint(null, msgs);
       case JsonParserPackage.INSTRUCTION__INSERT:
         return basicSetInsert(null, msgs);
-      case JsonParserPackage.INSTRUCTION__INSERT_L:
-        return basicSetInsertL(null, msgs);
-      case JsonParserPackage.INSTRUCTION__INSERT_R:
-        return basicSetInsertR(null, msgs);
-      case JsonParserPackage.INSTRUCTION__MODIFY:
-        return basicSetModify(null, msgs);
+      case JsonParserPackage.INSTRUCTION__UPDATE:
+        return basicSetUpdate(null, msgs);
       case JsonParserPackage.INSTRUCTION__COMPUTE:
         return basicSetCompute(null, msgs);
       case JsonParserPackage.INSTRUCTION__GET:
@@ -706,12 +578,8 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
         return getPrint();
       case JsonParserPackage.INSTRUCTION__INSERT:
         return getInsert();
-      case JsonParserPackage.INSTRUCTION__INSERT_L:
-        return getInsertL();
-      case JsonParserPackage.INSTRUCTION__INSERT_R:
-        return getInsertR();
-      case JsonParserPackage.INSTRUCTION__MODIFY:
-        return getModify();
+      case JsonParserPackage.INSTRUCTION__UPDATE:
+        return getUpdate();
       case JsonParserPackage.INSTRUCTION__COMPUTE:
         return getCompute();
       case JsonParserPackage.INSTRUCTION__GET:
@@ -745,14 +613,8 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
       case JsonParserPackage.INSTRUCTION__INSERT:
         setInsert((Insert)newValue);
         return;
-      case JsonParserPackage.INSTRUCTION__INSERT_L:
-        setInsertL((InsertLeft)newValue);
-        return;
-      case JsonParserPackage.INSTRUCTION__INSERT_R:
-        setInsertR((InsertRight)newValue);
-        return;
-      case JsonParserPackage.INSTRUCTION__MODIFY:
-        setModify((Modify)newValue);
+      case JsonParserPackage.INSTRUCTION__UPDATE:
+        setUpdate((Update)newValue);
         return;
       case JsonParserPackage.INSTRUCTION__COMPUTE:
         setCompute((Compute)newValue);
@@ -789,14 +651,8 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
       case JsonParserPackage.INSTRUCTION__INSERT:
         setInsert((Insert)null);
         return;
-      case JsonParserPackage.INSTRUCTION__INSERT_L:
-        setInsertL((InsertLeft)null);
-        return;
-      case JsonParserPackage.INSTRUCTION__INSERT_R:
-        setInsertR((InsertRight)null);
-        return;
-      case JsonParserPackage.INSTRUCTION__MODIFY:
-        setModify((Modify)null);
+      case JsonParserPackage.INSTRUCTION__UPDATE:
+        setUpdate((Update)null);
         return;
       case JsonParserPackage.INSTRUCTION__COMPUTE:
         setCompute((Compute)null);
@@ -828,12 +684,8 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
         return print != null;
       case JsonParserPackage.INSTRUCTION__INSERT:
         return insert != null;
-      case JsonParserPackage.INSTRUCTION__INSERT_L:
-        return insertL != null;
-      case JsonParserPackage.INSTRUCTION__INSERT_R:
-        return insertR != null;
-      case JsonParserPackage.INSTRUCTION__MODIFY:
-        return modify != null;
+      case JsonParserPackage.INSTRUCTION__UPDATE:
+        return update != null;
       case JsonParserPackage.INSTRUCTION__COMPUTE:
         return compute != null;
       case JsonParserPackage.INSTRUCTION__GET:

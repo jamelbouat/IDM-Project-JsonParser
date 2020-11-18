@@ -236,18 +236,18 @@ ruleInstruction returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInstructionAccess().getInsertLInsertLeftParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getInstructionAccess().getUpdateUpdateParserRuleCall_5_0());
 				}
-				lv_insertL_5_0=ruleInsertLeft
+				lv_update_5_0=ruleUpdate
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstructionRule());
 					}
 					set(
 						$current,
-						"insertL",
-						lv_insertL_5_0,
-						"org.xtext.example.idmproject.JsonParser.InsertLeft");
+						"update",
+						lv_update_5_0,
+						"org.xtext.example.idmproject.JsonParser.Update");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -256,49 +256,9 @@ ruleInstruction returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInstructionAccess().getInsertRInsertRightParserRuleCall_6_0());
+					newCompositeNode(grammarAccess.getInstructionAccess().getComputeComputeParserRuleCall_6_0());
 				}
-				lv_insertR_6_0=ruleInsertRight
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInstructionRule());
-					}
-					set(
-						$current,
-						"insertR",
-						lv_insertR_6_0,
-						"org.xtext.example.idmproject.JsonParser.InsertRight");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getInstructionAccess().getModifyModifyParserRuleCall_7_0());
-				}
-				lv_modify_7_0=ruleModify
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInstructionRule());
-					}
-					set(
-						$current,
-						"modify",
-						lv_modify_7_0,
-						"org.xtext.example.idmproject.JsonParser.Modify");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getInstructionAccess().getComputeComputeParserRuleCall_8_0());
-				}
-				lv_compute_8_0=ruleCompute
+				lv_compute_6_0=ruleCompute
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstructionRule());
@@ -306,7 +266,7 @@ ruleInstruction returns [EObject current=null]
 					set(
 						$current,
 						"compute",
-						lv_compute_8_0,
+						lv_compute_6_0,
 						"org.xtext.example.idmproject.JsonParser.Compute");
 					afterParserOrEnumRuleCall();
 				}
@@ -316,9 +276,9 @@ ruleInstruction returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInstructionAccess().getGetGetValueParserRuleCall_9_0());
+					newCompositeNode(grammarAccess.getInstructionAccess().getGetGetValueParserRuleCall_7_0());
 				}
-				lv_get_9_0=ruleGetValue
+				lv_get_7_0=ruleGetValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstructionRule());
@@ -326,7 +286,7 @@ ruleInstruction returns [EObject current=null]
 					set(
 						$current,
 						"get",
-						lv_get_9_0,
+						lv_get_7_0,
 						"org.xtext.example.idmproject.JsonParser.GetValue");
 					afterParserOrEnumRuleCall();
 				}
@@ -404,16 +364,30 @@ ruleSelect returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='.select('
+		otherlv_0='expr'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getSelectAccess().getSelectKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getSelectAccess().getExprKeyword_0());
 		}
 		(
 			(
+				lv_ID_1_0='.select('
 				{
-					newCompositeNode(grammarAccess.getSelectAccess().getKeyKeyParserRuleCall_1_0());
+					newLeafNode(lv_ID_1_0, grammarAccess.getSelectAccess().getIDSelectKeyword_1_0());
 				}
-				lv_key_1_0=ruleKey
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getSelectRule());
+					}
+					setWithLastConsumed($current, "ID", lv_ID_1_0, ".select(");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSelectAccess().getKeyKeyParserRuleCall_2_0());
+				}
+				lv_key_2_0=ruleKey
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSelectRule());
@@ -421,18 +395,18 @@ ruleSelect returns [EObject current=null]
 					set(
 						$current,
 						"key",
-						lv_key_1_0,
+						lv_key_2_0,
 						"org.xtext.example.idmproject.JsonParser.Key");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_2=')'
+		otherlv_3=')'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getSelectAccess().getRightParenthesisKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getSelectAccess().getRightParenthesisKeyword_3());
 		}
 		{
-			newCompositeNode(grammarAccess.getSelectAccess().getEOLParserRuleCall_3());
+			newCompositeNode(grammarAccess.getSelectAccess().getEOLParserRuleCall_4());
 		}
 		ruleEOL
 		{
@@ -658,112 +632,6 @@ ruleGetValue returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleInsertLeft
-entryRuleInsertLeft returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInsertLeftRule()); }
-	iv_ruleInsertLeft=ruleInsertLeft
-	{ $current=$iv_ruleInsertLeft.current; }
-	EOF;
-
-// Rule InsertLeft
-ruleInsertLeft returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='.insertLt('
-		{
-			newLeafNode(otherlv_0, grammarAccess.getInsertLeftAccess().getInsertLtKeyword_0());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getInsertLeftAccess().getExpressionExpressionParserRuleCall_1_0());
-				}
-				lv_expression_1_0=ruleExpression
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInsertLeftRule());
-					}
-					set(
-						$current,
-						"expression",
-						lv_expression_1_0,
-						"org.xtext.example.idmproject.JsonParser.Expression");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_2=')'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getInsertLeftAccess().getRightParenthesisKeyword_2());
-		}
-		{
-			newCompositeNode(grammarAccess.getInsertLeftAccess().getEOLParserRuleCall_3());
-		}
-		ruleEOL
-		{
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-// Entry rule entryRuleInsertRight
-entryRuleInsertRight returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInsertRightRule()); }
-	iv_ruleInsertRight=ruleInsertRight
-	{ $current=$iv_ruleInsertRight.current; }
-	EOF;
-
-// Rule InsertRight
-ruleInsertRight returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='.insertRt('
-		{
-			newLeafNode(otherlv_0, grammarAccess.getInsertRightAccess().getInsertRtKeyword_0());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getInsertRightAccess().getExpressionExpressionParserRuleCall_1_0());
-				}
-				lv_expression_1_0=ruleExpression
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInsertRightRule());
-					}
-					set(
-						$current,
-						"expression",
-						lv_expression_1_0,
-						"org.xtext.example.idmproject.JsonParser.Expression");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_2=')'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getInsertRightAccess().getRightParenthesisKeyword_2());
-		}
-		{
-			newCompositeNode(grammarAccess.getInsertRightAccess().getEOLParserRuleCall_3());
-		}
-		ruleEOL
-		{
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
 // Entry rule entryRuleInsert
 entryRuleInsert returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getInsertRule()); }
@@ -810,18 +678,18 @@ ruleInsert returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInsertAccess().getExpressionExpressionParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getInsertAccess().getValueValueParserRuleCall_3_0());
 				}
-				lv_expression_3_0=ruleExpression
+				lv_value_3_0=ruleValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInsertRule());
 					}
 					set(
 						$current,
-						"expression",
-						lv_expression_3_0,
-						"org.xtext.example.idmproject.JsonParser.Expression");
+						"value",
+						lv_value_3_0,
+						"org.xtext.example.idmproject.JsonParser.Value");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -840,15 +708,15 @@ ruleInsert returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleModify
-entryRuleModify returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getModifyRule()); }
-	iv_ruleModify=ruleModify
-	{ $current=$iv_ruleModify.current; }
+// Entry rule entryRuleUpdate
+entryRuleUpdate returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getUpdateRule()); }
+	iv_ruleUpdate=ruleUpdate
+	{ $current=$iv_ruleUpdate.current; }
 	EOF;
 
-// Rule Modify
-ruleModify returns [EObject current=null]
+// Rule Update
+ruleUpdate returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -856,19 +724,19 @@ ruleModify returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='.modify('
+		otherlv_0='.update('
 		{
-			newLeafNode(otherlv_0, grammarAccess.getModifyAccess().getModifyKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getUpdateAccess().getUpdateKeyword_0());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getModifyAccess().getKeyKeyParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getUpdateAccess().getKeyKeyParserRuleCall_1_0());
 				}
 				lv_key_1_0=ruleKey
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModifyRule());
+						$current = createModelElementForParent(grammarAccess.getUpdateRule());
 					}
 					set(
 						$current,
@@ -879,35 +747,37 @@ ruleModify returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2=','
-		{
-			newLeafNode(otherlv_2, grammarAccess.getModifyAccess().getCommaKeyword_2());
-		}
+		(
+			otherlv_2=','
+			{
+				newLeafNode(otherlv_2, grammarAccess.getUpdateAccess().getCommaKeyword_2());
+			}
+		)+
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getModifyAccess().getNewExpressionExpressionParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getUpdateAccess().getNewValueValueParserRuleCall_3_0());
 				}
-				lv_newExpression_3_0=ruleExpression
+				lv_newValue_3_0=ruleValue
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getModifyRule());
+						$current = createModelElementForParent(grammarAccess.getUpdateRule());
 					}
 					set(
 						$current,
-						"newExpression",
-						lv_newExpression_3_0,
-						"org.xtext.example.idmproject.JsonParser.Expression");
+						"newValue",
+						lv_newValue_3_0,
+						"org.xtext.example.idmproject.JsonParser.Value");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
 		otherlv_4=')'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getModifyAccess().getRightParenthesisKeyword_4());
+			newLeafNode(otherlv_4, grammarAccess.getUpdateAccess().getRightParenthesisKeyword_4());
 		}
 		{
-			newCompositeNode(grammarAccess.getModifyAccess().getEOLParserRuleCall_5());
+			newCompositeNode(grammarAccess.getUpdateAccess().getEOLParserRuleCall_5());
 		}
 		ruleEOL
 		{
@@ -1085,67 +955,6 @@ ruleProduct returns [EObject current=null]
 		{
 			afterParserOrEnumRuleCall();
 		}
-	)
-;
-
-// Entry rule entryRuleExpression
-entryRuleExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getExpressionRule()); }
-	iv_ruleExpression=ruleExpression
-	{ $current=$iv_ruleExpression.current; }
-	EOF;
-
-// Rule Expression
-ruleExpression returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getExpressionAccess().getKeyKeyParserRuleCall_0_0());
-				}
-				lv_key_0_0=ruleKey
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getExpressionRule());
-					}
-					set(
-						$current,
-						"key",
-						lv_key_0_0,
-						"org.xtext.example.idmproject.JsonParser.Key");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_1=':'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getExpressionAccess().getColonKeyword_1());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getExpressionAccess().getValueValueParserRuleCall_2_0());
-				}
-				lv_value_2_0=ruleValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getExpressionRule());
-					}
-					set(
-						$current,
-						"value",
-						lv_value_2_0,
-						"org.xtext.example.idmproject.JsonParser.Value");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
 	)
 ;
 

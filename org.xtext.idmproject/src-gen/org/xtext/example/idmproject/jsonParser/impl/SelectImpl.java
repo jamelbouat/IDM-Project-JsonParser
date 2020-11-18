@@ -21,6 +21,7 @@ import org.xtext.example.idmproject.jsonParser.Select;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.SelectImpl#getID <em>ID</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.SelectImpl#getKey <em>Key</em>}</li>
  * </ul>
  *
@@ -28,6 +29,26 @@ import org.xtext.example.idmproject.jsonParser.Select;
  */
 public class SelectImpl extends MinimalEObjectImpl.Container implements Select
 {
+  /**
+   * The default value of the '{@link #getID() <em>ID</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getID()
+   * @generated
+   * @ordered
+   */
+  protected static final String ID_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getID()
+   * @generated
+   * @ordered
+   */
+  protected String id = ID_EDEFAULT;
+
   /**
    * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -75,6 +96,31 @@ public class SelectImpl extends MinimalEObjectImpl.Container implements Select
    * @generated
    */
   @Override
+  public String getID()
+  {
+    return id;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setID(String newID)
+  {
+    String oldID = id;
+    id = newID;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.SELECT__ID, oldID, id));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getKey()
   {
     return key;
@@ -104,6 +150,8 @@ public class SelectImpl extends MinimalEObjectImpl.Container implements Select
   {
     switch (featureID)
     {
+      case JsonParserPackage.SELECT__ID:
+        return getID();
       case JsonParserPackage.SELECT__KEY:
         return getKey();
     }
@@ -120,6 +168,9 @@ public class SelectImpl extends MinimalEObjectImpl.Container implements Select
   {
     switch (featureID)
     {
+      case JsonParserPackage.SELECT__ID:
+        setID((String)newValue);
+        return;
       case JsonParserPackage.SELECT__KEY:
         setKey((String)newValue);
         return;
@@ -137,6 +188,9 @@ public class SelectImpl extends MinimalEObjectImpl.Container implements Select
   {
     switch (featureID)
     {
+      case JsonParserPackage.SELECT__ID:
+        setID(ID_EDEFAULT);
+        return;
       case JsonParserPackage.SELECT__KEY:
         setKey(KEY_EDEFAULT);
         return;
@@ -154,6 +208,8 @@ public class SelectImpl extends MinimalEObjectImpl.Container implements Select
   {
     switch (featureID)
     {
+      case JsonParserPackage.SELECT__ID:
+        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
       case JsonParserPackage.SELECT__KEY:
         return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
     }
@@ -171,7 +227,9 @@ public class SelectImpl extends MinimalEObjectImpl.Container implements Select
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (key: ");
+    result.append(" (ID: ");
+    result.append(id);
+    result.append(", key: ");
     result.append(key);
     result.append(')');
     return result.toString();

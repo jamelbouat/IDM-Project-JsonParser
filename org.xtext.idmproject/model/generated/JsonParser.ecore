@@ -18,11 +18,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="insert" eType="#//Insert"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="insertL" eType="#//InsertLeft"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="insertR" eType="#//InsertRight"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="modify" eType="#//Modify"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="update" eType="#//Update"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compute" eType="#//Compute"
         containment="true"/>
@@ -33,6 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Select">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Store">
@@ -44,22 +41,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="GetValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InsertLeft">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InsertRight">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Insert">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Value"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Modify">
+  <eClassifiers xsi:type="ecore:EClass" name="Update">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="newExpression" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="newValue" eType="#//Value"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Compute">

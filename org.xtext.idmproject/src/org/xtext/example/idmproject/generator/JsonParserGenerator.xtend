@@ -44,7 +44,7 @@ class JsonParserGenerator extends AbstractGenerator {
 	def dispatch genInstruction(Insert insert){
 		
 	}
-	def dispatch genInstruction(Modify print){
+	def dispatch genInstruction(Update update){
 		
 	}
 	def dispatch genInstruction(Compute print){

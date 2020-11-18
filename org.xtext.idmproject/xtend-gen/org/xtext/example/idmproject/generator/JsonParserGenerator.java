@@ -11,10 +11,10 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.xtext.example.idmproject.jsonParser.Compute;
 import org.xtext.example.idmproject.jsonParser.Insert;
-import org.xtext.example.idmproject.jsonParser.Modify;
 import org.xtext.example.idmproject.jsonParser.Print;
 import org.xtext.example.idmproject.jsonParser.Select;
 import org.xtext.example.idmproject.jsonParser.Store;
+import org.xtext.example.idmproject.jsonParser.Update;
 
 /**
  * Generates code from your model files on save.
@@ -43,7 +43,7 @@ public class JsonParserGenerator extends AbstractGenerator {
     return null;
   }
   
-  protected Object _genInstruction(final Modify print) {
+  protected Object _genInstruction(final Update update) {
     return null;
   }
   
@@ -56,14 +56,14 @@ public class JsonParserGenerator extends AbstractGenerator {
       return _genInstruction((Compute)print);
     } else if (print instanceof Insert) {
       return _genInstruction((Insert)print);
-    } else if (print instanceof Modify) {
-      return _genInstruction((Modify)print);
     } else if (print instanceof Print) {
       return _genInstruction((Print)print);
     } else if (print instanceof Select) {
       return _genInstruction((Select)print);
     } else if (print instanceof Store) {
       return _genInstruction((Store)print);
+    } else if (print instanceof Update) {
+      return _genInstruction((Update)print);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(print).toString());

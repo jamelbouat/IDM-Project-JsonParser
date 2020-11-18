@@ -17,18 +17,16 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import org.xtext.example.idmproject.jsonParser.Expression;
 import org.xtext.example.idmproject.jsonParser.GetValue;
 import org.xtext.example.idmproject.jsonParser.Insert;
-import org.xtext.example.idmproject.jsonParser.InsertLeft;
-import org.xtext.example.idmproject.jsonParser.InsertRight;
 import org.xtext.example.idmproject.jsonParser.Instruction;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
 import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
 import org.xtext.example.idmproject.jsonParser.Load;
-import org.xtext.example.idmproject.jsonParser.Modify;
 import org.xtext.example.idmproject.jsonParser.Print;
 import org.xtext.example.idmproject.jsonParser.Product;
 import org.xtext.example.idmproject.jsonParser.Select;
 import org.xtext.example.idmproject.jsonParser.Store;
 import org.xtext.example.idmproject.jsonParser.Sum;
+import org.xtext.example.idmproject.jsonParser.Update;
 import org.xtext.example.idmproject.jsonParser.Value;
 import org.xtext.example.idmproject.services.JsonParserGrammarAccess;
 
@@ -55,12 +53,6 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 			case JsonParserPackage.INSERT:
 				sequence_Insert(context, (Insert) semanticObject); 
 				return; 
-			case JsonParserPackage.INSERT_LEFT:
-				sequence_InsertLeft(context, (InsertLeft) semanticObject); 
-				return; 
-			case JsonParserPackage.INSERT_RIGHT:
-				sequence_InsertRight(context, (InsertRight) semanticObject); 
-				return; 
 			case JsonParserPackage.INSTRUCTION:
 				sequence_Instruction(context, (Instruction) semanticObject); 
 				return; 
@@ -69,9 +61,6 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 				return; 
 			case JsonParserPackage.LOAD:
 				sequence_Load(context, (Load) semanticObject); 
-				return; 
-			case JsonParserPackage.MODIFY:
-				sequence_Modify(context, (Modify) semanticObject); 
 				return; 
 			case JsonParserPackage.PRINT:
 				sequence_Print(context, (Print) semanticObject); 
@@ -87,6 +76,9 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 				return; 
 			case JsonParserPackage.SUM:
 				sequence_Sum(context, (Sum) semanticObject); 
+				return; 
+			case JsonParserPackage.UPDATE:
+				sequence_Update(context, (Update) semanticObject); 
 				return; 
 			case JsonParserPackage.VALUE:
 				sequence_Value(context, (Value) semanticObject); 
@@ -137,57 +129,21 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	
 	/**
 	 * Contexts:
-	 *     InsertLeft returns InsertLeft
-	 *
-	 * Constraint:
-	 *     expression=Expression
-	 */
-	protected void sequence_InsertLeft(ISerializationContext context, InsertLeft semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.INSERT_LEFT__EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.INSERT_LEFT__EXPRESSION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getInsertLeftAccess().getExpressionExpressionParserRuleCall_1_0(), semanticObject.getExpression());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     InsertRight returns InsertRight
-	 *
-	 * Constraint:
-	 *     expression=Expression
-	 */
-	protected void sequence_InsertRight(ISerializationContext context, InsertRight semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.INSERT_RIGHT__EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.INSERT_RIGHT__EXPRESSION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getInsertRightAccess().getExpressionExpressionParserRuleCall_1_0(), semanticObject.getExpression());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Insert returns Insert
 	 *
 	 * Constraint:
-	 *     (key=Key expression=Expression)
+	 *     (key=Key value=Value)
 	 */
 	protected void sequence_Insert(ISerializationContext context, Insert semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.INSERT__KEY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.INSERT__KEY));
-			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.INSERT__EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.INSERT__EXPRESSION));
+			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.INSERT__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.INSERT__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getInsertAccess().getKeyKeyParserRuleCall_1_0(), semanticObject.getKey());
-		feeder.accept(grammarAccess.getInsertAccess().getExpressionExpressionParserRuleCall_3_0(), semanticObject.getExpression());
+		feeder.accept(grammarAccess.getInsertAccess().getValueValueParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -203,9 +159,7 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *         save=Save | 
 	 *         print=Print | 
 	 *         insert=Insert | 
-	 *         insertL=InsertLeft | 
-	 *         insertR=InsertRight | 
-	 *         modify=Modify | 
+	 *         update=Update | 
 	 *         compute=Compute | 
 	 *         get=GetValue
 	 *     )
@@ -241,27 +195,6 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLoadAccess().getFileFileParserRuleCall_1_0(), semanticObject.getFile());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Modify returns Modify
-	 *
-	 * Constraint:
-	 *     (key=Key newExpression=Expression)
-	 */
-	protected void sequence_Modify(ISerializationContext context, Modify semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.MODIFY__KEY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.MODIFY__KEY));
-			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.MODIFY__NEW_EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.MODIFY__NEW_EXPRESSION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getModifyAccess().getKeyKeyParserRuleCall_1_0(), semanticObject.getKey());
-		feeder.accept(grammarAccess.getModifyAccess().getNewExpressionExpressionParserRuleCall_3_0(), semanticObject.getNewExpression());
 		feeder.finish();
 	}
 	
@@ -311,15 +244,18 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Select returns Select
 	 *
 	 * Constraint:
-	 *     key=Key
+	 *     (ID='.select(' key=Key)
 	 */
 	protected void sequence_Select(ISerializationContext context, Select semanticObject) {
 		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.SELECT__ID) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.SELECT__ID));
 			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.SELECT__KEY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.SELECT__KEY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSelectAccess().getKeyKeyParserRuleCall_1_0(), semanticObject.getKey());
+		feeder.accept(grammarAccess.getSelectAccess().getIDSelectKeyword_1_0(), semanticObject.getID());
+		feeder.accept(grammarAccess.getSelectAccess().getKeyKeyParserRuleCall_2_0(), semanticObject.getKey());
 		feeder.finish();
 	}
 	
@@ -360,6 +296,27 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSumAccess().getKey1KeyParserRuleCall_0_0(), semanticObject.getKey1());
 		feeder.accept(grammarAccess.getSumAccess().getKey2KeyParserRuleCall_2_0(), semanticObject.getKey2());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Update returns Update
+	 *
+	 * Constraint:
+	 *     (key=Key newValue=Value)
+	 */
+	protected void sequence_Update(ISerializationContext context, Update semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.UPDATE__KEY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.UPDATE__KEY));
+			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.UPDATE__NEW_VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.UPDATE__NEW_VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getUpdateAccess().getKeyKeyParserRuleCall_1_0(), semanticObject.getKey());
+		feeder.accept(grammarAccess.getUpdateAccess().getNewValueValueParserRuleCall_3_0(), semanticObject.getNewValue());
 		feeder.finish();
 	}
 	

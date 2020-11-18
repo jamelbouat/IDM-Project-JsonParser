@@ -19,9 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getSave <em>Save</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getPrint <em>Print</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsert <em>Insert</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertL <em>Insert L</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertR <em>Insert R</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getModify <em>Modify</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getUpdate <em>Update</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getCompute <em>Compute</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getGet <em>Get</em>}</li>
  * </ul>
@@ -143,70 +141,26 @@ public interface Instruction extends EObject
   void setInsert(Insert value);
 
   /**
-   * Returns the value of the '<em><b>Insert L</b></em>' containment reference.
+   * Returns the value of the '<em><b>Update</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Insert L</em>' containment reference.
-   * @see #setInsertL(InsertLeft)
-   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction_InsertL()
+   * @return the value of the '<em>Update</em>' containment reference.
+   * @see #setUpdate(Update)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction_Update()
    * @model containment="true"
    * @generated
    */
-  InsertLeft getInsertL();
+  Update getUpdate();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertL <em>Insert L</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Instruction#getUpdate <em>Update</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Insert L</em>' containment reference.
-   * @see #getInsertL()
+   * @param value the new value of the '<em>Update</em>' containment reference.
+   * @see #getUpdate()
    * @generated
    */
-  void setInsertL(InsertLeft value);
-
-  /**
-   * Returns the value of the '<em><b>Insert R</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Insert R</em>' containment reference.
-   * @see #setInsertR(InsertRight)
-   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction_InsertR()
-   * @model containment="true"
-   * @generated
-   */
-  InsertRight getInsertR();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Instruction#getInsertR <em>Insert R</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Insert R</em>' containment reference.
-   * @see #getInsertR()
-   * @generated
-   */
-  void setInsertR(InsertRight value);
-
-  /**
-   * Returns the value of the '<em><b>Modify</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Modify</em>' containment reference.
-   * @see #setModify(Modify)
-   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction_Modify()
-   * @model containment="true"
-   * @generated
-   */
-  Modify getModify();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Instruction#getModify <em>Modify</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Modify</em>' containment reference.
-   * @see #getModify()
-   * @generated
-   */
-  void setModify(Modify value);
+  void setUpdate(Update value);
 
   /**
    * Returns the value of the '<em><b>Compute</b></em>' containment reference.

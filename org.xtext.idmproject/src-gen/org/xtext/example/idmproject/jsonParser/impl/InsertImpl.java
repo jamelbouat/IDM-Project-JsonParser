@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.idmproject.jsonParser.Expression;
 import org.xtext.example.idmproject.jsonParser.Insert;
 import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
+import org.xtext.example.idmproject.jsonParser.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +25,7 @@ import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InsertImpl#getKey <em>Key</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InsertImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InsertImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -53,14 +53,14 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
   protected String key = KEY_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExpression()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected Expression expression;
+  protected Value value;
 
   /**
    * <!-- begin-user-doc -->
@@ -114,9 +114,9 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
    * @generated
    */
   @Override
-  public Expression getExpression()
+  public Value getValue()
   {
-    return expression;
+    return value;
   }
 
   /**
@@ -124,13 +124,13 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExpression(Expression newExpression, NotificationChain msgs)
+  public NotificationChain basicSetValue(Value newValue, NotificationChain msgs)
   {
-    Expression oldExpression = expression;
-    expression = newExpression;
+    Value oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSERT__EXPRESSION, oldExpression, newExpression);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSERT__VALUE, oldValue, newValue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -142,20 +142,20 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
    * @generated
    */
   @Override
-  public void setExpression(Expression newExpression)
+  public void setValue(Value newValue)
   {
-    if (newExpression != expression)
+    if (newValue != value)
     {
       NotificationChain msgs = null;
-      if (expression != null)
-        msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSERT__EXPRESSION, null, msgs);
-      if (newExpression != null)
-        msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSERT__EXPRESSION, null, msgs);
-      msgs = basicSetExpression(newExpression, msgs);
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSERT__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSERT__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSERT__EXPRESSION, newExpression, newExpression));
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSERT__VALUE, newValue, newValue));
   }
 
   /**
@@ -168,8 +168,8 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
   {
     switch (featureID)
     {
-      case JsonParserPackage.INSERT__EXPRESSION:
-        return basicSetExpression(null, msgs);
+      case JsonParserPackage.INSERT__VALUE:
+        return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -186,8 +186,8 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
     {
       case JsonParserPackage.INSERT__KEY:
         return getKey();
-      case JsonParserPackage.INSERT__EXPRESSION:
-        return getExpression();
+      case JsonParserPackage.INSERT__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -205,8 +205,8 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
       case JsonParserPackage.INSERT__KEY:
         setKey((String)newValue);
         return;
-      case JsonParserPackage.INSERT__EXPRESSION:
-        setExpression((Expression)newValue);
+      case JsonParserPackage.INSERT__VALUE:
+        setValue((Value)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -225,8 +225,8 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
       case JsonParserPackage.INSERT__KEY:
         setKey(KEY_EDEFAULT);
         return;
-      case JsonParserPackage.INSERT__EXPRESSION:
-        setExpression((Expression)null);
+      case JsonParserPackage.INSERT__VALUE:
+        setValue((Value)null);
         return;
     }
     super.eUnset(featureID);
@@ -244,8 +244,8 @@ public class InsertImpl extends MinimalEObjectImpl.Container implements Insert
     {
       case JsonParserPackage.INSERT__KEY:
         return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-      case JsonParserPackage.INSERT__EXPRESSION:
-        return expression != null;
+      case JsonParserPackage.INSERT__VALUE:
+        return value != null;
     }
     return super.eIsSet(featureID);
   }

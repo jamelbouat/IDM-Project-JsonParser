@@ -87,24 +87,6 @@ public interface JsonParserFactory extends EFactory
   GetValue createGetValue();
 
   /**
-   * Returns a new object of class '<em>Insert Left</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Insert Left</em>'.
-   * @generated
-   */
-  InsertLeft createInsertLeft();
-
-  /**
-   * Returns a new object of class '<em>Insert Right</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Insert Right</em>'.
-   * @generated
-   */
-  InsertRight createInsertRight();
-
-  /**
    * Returns a new object of class '<em>Insert</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -114,13 +96,13 @@ public interface JsonParserFactory extends EFactory
   Insert createInsert();
 
   /**
-   * Returns a new object of class '<em>Modify</em>'.
+   * Returns a new object of class '<em>Update</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Modify</em>'.
+   * @return a new object of class '<em>Update</em>'.
    * @generated
    */
-  Modify createModify();
+  Update createUpdate();
 
   /**
    * Returns a new object of class '<em>Compute</em>'.

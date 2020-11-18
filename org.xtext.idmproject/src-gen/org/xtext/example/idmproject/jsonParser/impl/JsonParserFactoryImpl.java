@@ -72,10 +72,8 @@ public class JsonParserFactoryImpl extends EFactoryImpl implements JsonParserFac
       case JsonParserPackage.STORE: return createStore();
       case JsonParserPackage.PRINT: return createPrint();
       case JsonParserPackage.GET_VALUE: return createGetValue();
-      case JsonParserPackage.INSERT_LEFT: return createInsertLeft();
-      case JsonParserPackage.INSERT_RIGHT: return createInsertRight();
       case JsonParserPackage.INSERT: return createInsert();
-      case JsonParserPackage.MODIFY: return createModify();
+      case JsonParserPackage.UPDATE: return createUpdate();
       case JsonParserPackage.COMPUTE: return createCompute();
       case JsonParserPackage.SUM: return createSum();
       case JsonParserPackage.PRODUCT: return createProduct();
@@ -176,30 +174,6 @@ public class JsonParserFactoryImpl extends EFactoryImpl implements JsonParserFac
    * @generated
    */
   @Override
-  public InsertLeft createInsertLeft()
-  {
-    InsertLeftImpl insertLeft = new InsertLeftImpl();
-    return insertLeft;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public InsertRight createInsertRight()
-  {
-    InsertRightImpl insertRight = new InsertRightImpl();
-    return insertRight;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Insert createInsert()
   {
     InsertImpl insert = new InsertImpl();
@@ -212,10 +186,10 @@ public class JsonParserFactoryImpl extends EFactoryImpl implements JsonParserFac
    * @generated
    */
   @Override
-  public Modify createModify()
+  public Update createUpdate()
   {
-    ModifyImpl modify = new ModifyImpl();
-    return modify;
+    UpdateImpl update = new UpdateImpl();
+    return update;
   }
 
   /**

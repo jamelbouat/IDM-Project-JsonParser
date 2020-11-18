@@ -16,9 +16,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Instruction/save"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/print"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/insert"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/insertL"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/insertR"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/modify"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/update"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/compute"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/get"/>
     </genClasses>
@@ -26,6 +24,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Load/file"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Select">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Select/ID"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Select/key"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Store">
@@ -37,19 +36,13 @@
     <genClasses ecoreClass="JsonParser.ecore#//GetValue">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//GetValue/key"/>
     </genClasses>
-    <genClasses ecoreClass="JsonParser.ecore#//InsertLeft">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//InsertLeft/expression"/>
-    </genClasses>
-    <genClasses ecoreClass="JsonParser.ecore#//InsertRight">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//InsertRight/expression"/>
-    </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Insert">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Insert/key"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Insert/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Insert/value"/>
     </genClasses>
-    <genClasses ecoreClass="JsonParser.ecore#//Modify">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Modify/key"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Modify/newExpression"/>
+    <genClasses ecoreClass="JsonParser.ecore#//Update">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Update/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Update/newValue"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Compute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Compute/key1"/>

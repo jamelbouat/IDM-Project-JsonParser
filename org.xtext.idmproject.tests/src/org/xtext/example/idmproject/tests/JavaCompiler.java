@@ -53,8 +53,8 @@ public class JavaCompiler {
 		if(i instanceof Insert) {
 			return generateCode((Insert)i);
 		}
-		if(i instanceof Modify) {
-			return generateCode((Modify)i);
+		if(i instanceof Update) {
+			return generateCode((Update) i);
 		}
 		if(i instanceof Compute) {
 			return generateCode((Compute)i);
@@ -89,7 +89,7 @@ public class JavaCompiler {
 		return generatedCode;
 	}
 	
-	private String generateCode(Modify m) {
+	private String generateCode(Update u) {
 		String generatedCode = "";
 		return generatedCode;
 	}

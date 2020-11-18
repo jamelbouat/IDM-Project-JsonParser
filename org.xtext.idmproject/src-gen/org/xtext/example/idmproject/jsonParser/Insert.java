@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Insert#getKey <em>Key</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.Insert#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Insert#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInsert()
@@ -47,25 +47,25 @@ public interface Insert extends EObject
   void setKey(String value);
 
   /**
-   * Returns the value of the '<em><b>Expression</b></em>' containment reference.
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Expression</em>' containment reference.
-   * @see #setExpression(Expression)
-   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInsert_Expression()
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(Value)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInsert_Value()
    * @model containment="true"
    * @generated
    */
-  Expression getExpression();
+  Value getValue();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Insert#getExpression <em>Expression</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Insert#getValue <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expression</em>' containment reference.
-   * @see #getExpression()
+   * @param value the new value of the '<em>Value</em>' containment reference.
+   * @see #getValue()
    * @generated
    */
-  void setExpression(Expression value);
+  void setValue(Value value);
 
 } // Insert

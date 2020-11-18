@@ -111,24 +111,14 @@ public class JsonParserAdapterFactory extends AdapterFactoryImpl
         return createGetValueAdapter();
       }
       @Override
-      public Adapter caseInsertLeft(InsertLeft object)
-      {
-        return createInsertLeftAdapter();
-      }
-      @Override
-      public Adapter caseInsertRight(InsertRight object)
-      {
-        return createInsertRightAdapter();
-      }
-      @Override
       public Adapter caseInsert(Insert object)
       {
         return createInsertAdapter();
       }
       @Override
-      public Adapter caseModify(Modify object)
+      public Adapter caseUpdate(Update object)
       {
-        return createModifyAdapter();
+        return createUpdateAdapter();
       }
       @Override
       public Adapter caseCompute(Compute object)
@@ -283,36 +273,6 @@ public class JsonParserAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.idmproject.jsonParser.InsertLeft <em>Insert Left</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.idmproject.jsonParser.InsertLeft
-   * @generated
-   */
-  public Adapter createInsertLeftAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.idmproject.jsonParser.InsertRight <em>Insert Right</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.idmproject.jsonParser.InsertRight
-   * @generated
-   */
-  public Adapter createInsertRightAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.idmproject.jsonParser.Insert <em>Insert</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -328,16 +288,16 @@ public class JsonParserAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.idmproject.jsonParser.Modify <em>Modify</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.idmproject.jsonParser.Update <em>Update</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.idmproject.jsonParser.Modify
+   * @see org.xtext.example.idmproject.jsonParser.Update
    * @generated
    */
-  public Adapter createModifyAdapter()
+  public Adapter createUpdateAdapter()
   {
     return null;
   }

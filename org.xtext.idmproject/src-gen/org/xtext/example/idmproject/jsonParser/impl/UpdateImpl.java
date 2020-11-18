@@ -12,25 +12,25 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.idmproject.jsonParser.Expression;
 import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
-import org.xtext.example.idmproject.jsonParser.Modify;
+import org.xtext.example.idmproject.jsonParser.Update;
+import org.xtext.example.idmproject.jsonParser.Value;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Modify</b></em>'.
+ * An implementation of the model object '<em><b>Update</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.ModifyImpl#getKey <em>Key</em>}</li>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.ModifyImpl#getNewExpression <em>New Expression</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.UpdateImpl#getKey <em>Key</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.UpdateImpl#getNewValue <em>New Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
+public class UpdateImpl extends MinimalEObjectImpl.Container implements Update
 {
   /**
    * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
@@ -53,21 +53,21 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   protected String key = KEY_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getNewExpression() <em>New Expression</em>}' containment reference.
+   * The cached value of the '{@link #getNewValue() <em>New Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNewExpression()
+   * @see #getNewValue()
    * @generated
    * @ordered
    */
-  protected Expression newExpression;
+  protected Value newValue;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ModifyImpl()
+  protected UpdateImpl()
   {
     super();
   }
@@ -80,7 +80,7 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   @Override
   protected EClass eStaticClass()
   {
-    return JsonParserPackage.Literals.MODIFY;
+    return JsonParserPackage.Literals.UPDATE;
   }
 
   /**
@@ -105,7 +105,7 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
     String oldKey = key;
     key = newKey;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.MODIFY__KEY, oldKey, key));
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.UPDATE__KEY, oldKey, key));
   }
 
   /**
@@ -114,9 +114,9 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
    * @generated
    */
   @Override
-  public Expression getNewExpression()
+  public Value getNewValue()
   {
-    return newExpression;
+    return newValue;
   }
 
   /**
@@ -124,13 +124,13 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetNewExpression(Expression newNewExpression, NotificationChain msgs)
+  public NotificationChain basicSetNewValue(Value newNewValue, NotificationChain msgs)
   {
-    Expression oldNewExpression = newExpression;
-    newExpression = newNewExpression;
+    Value oldNewValue = newValue;
+    newValue = newNewValue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.MODIFY__NEW_EXPRESSION, oldNewExpression, newNewExpression);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.UPDATE__NEW_VALUE, oldNewValue, newNewValue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -142,20 +142,20 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
    * @generated
    */
   @Override
-  public void setNewExpression(Expression newNewExpression)
+  public void setNewValue(Value newNewValue)
   {
-    if (newNewExpression != newExpression)
+    if (newNewValue != newValue)
     {
       NotificationChain msgs = null;
-      if (newExpression != null)
-        msgs = ((InternalEObject)newExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.MODIFY__NEW_EXPRESSION, null, msgs);
-      if (newNewExpression != null)
-        msgs = ((InternalEObject)newNewExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.MODIFY__NEW_EXPRESSION, null, msgs);
-      msgs = basicSetNewExpression(newNewExpression, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.UPDATE__NEW_VALUE, null, msgs);
+      if (newNewValue != null)
+        msgs = ((InternalEObject)newNewValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.UPDATE__NEW_VALUE, null, msgs);
+      msgs = basicSetNewValue(newNewValue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.MODIFY__NEW_EXPRESSION, newNewExpression, newNewExpression));
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.UPDATE__NEW_VALUE, newNewValue, newNewValue));
   }
 
   /**
@@ -168,8 +168,8 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__NEW_EXPRESSION:
-        return basicSetNewExpression(null, msgs);
+      case JsonParserPackage.UPDATE__NEW_VALUE:
+        return basicSetNewValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -184,10 +184,10 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__KEY:
+      case JsonParserPackage.UPDATE__KEY:
         return getKey();
-      case JsonParserPackage.MODIFY__NEW_EXPRESSION:
-        return getNewExpression();
+      case JsonParserPackage.UPDATE__NEW_VALUE:
+        return getNewValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -202,11 +202,11 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__KEY:
+      case JsonParserPackage.UPDATE__KEY:
         setKey((String)newValue);
         return;
-      case JsonParserPackage.MODIFY__NEW_EXPRESSION:
-        setNewExpression((Expression)newValue);
+      case JsonParserPackage.UPDATE__NEW_VALUE:
+        setNewValue((Value)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -222,11 +222,11 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__KEY:
+      case JsonParserPackage.UPDATE__KEY:
         setKey(KEY_EDEFAULT);
         return;
-      case JsonParserPackage.MODIFY__NEW_EXPRESSION:
-        setNewExpression((Expression)null);
+      case JsonParserPackage.UPDATE__NEW_VALUE:
+        setNewValue((Value)null);
         return;
     }
     super.eUnset(featureID);
@@ -242,10 +242,10 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
   {
     switch (featureID)
     {
-      case JsonParserPackage.MODIFY__KEY:
+      case JsonParserPackage.UPDATE__KEY:
         return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-      case JsonParserPackage.MODIFY__NEW_EXPRESSION:
-        return newExpression != null;
+      case JsonParserPackage.UPDATE__NEW_VALUE:
+        return newValue != null;
     }
     return super.eIsSet(featureID);
   }
@@ -267,4 +267,4 @@ public class ModifyImpl extends MinimalEObjectImpl.Container implements Modify
     return result.toString();
   }
 
-} //ModifyImpl
+} //UpdateImpl

@@ -14,19 +14,17 @@ import org.xtext.example.idmproject.jsonParser.Compute;
 import org.xtext.example.idmproject.jsonParser.Expression;
 import org.xtext.example.idmproject.jsonParser.GetValue;
 import org.xtext.example.idmproject.jsonParser.Insert;
-import org.xtext.example.idmproject.jsonParser.InsertLeft;
-import org.xtext.example.idmproject.jsonParser.InsertRight;
 import org.xtext.example.idmproject.jsonParser.Instruction;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
 import org.xtext.example.idmproject.jsonParser.JsonParserFactory;
 import org.xtext.example.idmproject.jsonParser.JsonParserPackage;
 import org.xtext.example.idmproject.jsonParser.Load;
-import org.xtext.example.idmproject.jsonParser.Modify;
 import org.xtext.example.idmproject.jsonParser.Print;
 import org.xtext.example.idmproject.jsonParser.Product;
 import org.xtext.example.idmproject.jsonParser.Select;
 import org.xtext.example.idmproject.jsonParser.Store;
 import org.xtext.example.idmproject.jsonParser.Sum;
+import org.xtext.example.idmproject.jsonParser.Update;
 import org.xtext.example.idmproject.jsonParser.Value;
 
 /**
@@ -91,20 +89,6 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass insertLeftEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass insertRightEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass insertEClass = null;
 
   /**
@@ -112,7 +96,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass modifyEClass = null;
+  private EClass updateEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -317,7 +301,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getInstruction_InsertL()
+  public EReference getInstruction_Update()
   {
     return (EReference)instructionEClass.getEStructuralFeatures().get(5);
   }
@@ -328,7 +312,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getInstruction_InsertR()
+  public EReference getInstruction_Compute()
   {
     return (EReference)instructionEClass.getEStructuralFeatures().get(6);
   }
@@ -339,31 +323,9 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getInstruction_Modify()
-  {
-    return (EReference)instructionEClass.getEStructuralFeatures().get(7);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getInstruction_Compute()
-  {
-    return (EReference)instructionEClass.getEStructuralFeatures().get(8);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EReference getInstruction_Get()
   {
-    return (EReference)instructionEClass.getEStructuralFeatures().get(9);
+    return (EReference)instructionEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -405,9 +367,20 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EAttribute getSelect_Key()
+  public EAttribute getSelect_ID()
   {
     return (EAttribute)selectEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSelect_Key()
+  {
+    return (EAttribute)selectEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -482,50 +455,6 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EClass getInsertLeft()
-  {
-    return insertLeftEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getInsertLeft_Expression()
-  {
-    return (EReference)insertLeftEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getInsertRight()
-  {
-    return insertRightEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getInsertRight_Expression()
-  {
-    return (EReference)insertRightEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getInsert()
   {
     return insertEClass;
@@ -548,7 +477,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getInsert_Expression()
+  public EReference getInsert_Value()
   {
     return (EReference)insertEClass.getEStructuralFeatures().get(1);
   }
@@ -559,9 +488,9 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EClass getModify()
+  public EClass getUpdate()
   {
-    return modifyEClass;
+    return updateEClass;
   }
 
   /**
@@ -570,9 +499,9 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EAttribute getModify_Key()
+  public EAttribute getUpdate_Key()
   {
-    return (EAttribute)modifyEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)updateEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -581,9 +510,9 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EReference getModify_NewExpression()
+  public EReference getUpdate_NewValue()
   {
-    return (EReference)modifyEClass.getEStructuralFeatures().get(1);
+    return (EReference)updateEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -759,9 +688,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     createEAttribute(instructionEClass, INSTRUCTION__SAVE);
     createEReference(instructionEClass, INSTRUCTION__PRINT);
     createEReference(instructionEClass, INSTRUCTION__INSERT);
-    createEReference(instructionEClass, INSTRUCTION__INSERT_L);
-    createEReference(instructionEClass, INSTRUCTION__INSERT_R);
-    createEReference(instructionEClass, INSTRUCTION__MODIFY);
+    createEReference(instructionEClass, INSTRUCTION__UPDATE);
     createEReference(instructionEClass, INSTRUCTION__COMPUTE);
     createEReference(instructionEClass, INSTRUCTION__GET);
 
@@ -769,6 +696,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     createEAttribute(loadEClass, LOAD__FILE);
 
     selectEClass = createEClass(SELECT);
+    createEAttribute(selectEClass, SELECT__ID);
     createEAttribute(selectEClass, SELECT__KEY);
 
     storeEClass = createEClass(STORE);
@@ -780,19 +708,13 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     getValueEClass = createEClass(GET_VALUE);
     createEAttribute(getValueEClass, GET_VALUE__KEY);
 
-    insertLeftEClass = createEClass(INSERT_LEFT);
-    createEReference(insertLeftEClass, INSERT_LEFT__EXPRESSION);
-
-    insertRightEClass = createEClass(INSERT_RIGHT);
-    createEReference(insertRightEClass, INSERT_RIGHT__EXPRESSION);
-
     insertEClass = createEClass(INSERT);
     createEAttribute(insertEClass, INSERT__KEY);
-    createEReference(insertEClass, INSERT__EXPRESSION);
+    createEReference(insertEClass, INSERT__VALUE);
 
-    modifyEClass = createEClass(MODIFY);
-    createEAttribute(modifyEClass, MODIFY__KEY);
-    createEReference(modifyEClass, MODIFY__NEW_EXPRESSION);
+    updateEClass = createEClass(UPDATE);
+    createEAttribute(updateEClass, UPDATE__KEY);
+    createEReference(updateEClass, UPDATE__NEW_VALUE);
 
     computeEClass = createEClass(COMPUTE);
     createEAttribute(computeEClass, COMPUTE__KEY1);
@@ -855,9 +777,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     initEAttribute(getInstruction_Save(), ecorePackage.getEString(), "save", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstruction_Print(), this.getPrint(), null, "print", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstruction_Insert(), this.getInsert(), null, "insert", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInstruction_InsertL(), this.getInsertLeft(), null, "insertL", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInstruction_InsertR(), this.getInsertRight(), null, "insertR", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInstruction_Modify(), this.getModify(), null, "modify", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInstruction_Update(), this.getUpdate(), null, "update", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstruction_Compute(), this.getCompute(), null, "compute", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstruction_Get(), this.getGetValue(), null, "get", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -865,6 +785,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     initEAttribute(getLoad_File(), ecorePackage.getEString(), "file", null, 0, 1, Load.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(selectEClass, Select.class, "Select", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSelect_ID(), ecorePackage.getEString(), "ID", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSelect_Key(), ecorePackage.getEString(), "key", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(storeEClass, Store.class, "Store", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -876,19 +797,13 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     initEClass(getValueEClass, GetValue.class, "GetValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGetValue_Key(), ecorePackage.getEString(), "key", null, 0, 1, GetValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(insertLeftEClass, InsertLeft.class, "InsertLeft", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getInsertLeft_Expression(), this.getExpression(), null, "expression", null, 0, 1, InsertLeft.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(insertRightEClass, InsertRight.class, "InsertRight", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getInsertRight_Expression(), this.getExpression(), null, "expression", null, 0, 1, InsertRight.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(insertEClass, Insert.class, "Insert", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getInsert_Key(), ecorePackage.getEString(), "key", null, 0, 1, Insert.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInsert_Expression(), this.getExpression(), null, "expression", null, 0, 1, Insert.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInsert_Value(), this.getValue(), null, "value", null, 0, 1, Insert.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(modifyEClass, Modify.class, "Modify", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getModify_Key(), ecorePackage.getEString(), "key", null, 0, 1, Modify.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModify_NewExpression(), this.getExpression(), null, "newExpression", null, 0, 1, Modify.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(updateEClass, Update.class, "Update", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUpdate_Key(), ecorePackage.getEString(), "key", null, 0, 1, Update.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUpdate_NewValue(), this.getValue(), null, "newValue", null, 0, 1, Update.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(computeEClass, Compute.class, "Compute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCompute_Key1(), ecorePackage.getEString(), "key1", null, 0, 1, Compute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

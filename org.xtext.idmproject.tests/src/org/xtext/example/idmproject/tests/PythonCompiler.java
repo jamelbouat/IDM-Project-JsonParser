@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.xtext.example.idmproject.jsonParser.Instruction;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
@@ -15,9 +17,10 @@ public class PythonCompiler {
 	
 	private JsonModel _model;
 	private String baseFile;
-	
+	private List<String> vars;
 	public PythonCompiler(JsonModel _model) {
 		this._model = _model;
+		this.vars = new ArrayList<String>();
 	}
 	
 	public void compileAndRun() throws IOException {
@@ -30,8 +33,15 @@ public class PythonCompiler {
 		Files.write(Paths.get(PYTHON_OUTPUT), pythonCode.getBytes());
 		
 		for(Instruction i : _model.getInstructions()) {
-			String instructionCode = generateCode(i);
-			Files.write(Paths.get(PYTHON_OUTPUT), instructionCode.getBytes(), StandardOpenOption.APPEND);
+			String instructionCode;
+			try {
+				instructionCode = generateCode(i);
+				Files.write(Paths.get(PYTHON_OUTPUT), instructionCode.getBytes(), StandardOpenOption.APPEND);
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		Process p = Runtime.getRuntime().exec("python3 " + PYTHON_OUTPUT);
@@ -55,7 +65,7 @@ public class PythonCompiler {
 	    }
 	}
 	
-	private String generateCode(Instruction i) {
+	private String generateCode(Instruction i) throws Exception {
 
 			if(i.getSelect() instanceof Select) {
 				return generateCode(i.getSelect());
@@ -69,8 +79,8 @@ public class PythonCompiler {
 			if(i.getInsert() instanceof Insert) {
 				return generateCode(i.getInsert());
 			}
-			if(i.getModify() instanceof Modify) {
-				return generateCode(i.getModify());
+			if(i.getUpdate() instanceof Update) {
+				return generateCode(i.getUpdate());
 			}
 			if(i.getCompute() instanceof Compute) {
 				return generateCode(i.getCompute());
@@ -78,8 +88,19 @@ public class PythonCompiler {
 			return "";
 	}
 	
-	private String generateCode(Select s) {
+	private String generateCode(Select s) throws Exception {
 		String generatedCode = "";
+		String key = s.getKey();
+		String var = s.getID();
+
+		if(vars.contains(var)) {
+			throw new Exception();
+		}
+		vars.add(var);
+		generatedCode += "pairs = data.items()\n";
+		generatedCode += "for key, value in pairs:\n";
+		generatedCode += "\t \t if(key==" + key + ")\n";
+		generatedCode += "\t \t \t " + var + " = value";
 		return generatedCode;
 	}
 	
@@ -94,15 +115,17 @@ public class PythonCompiler {
 	private String generateCode(Print p) {
 		String generatedCode = "";
 		String key = p.getKey();
-		generatedCode += "";
+		generatedCode += "pairs = data.items()\n";
+		generatedCode += "for key, value in pairs:\n";
+		generatedCode += "\t \t if(key==" + key + ")\n";
+		generatedCode += "\t \t \t print(value)";
 		return generatedCode;
 	}
 	
 	private String generateCode(Insert i) {
 		String generatedCode = "";
-		Expression expr = i.getExpression();
-		String key = expr.getKey();
-		String value = expr.getValue().getStringValue();
+		String key = i.getKey();
+		String value = i.getValue().getStringValue();
 		System.out.println(key + "===" + value);
 		generatedCode = "data["+key+"] = " + value + "\n" +
 						"with open("+ baseFile +", 'w') as f:\n"
@@ -110,13 +133,25 @@ public class PythonCompiler {
 		return generatedCode;
 	}
 	
-	private String generateCode(Modify m) {
+	private String generateCode(Update u) {
 		String generatedCode = "";
+		String key = u.getKey();
+		Value val = u.getNewValue();
+		generatedCode += "data["+key+"] = " + val + "\n";
 		return generatedCode;
-	}
+		}
 	
 	private String generateCode(Compute c) {
+		String key1 = c.getKey1();
+		String key2 = c.getKey2();
 		String generatedCode = "";
+
+		if(c instanceof Sum) {
+			generatedCode += "data["+key1+"] + data["+key2+"]";
+		}
+		if(c instanceof Product) {
+			generatedCode += "data["+key1+"] * data["+key2+"]";
+		}
 		return generatedCode;
 	}
 }
