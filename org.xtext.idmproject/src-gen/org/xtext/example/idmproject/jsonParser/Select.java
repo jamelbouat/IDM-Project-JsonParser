@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.idmproject.jsonParser.Select#getID <em>ID</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Select#getId <em>Id</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Select#getKey <em>Key</em>}</li>
  * </ul>
  *
@@ -25,26 +25,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface Select extends EObject
 {
   /**
-   * Returns the value of the '<em><b>ID</b></em>' attribute.
+   * Returns the value of the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>ID</em>' attribute.
-   * @see #setID(String)
-   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getSelect_ID()
+   * @return the value of the '<em>Id</em>' attribute.
+   * @see #setId(String)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getSelect_Id()
    * @model
    * @generated
    */
-  String getID();
+  String getId();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Select#getID <em>ID</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Select#getId <em>Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>ID</em>' attribute.
-   * @see #getID()
+   * @param value the new value of the '<em>Id</em>' attribute.
+   * @see #getId()
    * @generated
    */
-  void setID(String value);
+  void setId(String value);
 
   /**
    * Returns the value of the '<em><b>Key</b></em>' attribute.

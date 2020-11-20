@@ -370,24 +370,32 @@ ruleSelect returns [EObject current=null]
 		}
 		(
 			(
-				lv_ID_1_0='.select('
+				lv_id_1_0=RULE_ID
 				{
-					newLeafNode(lv_ID_1_0, grammarAccess.getSelectAccess().getIDSelectKeyword_1_0());
+					newLeafNode(lv_id_1_0, grammarAccess.getSelectAccess().getIdIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getSelectRule());
 					}
-					setWithLastConsumed($current, "ID", lv_ID_1_0, ".select(");
+					setWithLastConsumed(
+						$current,
+						"id",
+						lv_id_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
+		otherlv_2='=.select('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getSelectAccess().getSelectKeyword_2());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSelectAccess().getKeyKeyParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getSelectAccess().getKeyKeyParserRuleCall_3_0());
 				}
-				lv_key_2_0=ruleKey
+				lv_key_3_0=ruleKey
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSelectRule());
@@ -395,18 +403,18 @@ ruleSelect returns [EObject current=null]
 					set(
 						$current,
 						"key",
-						lv_key_2_0,
+						lv_key_3_0,
 						"org.xtext.example.idmproject.JsonParser.Key");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_3=')'
+		otherlv_4=')'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getSelectAccess().getRightParenthesisKeyword_3());
+			newLeafNode(otherlv_4, grammarAccess.getSelectAccess().getRightParenthesisKeyword_4());
 		}
 		{
-			newCompositeNode(grammarAccess.getSelectAccess().getEOLParserRuleCall_4());
+			newCompositeNode(grammarAccess.getSelectAccess().getEOLParserRuleCall_5());
 		}
 		ruleEOL
 		{
@@ -747,12 +755,10 @@ ruleUpdate returns [EObject current=null]
 				}
 			)
 		)
-		(
-			otherlv_2=','
-			{
-				newLeafNode(otherlv_2, grammarAccess.getUpdateAccess().getCommaKeyword_2());
-			}
-		)+
+		otherlv_2=','
+		{
+			newLeafNode(otherlv_2, grammarAccess.getUpdateAccess().getCommaKeyword_2());
+		}
 		(
 			(
 				{
@@ -802,21 +808,30 @@ ruleCompute returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		(
+			{
+				newCompositeNode(grammarAccess.getComputeAccess().getSumParserRuleCall_0_0());
+			}
+			this_Sum_0=ruleSum
+			{
+				$current = $this_Sum_0.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			{
+				newCompositeNode(grammarAccess.getComputeAccess().getProductParserRuleCall_0_1());
+			}
+			this_Product_1=ruleProduct
+			{
+				$current = $this_Product_1.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
 		{
-			newCompositeNode(grammarAccess.getComputeAccess().getSumParserRuleCall_0());
+			newCompositeNode(grammarAccess.getComputeAccess().getEOLParserRuleCall_1());
 		}
-		this_Sum_0=ruleSum
+		ruleEOL
 		{
-			$current = $this_Sum_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getComputeAccess().getProductParserRuleCall_1());
-		}
-		this_Product_1=ruleProduct
-		{
-			$current = $this_Product_1.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -838,12 +853,16 @@ ruleSum returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		otherlv_0='.sum('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getSumAccess().getSumKeyword_0());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSumAccess().getKey1KeyParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getSumAccess().getKey1KeyParserRuleCall_1_0());
 				}
-				lv_key1_0_0=ruleKey
+				lv_key1_1_0=ruleKey
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSumRule());
@@ -851,22 +870,22 @@ ruleSum returns [EObject current=null]
 					set(
 						$current,
 						"key1",
-						lv_key1_0_0,
+						lv_key1_1_0,
 						"org.xtext.example.idmproject.JsonParser.Key");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_1='+'
+		otherlv_2='+'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getSumAccess().getPlusSignKeyword_1());
+			newLeafNode(otherlv_2, grammarAccess.getSumAccess().getPlusSignKeyword_2());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSumAccess().getKey2KeyParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getSumAccess().getKey2KeyParserRuleCall_3_0());
 				}
-				lv_key2_2_0=ruleKey
+				lv_key2_3_0=ruleKey
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSumRule());
@@ -874,18 +893,15 @@ ruleSum returns [EObject current=null]
 					set(
 						$current,
 						"key2",
-						lv_key2_2_0,
+						lv_key2_3_0,
 						"org.xtext.example.idmproject.JsonParser.Key");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		otherlv_4=')'
 		{
-			newCompositeNode(grammarAccess.getSumAccess().getEOLParserRuleCall_3());
-		}
-		ruleEOL
-		{
-			afterParserOrEnumRuleCall();
+			newLeafNode(otherlv_4, grammarAccess.getSumAccess().getRightParenthesisKeyword_4());
 		}
 	)
 ;
@@ -906,12 +922,16 @@ ruleProduct returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		otherlv_0='.product('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getProductAccess().getProductKeyword_0());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProductAccess().getKey1KeyParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getProductAccess().getKey1KeyParserRuleCall_1_0());
 				}
-				lv_key1_0_0=ruleKey
+				lv_key1_1_0=ruleKey
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProductRule());
@@ -919,22 +939,22 @@ ruleProduct returns [EObject current=null]
 					set(
 						$current,
 						"key1",
-						lv_key1_0_0,
+						lv_key1_1_0,
 						"org.xtext.example.idmproject.JsonParser.Key");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_1='*'
+		otherlv_2='*'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getProductAccess().getAsteriskKeyword_1());
+			newLeafNode(otherlv_2, grammarAccess.getProductAccess().getAsteriskKeyword_2());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProductAccess().getKey2KeyParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getProductAccess().getKey2KeyParserRuleCall_3_0());
 				}
-				lv_key2_2_0=ruleKey
+				lv_key2_3_0=ruleKey
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProductRule());
@@ -942,18 +962,15 @@ ruleProduct returns [EObject current=null]
 					set(
 						$current,
 						"key2",
-						lv_key2_2_0,
+						lv_key2_3_0,
 						"org.xtext.example.idmproject.JsonParser.Key");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		otherlv_4=')'
 		{
-			newCompositeNode(grammarAccess.getProductAccess().getEOLParserRuleCall_3());
-		}
-		ruleEOL
-		{
-			afterParserOrEnumRuleCall();
+			newLeafNode(otherlv_4, grammarAccess.getProductAccess().getRightParenthesisKeyword_4());
 		}
 	)
 ;

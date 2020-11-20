@@ -14,24 +14,25 @@ import org.xtext.example.idmproject.jsonParser.JsonModel;
 import org.xtext.example.idmproject.jsonParser.*;
 
 public class PythonCompiler {
-	
+
 	private JsonModel _model;
 	private String baseFile;
 	private List<String> vars;
+
 	public PythonCompiler(JsonModel _model) {
 		this._model = _model;
 		this.vars = new ArrayList<String>();
 	}
-	
+
 	public void compileAndRun() throws IOException {
 		String PYTHON_OUTPUT = "jsonparser_test.py";			
 		baseFile = _model.getBaseLoad().getFile();
 		String pythonCode = "import json\n" + 
-				            "with open("+baseFile+") as f:\n" +
-				            " data = json.load(f)\n";
-		
+				"with open("+baseFile+") as f:\n" +
+				"\t data = json.load(f)\n";
+
 		Files.write(Paths.get(PYTHON_OUTPUT), pythonCode.getBytes());
-		
+
 		for(Instruction i : _model.getInstructions()) {
 			String instructionCode;
 			try {
@@ -43,114 +44,127 @@ public class PythonCompiler {
 				e.printStackTrace();
 			}
 		}
-		
+
 		Process p = Runtime.getRuntime().exec("python3 " + PYTHON_OUTPUT);
 
 		//output
-	    BufferedReader stdInput = new BufferedReader(new 
-	         InputStreamReader(p.getInputStream()));
+		BufferedReader stdInput = new BufferedReader(new 
+				InputStreamReader(p.getInputStream()));
 
-	    // error
-	    BufferedReader stdError = new BufferedReader(new 
-	         InputStreamReader(p.getErrorStream()));
-	    
-	    String o;
+		// error
+		BufferedReader stdError = new BufferedReader(new 
+				InputStreamReader(p.getErrorStream()));
+
+		String o;
 		while ((o = stdInput.readLine()) != null) {
-	        System.out.println(o);
-	    }
-	    
+			System.out.println(o);
+		}
+
 		String err; 
 		while ((err = stdError.readLine()) != null) {
-	        System.out.println(err);
-	    }
+			System.out.println(err);
+		}
 	}
-	
+
 	private String generateCode(Instruction i) throws Exception {
 
-			if(i.getSelect() instanceof Select) {
-				return generateCode(i.getSelect());
-			}
-			if(i.getStore() instanceof Store) {
-				return generateCode(i.getStore());
-			}
-			if(i.getPrint() instanceof Print) {
-				return generateCode(i.getPrint());
-			}
-			if(i.getInsert() instanceof Insert) {
-				return generateCode(i.getInsert());
-			}
-			if(i.getUpdate() instanceof Update) {
-				return generateCode(i.getUpdate());
-			}
-			if(i.getCompute() instanceof Compute) {
-				return generateCode(i.getCompute());
-			}
-			return "";
+		if(i.getSelect() instanceof Select) {
+			return generateCode(i.getSelect());
+		}
+		if(i.getStore() instanceof Store) {
+			return generateCode(i.getStore());
+		}
+		if(i.getPrint() instanceof Print) {
+			return generateCode(i.getPrint());
+		}
+		if(i.getInsert() instanceof Insert) {
+			return generateCode(i.getInsert());
+		}
+		if(i.getUpdate() instanceof Update) {
+			return generateCode(i.getUpdate());
+		}
+		if(i.getCompute() instanceof Compute) {
+			return generateCode(i.getCompute());
+		}
+		if(i.getSave() instanceof String) {
+			return generateCode();
+		}
+		return "";
 	}
-	
+
+	private String generateCode() {
+		String generatedCode = "";
+		generatedCode += "with open("+ baseFile +", 'w') as file:\n"
+				+ "\t json.dump(data, file, indent=4)\n";
+		return generatedCode;
+	}
+
 	private String generateCode(Select s) throws Exception {
 		String generatedCode = "";
 		String key = s.getKey();
-		String var = s.getID();
+		String var = s.getId();
 
 		if(vars.contains(var)) {
 			throw new Exception();
 		}
+
 		vars.add(var);
 		generatedCode += "pairs = data.items()\n";
 		generatedCode += "for key, value in pairs:\n";
-		generatedCode += "\t \t if(key==" + key + ")\n";
-		generatedCode += "\t \t \t " + var + " = value";
+		generatedCode += "\t if(key == " + key + "):\n";
+		generatedCode += "\t\t " + var + " = value\n";
 		return generatedCode;
 	}
-	
+
 	private String generateCode(Store s) {
 		String generatedCode = "";
 		String pathToFile = s.getFile();
 		generatedCode += "with open("+pathToFile+", 'w') as newFile:\n"
-				        + " json.dump(data, newFile)";
+				+ "\t json.dump(data, newFile, indent=4)\n";
 		return generatedCode;
 	}
-	
+
 	private String generateCode(Print p) {
 		String generatedCode = "";
 		String key = p.getKey();
 		generatedCode += "pairs = data.items()\n";
 		generatedCode += "for key, value in pairs:\n";
-		generatedCode += "\t \t if(key==" + key + ")\n";
-		generatedCode += "\t \t \t print(value)";
+		generatedCode += "\t if key == " + key + ":\n";
+		generatedCode += "\t\t print(value)\n";
 		return generatedCode;
 	}
-	
+
 	private String generateCode(Insert i) {
 		String generatedCode = "";
 		String key = i.getKey();
 		String value = i.getValue().getStringValue();
-		System.out.println(key + "===" + value);
 		generatedCode = "data["+key+"] = " + value + "\n" +
-						"with open("+ baseFile +", 'w') as f:\n"
-						+ " json.dump(data, f)";
+				"with open("+ baseFile +", 'w') as file:\n"
+				+ "\t json.dump(data, file, indent=4)\n";
 		return generatedCode;
 	}
-	
+
 	private String generateCode(Update u) {
 		String generatedCode = "";
 		String key = u.getKey();
-		Value val = u.getNewValue();
-		generatedCode += "data["+key+"] = " + val + "\n";
+		String value = u.getNewValue().getStringValue();
+		generatedCode += "data[" + key + "] = " + value + "\n";
+		generatedCode += "print(data["+ key + "])\n"; //to remove later
 		return generatedCode;
-		}
-	
+	}
+
 	private String generateCode(Compute c) {
 		String key1 = c.getKey1();
 		String key2 = c.getKey2();
 		String generatedCode = "";
 
 		if(c instanceof Sum) {
-			generatedCode += "data["+key1+"] + data["+key2+"]";
+			generatedCode += "data["+key1+"] + data["+key2+"]\n";
+			generatedCode += "print(data["+key1+"] + data["+key2+"])\n"; //to remove later
 		}
 		if(c instanceof Product) {
-			generatedCode += "data["+key1+"] * data["+key2+"]";
+			generatedCode += "data["+key1+"] * data["+key2+"]\n";
+			generatedCode += "print(data["+key1+"] * data["+key2+"])\n"; //to remove later
 		}
 		return generatedCode;
 	}

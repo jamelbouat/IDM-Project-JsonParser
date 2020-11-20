@@ -13,8 +13,10 @@ import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
 import org.xtext.example.idmproject.tests.JsonParserInjectorProvider;
@@ -22,6 +24,7 @@ import org.xtext.example.idmproject.tests.PythonCompiler;
 
 @ExtendWith(InjectionExtension.class)
 @InjectWith(JsonParserInjectorProvider.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SuppressWarnings("all")
 public class JsonParserParsingTest {
   @Inject
@@ -52,12 +55,14 @@ public class JsonParserParsingTest {
   
   @Test
   @Order(2)
-  public void storeData() {
+  public void selectData() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
-      _builder.append(".store(\"newFile.json\")");
+      _builder.append("expr id1 =.select(\"key1\")");
+      _builder.newLine();
+      _builder.append("expr id2 =.select(\"key1\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
       Assertions.assertNotNull(result);
@@ -77,17 +82,159 @@ public class JsonParserParsingTest {
   
   @Test
   @Order(3)
-  public void insertData() {
+  public void storeData() {
     try {
-      final String value = (("newKey" + " : ") + "newValue");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
-      _builder.append(".insert(\"prevKey\",\"\"\"newKey\" : \"newValue\")");
+      _builder.append(".store(\"newFile1.json\")");
+      _builder.newLine();
+      _builder.append(".store(\"newFile2.json\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
       Assertions.assertNotNull(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      boolean _isEmpty = errors.isEmpty();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: ");
+      String _join = IterableExtensions.join(errors, ", ");
+      _builder_1.append(_join);
+      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      final PythonCompiler cmpPython = new PythonCompiler(result);
+      cmpPython.compileAndRun();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  @Order(4)
+  public void insertData() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(".load(\"file.json\")");
+      _builder.newLine();
+      _builder.append(".insert(\"newKey1\",\"\\\"newValue1\\\"\")");
+      _builder.newLine();
+      _builder.append(".insert(\"newKey2\",\"\\\"newValue2\\\"\")");
+      _builder.newLine();
+      final JsonModel result = this.parseHelper.parse(_builder);
+      Assertions.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      boolean _isEmpty = errors.isEmpty();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: ");
+      String _join = IterableExtensions.join(errors, ", ");
+      _builder_1.append(_join);
+      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      final PythonCompiler cmpPython = new PythonCompiler(result);
+      cmpPython.compileAndRun();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  @Order(5)
+  public void printData() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(".load(\"file.json\")");
+      _builder.newLine();
+      _builder.append(".print(\"key1\")");
+      _builder.newLine();
+      _builder.append(".print(\"key2\")");
+      _builder.newLine();
+      final JsonModel result = this.parseHelper.parse(_builder);
+      Assertions.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      boolean _isEmpty = errors.isEmpty();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: ");
+      String _join = IterableExtensions.join(errors, ", ");
+      _builder_1.append(_join);
+      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      final PythonCompiler cmpPython = new PythonCompiler(result);
+      cmpPython.compileAndRun();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  @Order(6)
+  public void updateData() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(".load(\"file.json\")");
+      _builder.newLine();
+      _builder.append(".update(\"key1\",\"\\\"updatedValue1\\\"\")");
+      _builder.newLine();
+      _builder.append(".update(\"key2\",\"\\\"updatedValue2\\\"\")");
+      _builder.newLine();
+      final JsonModel result = this.parseHelper.parse(_builder);
+      Assertions.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      boolean _isEmpty = errors.isEmpty();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: ");
+      String _join = IterableExtensions.join(errors, ", ");
+      _builder_1.append(_join);
+      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      final PythonCompiler cmpPython = new PythonCompiler(result);
+      cmpPython.compileAndRun();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  @Order(7)
+  public void computeData() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(".load(\"file.json\")");
+      _builder.newLine();
+      _builder.append(".sum(\"key3\" + \"key4\")");
+      _builder.newLine();
+      _builder.append(".product(\"key3\" * \"key4\")");
+      _builder.newLine();
+      final JsonModel result = this.parseHelper.parse(_builder);
+      Assertions.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      boolean _isEmpty = errors.isEmpty();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: ");
+      String _join = IterableExtensions.join(errors, ", ");
+      _builder_1.append(_join);
+      Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      final PythonCompiler cmpPython = new PythonCompiler(result);
+      cmpPython.compileAndRun();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  @Order(8)
+  public void saveData() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append(".load(\"file.json\")");
+      _builder.newLine();
+      _builder.append(".update(\"key1\",\"\\\"updatedValue1\\\"\")");
+      _builder.newLine();
+      _builder.append(".save()");
+      _builder.newLine();
+      final JsonModel result = this.parseHelper.parse(_builder);
+      Assertions.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      boolean _isEmpty = errors.isEmpty();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: ");
+      String _join = IterableExtensions.join(errors, ", ");
+      _builder_1.append(_join);
+      Assertions.assertTrue(_isEmpty, _builder_1.toString());
       final PythonCompiler cmpPython = new PythonCompiler(result);
       cmpPython.compileAndRun();
     } catch (Throwable _e) {

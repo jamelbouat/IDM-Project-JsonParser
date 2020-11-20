@@ -1,1 +1,8 @@
-{ "key1" : "value1", "key2" : "value2" }
+{
+    "key1": "updatedValue1",
+    "key2": "value2",
+    "key3": 3,
+    "key4": 4,
+    "newKey1": "newValue1",
+    "newKey2": "newValue2"
+}

@@ -17,12 +17,11 @@ Instruction:
 	get = GetValue
 	;
 
-
 Load:
 	'.load(' file = File ')' EOL
 ;
 Select:
-	'expr' ID = '.select('key = Key')' EOL
+	'expr' id = ID'=.select('key = Key')' EOL
 ;
 Store:
 	'.store(' file = File ')' EOL
@@ -43,18 +42,18 @@ Insert:
 	'.insert('key = Key ',' value = Value ')' EOL
 ;
 Update:
-	'.update('key = Key ',' + newValue = Value ')' EOL
+	'.update('key = Key ',' newValue = Value ')' EOL
 ;
 Compute:
-	Sum | Product 
+	(Sum | Product) EOL 
 ;
 
 Sum:
-	key1 = Key '+' key2 = Key EOL
+	'.sum('key1 = Key '+' key2 = Key')'
 ;
 
 Product:
-	key1 = Key '*' key2 = Key EOL
+	'.product('key1 = Key '*' key2 = Key')'
 ;
 
 Expression:

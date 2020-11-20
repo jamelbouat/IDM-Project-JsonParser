@@ -161,40 +161,44 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Select");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cExprKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cIDAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Keyword cIDSelectKeyword_1_0 = (Keyword)cIDAssignment_1.eContents().get(0);
-		private final Assignment cKeyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cKeyKeyParserRuleCall_2_0 = (RuleCall)cKeyAssignment_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final RuleCall cEOLParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Assignment cIdAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIdIDTerminalRuleCall_1_0 = (RuleCall)cIdAssignment_1.eContents().get(0);
+		private final Keyword cSelectKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cKeyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cKeyKeyParserRuleCall_3_0 = (RuleCall)cKeyAssignment_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cEOLParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//Select:
-		//	'expr' ID='.select(' key=Key ')' EOL;
+		//	'expr' id=ID '=.select(' key=Key ')' EOL;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'expr' ID='.select(' key=Key ')' EOL
+		//'expr' id=ID '=.select(' key=Key ')' EOL
 		public Group getGroup() { return cGroup; }
 		
 		//'expr'
 		public Keyword getExprKeyword_0() { return cExprKeyword_0; }
 		
-		//ID='.select('
-		public Assignment getIDAssignment_1() { return cIDAssignment_1; }
+		//id=ID
+		public Assignment getIdAssignment_1() { return cIdAssignment_1; }
 		
-		//'.select('
-		public Keyword getIDSelectKeyword_1_0() { return cIDSelectKeyword_1_0; }
+		//ID
+		public RuleCall getIdIDTerminalRuleCall_1_0() { return cIdIDTerminalRuleCall_1_0; }
+		
+		//'=.select('
+		public Keyword getSelectKeyword_2() { return cSelectKeyword_2; }
 		
 		//key=Key
-		public Assignment getKeyAssignment_2() { return cKeyAssignment_2; }
+		public Assignment getKeyAssignment_3() { return cKeyAssignment_3; }
 		
 		//Key
-		public RuleCall getKeyKeyParserRuleCall_2_0() { return cKeyKeyParserRuleCall_2_0; }
+		public RuleCall getKeyKeyParserRuleCall_3_0() { return cKeyKeyParserRuleCall_3_0; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 		
 		//EOL
-		public RuleCall getEOLParserRuleCall_4() { return cEOLParserRuleCall_4; }
+		public RuleCall getEOLParserRuleCall_5() { return cEOLParserRuleCall_5; }
 	}
 	public class StoreElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Store");
@@ -375,10 +379,10 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final RuleCall cEOLParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//Update:
-		//	'.update(' key=Key ','+ newValue=Value ')' EOL;
+		//	'.update(' key=Key ',' newValue=Value ')' EOL;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'.update(' key=Key ','+ newValue=Value ')' EOL
+		//'.update(' key=Key ',' newValue=Value ')' EOL
 		public Group getGroup() { return cGroup; }
 		
 		//'.update('
@@ -390,7 +394,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//Key
 		public RuleCall getKeyKeyParserRuleCall_1_0() { return cKeyKeyParserRuleCall_1_0; }
 		
-		//','+
+		//','
 		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
 		
 		//newValue=Value
@@ -407,92 +411,108 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	public class ComputeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Compute");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cSumParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cProductParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final RuleCall cSumParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cProductParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
+		private final RuleCall cEOLParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//Compute:
-		//	Sum | Product;
+		//	(Sum | Product) EOL;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Sum | Product
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//(Sum | Product) EOL
+		public Group getGroup() { return cGroup; }
+		
+		//(Sum | Product)
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
 		//Sum
-		public RuleCall getSumParserRuleCall_0() { return cSumParserRuleCall_0; }
+		public RuleCall getSumParserRuleCall_0_0() { return cSumParserRuleCall_0_0; }
 		
 		//Product
-		public RuleCall getProductParserRuleCall_1() { return cProductParserRuleCall_1; }
+		public RuleCall getProductParserRuleCall_0_1() { return cProductParserRuleCall_0_1; }
+		
+		//EOL
+		public RuleCall getEOLParserRuleCall_1() { return cEOLParserRuleCall_1; }
 	}
 	public class SumElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Sum");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cKey1Assignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cKey1KeyParserRuleCall_0_0 = (RuleCall)cKey1Assignment_0.eContents().get(0);
-		private final Keyword cPlusSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cKey2Assignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cKey2KeyParserRuleCall_2_0 = (RuleCall)cKey2Assignment_2.eContents().get(0);
-		private final RuleCall cEOLParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Keyword cSumKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cKey1Assignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cKey1KeyParserRuleCall_1_0 = (RuleCall)cKey1Assignment_1.eContents().get(0);
+		private final Keyword cPlusSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cKey2Assignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cKey2KeyParserRuleCall_3_0 = (RuleCall)cKey2Assignment_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Sum:
-		//	key1=Key '+' key2=Key EOL;
+		//	'.sum(' key1=Key '+' key2=Key ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//key1=Key '+' key2=Key EOL
+		//'.sum(' key1=Key '+' key2=Key ')'
 		public Group getGroup() { return cGroup; }
 		
+		//'.sum('
+		public Keyword getSumKeyword_0() { return cSumKeyword_0; }
+		
 		//key1=Key
-		public Assignment getKey1Assignment_0() { return cKey1Assignment_0; }
+		public Assignment getKey1Assignment_1() { return cKey1Assignment_1; }
 		
 		//Key
-		public RuleCall getKey1KeyParserRuleCall_0_0() { return cKey1KeyParserRuleCall_0_0; }
+		public RuleCall getKey1KeyParserRuleCall_1_0() { return cKey1KeyParserRuleCall_1_0; }
 		
 		//'+'
-		public Keyword getPlusSignKeyword_1() { return cPlusSignKeyword_1; }
+		public Keyword getPlusSignKeyword_2() { return cPlusSignKeyword_2; }
 		
 		//key2=Key
-		public Assignment getKey2Assignment_2() { return cKey2Assignment_2; }
+		public Assignment getKey2Assignment_3() { return cKey2Assignment_3; }
 		
 		//Key
-		public RuleCall getKey2KeyParserRuleCall_2_0() { return cKey2KeyParserRuleCall_2_0; }
+		public RuleCall getKey2KeyParserRuleCall_3_0() { return cKey2KeyParserRuleCall_3_0; }
 		
-		//EOL
-		public RuleCall getEOLParserRuleCall_3() { return cEOLParserRuleCall_3; }
+		//')'
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 	public class ProductElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Product");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cKey1Assignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cKey1KeyParserRuleCall_0_0 = (RuleCall)cKey1Assignment_0.eContents().get(0);
-		private final Keyword cAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cKey2Assignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cKey2KeyParserRuleCall_2_0 = (RuleCall)cKey2Assignment_2.eContents().get(0);
-		private final RuleCall cEOLParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Keyword cProductKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cKey1Assignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cKey1KeyParserRuleCall_1_0 = (RuleCall)cKey1Assignment_1.eContents().get(0);
+		private final Keyword cAsteriskKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cKey2Assignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cKey2KeyParserRuleCall_3_0 = (RuleCall)cKey2Assignment_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Product:
-		//	key1=Key '*' key2=Key EOL;
+		//	'.product(' key1=Key '*' key2=Key ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//key1=Key '*' key2=Key EOL
+		//'.product(' key1=Key '*' key2=Key ')'
 		public Group getGroup() { return cGroup; }
 		
+		//'.product('
+		public Keyword getProductKeyword_0() { return cProductKeyword_0; }
+		
 		//key1=Key
-		public Assignment getKey1Assignment_0() { return cKey1Assignment_0; }
+		public Assignment getKey1Assignment_1() { return cKey1Assignment_1; }
 		
 		//Key
-		public RuleCall getKey1KeyParserRuleCall_0_0() { return cKey1KeyParserRuleCall_0_0; }
+		public RuleCall getKey1KeyParserRuleCall_1_0() { return cKey1KeyParserRuleCall_1_0; }
 		
 		//'*'
-		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
+		public Keyword getAsteriskKeyword_2() { return cAsteriskKeyword_2; }
 		
 		//key2=Key
-		public Assignment getKey2Assignment_2() { return cKey2Assignment_2; }
+		public Assignment getKey2Assignment_3() { return cKey2Assignment_3; }
 		
 		//Key
-		public RuleCall getKey2KeyParserRuleCall_2_0() { return cKey2KeyParserRuleCall_2_0; }
+		public RuleCall getKey2KeyParserRuleCall_3_0() { return cKey2KeyParserRuleCall_3_0; }
 		
-		//EOL
-		public RuleCall getEOLParserRuleCall_3() { return cEOLParserRuleCall_3; }
+		//')'
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Expression");
@@ -729,7 +749,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Select:
-	//	'expr' ID='.select(' key=Key ')' EOL;
+	//	'expr' id=ID '=.select(' key=Key ')' EOL;
 	public SelectElements getSelectAccess() {
 		return pSelect;
 	}
@@ -799,7 +819,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Update:
-	//	'.update(' key=Key ','+ newValue=Value ')' EOL;
+	//	'.update(' key=Key ',' newValue=Value ')' EOL;
 	public UpdateElements getUpdateAccess() {
 		return pUpdate;
 	}
@@ -809,7 +829,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Compute:
-	//	Sum | Product;
+	//	(Sum | Product) EOL;
 	public ComputeElements getComputeAccess() {
 		return pCompute;
 	}
@@ -819,7 +839,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Sum:
-	//	key1=Key '+' key2=Key EOL;
+	//	'.sum(' key1=Key '+' key2=Key ')';
 	public SumElements getSumAccess() {
 		return pSum;
 	}
@@ -829,7 +849,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Product:
-	//	key1=Key '*' key2=Key EOL;
+	//	'.product(' key1=Key '*' key2=Key ')';
 	public ProductElements getProductAccess() {
 		return pProduct;
 	}

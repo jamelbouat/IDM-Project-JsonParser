@@ -32,7 +32,7 @@ public class JsonParserParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, JsonParserGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getInstructionAccess().getAlternatives(), "rule__Instruction__Alternatives");
-			builder.put(grammarAccess.getComputeAccess().getAlternatives(), "rule__Compute__Alternatives");
+			builder.put(grammarAccess.getComputeAccess().getAlternatives_0(), "rule__Compute__Alternatives_0");
 			builder.put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
 			builder.put(grammarAccess.getArrayAccess().getAlternatives(), "rule__Array__Alternatives");
 			builder.put(grammarAccess.getJsonModelAccess().getGroup(), "rule__JsonModel__Group__0");
@@ -44,6 +44,7 @@ public class JsonParserParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGetValueAccess().getGroup(), "rule__GetValue__Group__0");
 			builder.put(grammarAccess.getInsertAccess().getGroup(), "rule__Insert__Group__0");
 			builder.put(grammarAccess.getUpdateAccess().getGroup(), "rule__Update__Group__0");
+			builder.put(grammarAccess.getComputeAccess().getGroup(), "rule__Compute__Group__0");
 			builder.put(grammarAccess.getSumAccess().getGroup(), "rule__Sum__Group__0");
 			builder.put(grammarAccess.getProductAccess().getGroup(), "rule__Product__Group__0");
 			builder.put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
@@ -60,8 +61,8 @@ public class JsonParserParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInstructionAccess().getComputeAssignment_6(), "rule__Instruction__ComputeAssignment_6");
 			builder.put(grammarAccess.getInstructionAccess().getGetAssignment_7(), "rule__Instruction__GetAssignment_7");
 			builder.put(grammarAccess.getLoadAccess().getFileAssignment_1(), "rule__Load__FileAssignment_1");
-			builder.put(grammarAccess.getSelectAccess().getIDAssignment_1(), "rule__Select__IDAssignment_1");
-			builder.put(grammarAccess.getSelectAccess().getKeyAssignment_2(), "rule__Select__KeyAssignment_2");
+			builder.put(grammarAccess.getSelectAccess().getIdAssignment_1(), "rule__Select__IdAssignment_1");
+			builder.put(grammarAccess.getSelectAccess().getKeyAssignment_3(), "rule__Select__KeyAssignment_3");
 			builder.put(grammarAccess.getStoreAccess().getFileAssignment_1(), "rule__Store__FileAssignment_1");
 			builder.put(grammarAccess.getPrintAccess().getKeyAssignment_1(), "rule__Print__KeyAssignment_1");
 			builder.put(grammarAccess.getGetValueAccess().getKeyAssignment_1(), "rule__GetValue__KeyAssignment_1");
@@ -69,10 +70,10 @@ public class JsonParserParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInsertAccess().getValueAssignment_3(), "rule__Insert__ValueAssignment_3");
 			builder.put(grammarAccess.getUpdateAccess().getKeyAssignment_1(), "rule__Update__KeyAssignment_1");
 			builder.put(grammarAccess.getUpdateAccess().getNewValueAssignment_3(), "rule__Update__NewValueAssignment_3");
-			builder.put(grammarAccess.getSumAccess().getKey1Assignment_0(), "rule__Sum__Key1Assignment_0");
-			builder.put(grammarAccess.getSumAccess().getKey2Assignment_2(), "rule__Sum__Key2Assignment_2");
-			builder.put(grammarAccess.getProductAccess().getKey1Assignment_0(), "rule__Product__Key1Assignment_0");
-			builder.put(grammarAccess.getProductAccess().getKey2Assignment_2(), "rule__Product__Key2Assignment_2");
+			builder.put(grammarAccess.getSumAccess().getKey1Assignment_1(), "rule__Sum__Key1Assignment_1");
+			builder.put(grammarAccess.getSumAccess().getKey2Assignment_3(), "rule__Sum__Key2Assignment_3");
+			builder.put(grammarAccess.getProductAccess().getKey1Assignment_1(), "rule__Product__Key1Assignment_1");
+			builder.put(grammarAccess.getProductAccess().getKey2Assignment_3(), "rule__Product__Key2Assignment_3");
 			builder.put(grammarAccess.getExpressionAccess().getKeyAssignment_0(), "rule__Expression__KeyAssignment_0");
 			builder.put(grammarAccess.getExpressionAccess().getValueAssignment_2(), "rule__Expression__ValueAssignment_2");
 			builder.put(grammarAccess.getValueAccess().getStringValueAssignment_0(), "rule__Value__StringValueAssignment_0");

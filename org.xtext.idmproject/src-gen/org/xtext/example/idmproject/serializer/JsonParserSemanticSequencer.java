@@ -233,8 +233,8 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.COMPUTE__KEY2));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getProductAccess().getKey1KeyParserRuleCall_0_0(), semanticObject.getKey1());
-		feeder.accept(grammarAccess.getProductAccess().getKey2KeyParserRuleCall_2_0(), semanticObject.getKey2());
+		feeder.accept(grammarAccess.getProductAccess().getKey1KeyParserRuleCall_1_0(), semanticObject.getKey1());
+		feeder.accept(grammarAccess.getProductAccess().getKey2KeyParserRuleCall_3_0(), semanticObject.getKey2());
 		feeder.finish();
 	}
 	
@@ -244,7 +244,7 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Select returns Select
 	 *
 	 * Constraint:
-	 *     (ID='.select(' key=Key)
+	 *     (id=ID key=Key)
 	 */
 	protected void sequence_Select(ISerializationContext context, Select semanticObject) {
 		if (errorAcceptor != null) {
@@ -254,8 +254,8 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.SELECT__KEY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSelectAccess().getIDSelectKeyword_1_0(), semanticObject.getID());
-		feeder.accept(grammarAccess.getSelectAccess().getKeyKeyParserRuleCall_2_0(), semanticObject.getKey());
+		feeder.accept(grammarAccess.getSelectAccess().getIdIDTerminalRuleCall_1_0(), semanticObject.getId());
+		feeder.accept(grammarAccess.getSelectAccess().getKeyKeyParserRuleCall_3_0(), semanticObject.getKey());
 		feeder.finish();
 	}
 	
@@ -294,8 +294,8 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.COMPUTE__KEY2));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSumAccess().getKey1KeyParserRuleCall_0_0(), semanticObject.getKey1());
-		feeder.accept(grammarAccess.getSumAccess().getKey2KeyParserRuleCall_2_0(), semanticObject.getKey2());
+		feeder.accept(grammarAccess.getSumAccess().getKey1KeyParserRuleCall_1_0(), semanticObject.getKey1());
+		feeder.accept(grammarAccess.getSumAccess().getKey2KeyParserRuleCall_3_0(), semanticObject.getKey2());
 		feeder.finish();
 	}
 	

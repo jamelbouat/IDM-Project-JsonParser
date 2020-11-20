@@ -21,13 +21,13 @@ public class JavaCompiler {
 		File jsonParserTest = new File(JAVA_OUTPUT);
 		String baseFile = _model.getBaseLoad().getFile();
 		String javaCode =
-		  "import org.json.simple.*;\n"
+		  "import org.json.simple.*;\n\n"
 		+ "public class Clazz {\n"
-		+ "   public static void main(String[] args) {\n"
-		+ "      JSONParser parser = new JSONParser();\n"
-		+ "      Object obj = parser.parse(new FileReader(\""+baseFile+"\"));\n"
-		+ "      JSONObject jsonObject = (JSONObject)obj;"
-		+ "}}";
+		+ "\tpublic static void main(String[] args) {\n"
+		+ "\t\tJSONParser parser = new JSONParser();\n"
+		+ "\t\tObject obj = parser.parse(new FileReader(\"baseFile\"));\n"
+		+ "\t\tJSONObject jsonObject = (JSONObject)obj;"
+		+ "\n\t}\n}";
 		
 		Files.write(javaCode.getBytes(), jsonParserTest);
 

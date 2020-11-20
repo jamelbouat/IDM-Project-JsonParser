@@ -224,7 +224,7 @@ public interface JsonParserPackage extends EPackage
   int SELECT = 3;
 
   /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * The feature id for the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -765,15 +765,15 @@ public interface JsonParserPackage extends EPackage
   EClass getSelect();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Select#getID <em>ID</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Select#getId <em>Id</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>ID</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Select#getID()
+   * @return the meta object for the attribute '<em>Id</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Select#getId()
    * @see #getSelect()
    * @generated
    */
-  EAttribute getSelect_ID();
+  EAttribute getSelect_Id();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Select#getKey <em>Key</em>}'.
@@ -1192,12 +1192,12 @@ public interface JsonParserPackage extends EPackage
     EClass SELECT = eINSTANCE.getSelect();
 
     /**
-     * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SELECT__ID = eINSTANCE.getSelect_ID();
+    EAttribute SELECT__ID = eINSTANCE.getSelect_Id();
 
     /**
      * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
