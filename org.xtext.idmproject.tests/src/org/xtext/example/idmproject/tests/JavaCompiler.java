@@ -126,11 +126,11 @@ public class JavaCompiler {
 
 		if(c instanceof Sum) {
 			generatedCode += "jsonObject.getJsonObject('"+key1+"') + jsonObject.getJsonObject('"+key2+"');";
-			generatedCode += "System.out.println(jsonObject.getJsonObject('\"+key1+\"') + jsonObject.getJsonObject('\"+key2+\"'));"; //to remove later
+			generatedCode += "System.out.println(jsonObject.getJsonObject('"+key1+"') + jsonObject.getJsonObject('"+key2+"'));"; //to remove later
 		}
 		if(c instanceof Product) {
 			generatedCode += "jsonObject.getJsonObject('"+key1+"') * jsonObject.getJsonObject('"+key2+"');";
-			generatedCode += "System.out.println(jsonObject.getJsonObject('\"+key1+\"') * jsonObject.getJsonObject('\"+key2+\"'))"; //to remove later
+			generatedCode += "System.out.println(jsonObject.getJsonObject('"+key1+"') * jsonObject.getJsonObject('"+key2+"'))"; //to remove later
 		}
 		return generatedCode;
 	}
