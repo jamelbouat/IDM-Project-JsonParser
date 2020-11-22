@@ -2,18 +2,25 @@ package org.xtext.example.idmproject.tests;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.common.io.Files;
 
-import org.xtext.example.idmproject.jsonParser.Instruction;
-import org.xtext.example.idmproject.jsonParser.JsonModel;
 import org.xtext.example.idmproject.jsonParser.*;
 
 public class JavaCompiler {
 	
 	private JsonModel _model;
+	private List<String> vars;
+
 	
 	public JavaCompiler(JsonModel _model) {
 		this._model = _model;
+		this.vars = new ArrayList<String>();
+
 	}
 	
 	public void compileAndRun() throws IOException {
@@ -35,12 +42,18 @@ public class JavaCompiler {
 		process = Runtime.getRuntime().exec("java jsonparser_test");
 		
 		for(Instruction i : _model.getInstructions()) {
-			String instructionCode = generateCode(i);
-			Files.write(instructionCode.getBytes(), jsonParserTest);
+			String instructionCode;
+			try {
+				instructionCode = generateCode(i);
+				Files.write(instructionCode.getBytes(), jsonParserTest);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
 		}
 	}
 	
-	private String generateCode(Instruction i) {
+	private String generateCode(Instruction i) throws Exception {
 		if(i instanceof Select) {
 			return generateCode((Select)i);
 		}
@@ -62,8 +75,17 @@ public class JavaCompiler {
 		return "";
 	}
 	
-	private String generateCode(Select s) {
+	private String generateCode(Select s) throws Exception {
 		String generatedCode = "";
+		String key = s.getKey();
+		String var = s.getId();
+
+		if(vars.contains(var)) {
+			throw new Exception();
+		}
+
+		vars.add(var);
+		generatedCode += "Object "+ var +" = jsonObject.getJsonObject('"+key+"');";
 		return generatedCode;
 		
 	}
@@ -71,16 +93,15 @@ public class JavaCompiler {
 	private String generateCode(Store s) {
 		String generatedCode = "";
 		String pathToFile = s.getFile();
-		generatedCode+="f = open("+pathToFile+", 'a')\n"
-				+ "f.write(data)\n"
-				+ "f.close()\n";
+		generatedCode+="FileWriter fileWriter = new FileWriter("+pathToFile+");";
+		generatedCode+="fileWriter.write(jsonObject.toJSONString());";
 		return generatedCode;
 	}
 	
 	private String generateCode(Print p) {
 		String generatedCode = "";
 		String key = p.getKey();
-		generatedCode += "";
+		generatedCode += "System.out.println(jsonObject.getJsonObject('"+key+"'));";
 		return generatedCode;
 	}
 	
@@ -91,11 +112,26 @@ public class JavaCompiler {
 	
 	private String generateCode(Update u) {
 		String generatedCode = "";
-		return generatedCode;
+		String key = u.getKey();
+		Value val = u.getNewValue();
+		generatedCode += "JSONObject toUpdate = jsonObject.getJsonObject('"+key+"');";
+		generatedCode += "toUpdate.put("+val+")";
+		return generatedCode;	
 	}
 	
 	private String generateCode(Compute c) {
+		String key1 = c.getKey1();
+		String key2 = c.getKey2();
 		String generatedCode = "";
+
+		if(c instanceof Sum) {
+			generatedCode += "jsonObject.getJsonObject('"+key1+"') + jsonObject.getJsonObject('"+key2+"');";
+			generatedCode += "System.out.println(jsonObject.getJsonObject('\"+key1+\"') + jsonObject.getJsonObject('\"+key2+\"'));"; //to remove later
+		}
+		if(c instanceof Product) {
+			generatedCode += "jsonObject.getJsonObject('"+key1+"') * jsonObject.getJsonObject('"+key2+"');";
+			generatedCode += "System.out.println(jsonObject.getJsonObject('\"+key1+\"') * jsonObject.getJsonObject('\"+key2+\"'))"; //to remove later
+		}
 		return generatedCode;
 	}
 }
