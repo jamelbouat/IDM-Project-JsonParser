@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
+import org.xtext.example.idmproject.tests.JavaCompiler;
 import org.xtext.example.idmproject.tests.JsonParserInjectorProvider;
 import org.xtext.example.idmproject.tests.PythonCompiler;
 
@@ -48,6 +49,8 @@ public class JsonParserParsingTest {
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
       final PythonCompiler cmpPython = new PythonCompiler(result);
       cmpPython.compileAndRun();
+      final JavaCompiler cmplJava = new JavaCompiler(result);
+      cmplJava.compileAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -75,6 +78,8 @@ public class JsonParserParsingTest {
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
       final PythonCompiler cmpPython = new PythonCompiler(result);
       cmpPython.compileAndRun();
+      final JavaCompiler cmplJava = new JavaCompiler(result);
+      cmplJava.compileAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -102,6 +107,8 @@ public class JsonParserParsingTest {
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
       final PythonCompiler cmpPython = new PythonCompiler(result);
       cmpPython.compileAndRun();
+      final JavaCompiler cmplJava = new JavaCompiler(result);
+      cmplJava.compileAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -129,6 +136,8 @@ public class JsonParserParsingTest {
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
       final PythonCompiler cmpPython = new PythonCompiler(result);
       cmpPython.compileAndRun();
+      final JavaCompiler cmplJava = new JavaCompiler(result);
+      cmplJava.compileAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -156,6 +165,8 @@ public class JsonParserParsingTest {
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
       final PythonCompiler cmpPython = new PythonCompiler(result);
       cmpPython.compileAndRun();
+      final JavaCompiler cmplJava = new JavaCompiler(result);
+      cmplJava.compileAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -172,6 +183,8 @@ public class JsonParserParsingTest {
       _builder.newLine();
       _builder.append(".update(\"key2\",\"\\\"updatedValue2\\\"\")");
       _builder.newLine();
+      _builder.append(".save()");
+      _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
       Assertions.assertNotNull(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
@@ -183,6 +196,8 @@ public class JsonParserParsingTest {
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
       final PythonCompiler cmpPython = new PythonCompiler(result);
       cmpPython.compileAndRun();
+      final JavaCompiler cmplJava = new JavaCompiler(result);
+      cmplJava.compileAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -210,6 +225,8 @@ public class JsonParserParsingTest {
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
       final PythonCompiler cmpPython = new PythonCompiler(result);
       cmpPython.compileAndRun();
+      final JavaCompiler cmplJava = new JavaCompiler(result);
+      cmplJava.compileAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -221,8 +238,6 @@ public class JsonParserParsingTest {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
-      _builder.newLine();
-      _builder.append(".update(\"key1\",\"\\\"updatedValue1\\\"\")");
       _builder.newLine();
       _builder.append(".save()");
       _builder.newLine();
@@ -237,6 +252,8 @@ public class JsonParserParsingTest {
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
       final PythonCompiler cmpPython = new PythonCompiler(result);
       cmpPython.compileAndRun();
+      final JavaCompiler cmplJava = new JavaCompiler(result);
+      cmplJava.compileAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

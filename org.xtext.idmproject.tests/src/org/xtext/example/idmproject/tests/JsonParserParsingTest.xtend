@@ -14,6 +14,7 @@ import org.xtext.example.idmproject.jsonParser.JsonModel
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.TestMethodOrder
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Disabled
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JsonParserInjectorProvider)
@@ -35,8 +36,8 @@ class JsonParserParsingTest {
 		val PythonCompiler cmpPython = new PythonCompiler(result)
 		cmpPython.compileAndRun
 		
-//		val JavaCompiler cmplJava = new JavaCompiler(result)
-//		cmplJava.compileAndRun	
+		val JavaCompiler cmplJava = new JavaCompiler(result)
+		cmplJava.compileAndRun	
 	}
 	
 	@Test
@@ -52,7 +53,10 @@ class JsonParserParsingTest {
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
 		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun	
+		cmpPython.compileAndRun
+		
+		val JavaCompiler cmplJava = new JavaCompiler(result)
+		cmplJava.compileAndRun
 	}
 
 	@Test
@@ -68,7 +72,10 @@ class JsonParserParsingTest {
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
 		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun	
+		cmpPython.compileAndRun
+		
+		val JavaCompiler cmplJava = new JavaCompiler(result)
+		cmplJava.compileAndRun
 	}
 	
 	@Test
@@ -84,7 +91,10 @@ class JsonParserParsingTest {
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
 		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun	
+		cmpPython.compileAndRun
+		
+		val JavaCompiler cmplJava = new JavaCompiler(result)
+		cmplJava.compileAndRun
 	}
 	
 	@Test
@@ -100,7 +110,10 @@ class JsonParserParsingTest {
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
 		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun	
+		cmpPython.compileAndRun
+		
+		val JavaCompiler cmplJava = new JavaCompiler(result)
+		cmplJava.compileAndRun
 	}
 	
 	@Test
@@ -110,13 +123,17 @@ class JsonParserParsingTest {
 			.load("file.json")
 			.update("key1","\"updatedValue1\"")
 			.update("key2","\"updatedValue2\"")
+			.save()
 		''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
 		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun	
+		cmpPython.compileAndRun
+		
+		val JavaCompiler cmplJava = new JavaCompiler(result)
+		cmplJava.compileAndRun	
 	}
 	
 	@Test
@@ -132,7 +149,10 @@ class JsonParserParsingTest {
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
 		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun	
+		cmpPython.compileAndRun
+		
+		val JavaCompiler cmplJava = new JavaCompiler(result)
+		cmplJava.compileAndRun	
 	}
 	
 	@Test
@@ -140,7 +160,6 @@ class JsonParserParsingTest {
 	def void saveData() {
 		val result = parseHelper.parse('''
 			.load("file.json")
-			.update("key1","\"updatedValue1\"")
 			.save()
 		''')
 		Assertions.assertNotNull(result)
@@ -148,6 +167,9 @@ class JsonParserParsingTest {
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
 		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun	
+		cmpPython.compileAndRun
+		
+		val JavaCompiler cmplJava = new JavaCompiler(result)
+		cmplJava.compileAndRun	
 	}
 }

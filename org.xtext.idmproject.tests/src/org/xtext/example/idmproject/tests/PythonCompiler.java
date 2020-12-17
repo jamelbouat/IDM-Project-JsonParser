@@ -87,16 +87,20 @@ public class PythonCompiler {
 			return generateCode(i.getCompute());
 		}
 		if(i.getSave() instanceof String) {
-			return generateCode();
+			generateCode();
 		}
 		return "";
 	}
 
-	private String generateCode() {
-		String generatedCode = "";
-		generatedCode += "with open("+ baseFile +", 'w') as file:\n"
+	private void generateCode() {
+		writeJsonObjectContentToFile();
+	}
+	
+	private String writeJsonObjectContentToFile() {
+		String codeWrittenToFile = "";
+		codeWrittenToFile += "with open("+ baseFile +", 'w') as file:\n"
 				+ "\t json.dump(data, file, indent=4)\n";
-		return generatedCode;
+		return codeWrittenToFile;
 	}
 
 	private String generateCode(Select s) throws Exception {
@@ -138,9 +142,8 @@ public class PythonCompiler {
 		String generatedCode = "";
 		String key = i.getKey();
 		String value = i.getValue().getStringValue();
-		generatedCode = "data["+key+"] = " + value + "\n" +
-				"with open("+ baseFile +", 'w') as file:\n"
-				+ "\t json.dump(data, file, indent=4)\n";
+		generatedCode = "data["+key+"] = " + value + "\n";
+		generatedCode += writeJsonObjectContentToFile();
 		return generatedCode;
 	}
 
@@ -149,6 +152,7 @@ public class PythonCompiler {
 		String key = u.getKey();
 		String value = u.getNewValue().getStringValue();
 		generatedCode += "data[" + key + "] = " + value + "\n";
+		generatedCode += writeJsonObjectContentToFile();
 		generatedCode += "print(data["+ key + "])\n"; //to remove later
 		return generatedCode;
 	}

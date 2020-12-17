@@ -1,13 +1,13 @@
 package org.xtext.example.idmproject.tests;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.io.Files;
 
 import org.xtext.example.idmproject.jsonParser.*;
 
@@ -15,64 +15,114 @@ public class JavaCompiler {
 	
 	private JsonModel _model;
 	private List<String> vars;
-
+	private String baseFile;
 	
 	public JavaCompiler(JsonModel _model) {
 		this._model = _model;
 		this.vars = new ArrayList<String>();
-
 	}
 	
 	public void compileAndRun() throws IOException {
-		String JAVA_OUTPUT = "jsonparser_test.java";			
-		File jsonParserTest = new File(JAVA_OUTPUT);
-		String baseFile = _model.getBaseLoad().getFile();
+		String javaFileName = "JsonParserTest";
+		String JAVA_OUTPUT = javaFileName + ".java";			
+		baseFile = _model.getBaseLoad().getFile();
 		String javaCode =
-		  "import org.json.simple.*;\n\n"
-		+ "public class Clazz {\n"
-		+ "\tpublic static void main(String[] args) {\n"
-		+ "\t\tJSONParser parser = new JSONParser();\n"
-		+ "\t\tObject obj = parser.parse(new FileReader(\"baseFile\"));\n"
-		+ "\t\tJSONObject jsonObject = (JSONObject)obj;"
-		+ "\n\t}\n}";
+				  "import java.io.FileNotFoundException;\n"
+				+ "import java.io.FileReader;\n"
+				+ "import java.io.FileWriter;\n"
+				+ "import java.io.IOException;\n\n"
+				+ "import org.json.simple.JSONObject;\n"
+			    + "import org.json.simple.parser.JSONParser;\n"
+			    + "import org.json.simple.parser.ParseException;\n\n"
+				+ "public class JsonParserTest {\n"
+				+ "\t public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {\n"
+				+ "\t\t JSONParser parser = new JSONParser();\n"
+				+ "\t\t Object obj = parser.parse(new FileReader("+baseFile+"));\n"
+				+ "\t\t JSONObject jsonObject = (JSONObject)obj;\n"
+				+ "\t\t FileWriter fileWriter;\n"
+				+ "\t\t long value1, value2;\n";
 		
-		Files.write(javaCode.getBytes(), jsonParserTest);
-
-		Process process = Runtime.getRuntime().exec("javac "+ JAVA_OUTPUT);
-		process = Runtime.getRuntime().exec("java jsonparser_test");
+		Files.write(Paths.get(JAVA_OUTPUT), javaCode.getBytes());
 		
 		for(Instruction i : _model.getInstructions()) {
 			String instructionCode;
 			try {
 				instructionCode = generateCode(i);
-				Files.write(instructionCode.getBytes(), jsonParserTest);
+				Files.write(Paths.get(JAVA_OUTPUT), instructionCode.getBytes(), StandardOpenOption.APPEND);
+			    System.out.println("instruction executed"); // to remove later
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
+		}
+		
+		// Close main method and JsonParserTest class
+		Files.write(Paths.get(JAVA_OUTPUT), "\t }\n}\n".getBytes(), StandardOpenOption.APPEND);
+		
+		// Compile and run JsonParserTest class
+		Process process = null;
+		try {
+			process = Runtime.getRuntime().exec("javac -cp ./lib/json-simple-1.1.jar " + JAVA_OUTPUT);
+			process.waitFor();
+			process = Runtime.getRuntime().exec("java -cp .:./lib/json-simple-1.1.jar " + javaFileName);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		//output
+		BufferedReader stdInput = new BufferedReader(new 
+				InputStreamReader(process.getInputStream()));
+
+		// error
+		BufferedReader stdError = new BufferedReader(new 
+				InputStreamReader(process.getErrorStream()));
+
+		String o;
+		while ((o = stdInput.readLine()) != null) {
+			System.out.println(o);
+		}
+
+		String err; 
+		while ((err = stdError.readLine()) != null) {
+			System.out.println(err);
 		}
 	}
 	
 	private String generateCode(Instruction i) throws Exception {
-		if(i instanceof Select) {
-			return generateCode((Select)i);
+		if(i.getSelect() instanceof Select) {
+			return generateCode(i.getSelect());
 		}
-		if(i instanceof Store) {
-			return generateCode((Store)i);
+		if(i.getStore() instanceof Store) {
+			return generateCode(i.getStore());
 		}
-		if(i instanceof Print) {
-			return generateCode((Print)i);
+		if(i.getPrint() instanceof Print) {
+			return generateCode(i.getPrint());
 		}
-		if(i instanceof Insert) {
-			return generateCode((Insert)i);
+		if(i.getInsert() instanceof Insert) {
+			return generateCode(i.getInsert());
 		}
-		if(i instanceof Update) {
-			return generateCode((Update) i);
+		if(i.getUpdate() instanceof Update) {
+			return generateCode(i.getUpdate());
 		}
-		if(i instanceof Compute) {
-			return generateCode((Compute)i);
+		if(i.getCompute() instanceof Compute) {
+			return generateCode(i.getCompute());
+		}
+		if(i.getSave() instanceof String) {
+			generateCode();
 		}
 		return "";
+	}
+	
+	private void generateCode() {
+		writeJsonObjectContentToFile(baseFile);
+	}
+	
+	private String writeJsonObjectContentToFile(String file) {
+		String codeWrittenToFile = "";
+		codeWrittenToFile += "\t\t fileWriter = new FileWriter(" + file + ");\n";
+		codeWrittenToFile += "\t\t fileWriter.write(jsonObject.toJSONString(4));\n";
+		codeWrittenToFile += "\t\t fileWriter.flush();\n";	
+		codeWrittenToFile += "\t\t fileWriter.close();\n";	
+		return codeWrittenToFile;		
 	}
 	
 	private String generateCode(Select s) throws Exception {
@@ -85,37 +135,39 @@ public class JavaCompiler {
 		}
 
 		vars.add(var);
-		generatedCode += "Object "+ var +" = jsonObject.getJsonObject('"+key+"');";
+		generatedCode += "\t\t Object " + var + " = jsonObject.get(" + key + ");\n";
 		return generatedCode;
-		
 	}
 	
 	private String generateCode(Store s) {
 		String generatedCode = "";
 		String pathToFile = s.getFile();
-		generatedCode+="FileWriter fileWriter = new FileWriter("+pathToFile+");";
-		generatedCode+="fileWriter.write(jsonObject.toJSONString());";
+		generatedCode += writeJsonObjectContentToFile(pathToFile);
 		return generatedCode;
 	}
 	
 	private String generateCode(Print p) {
 		String generatedCode = "";
 		String key = p.getKey();
-		generatedCode += "System.out.println(jsonObject.getJsonObject('"+key+"'));";
+		generatedCode += "\t\t System.out.println(jsonObject.get(" + key + "));\n";
 		return generatedCode;
 	}
 	
 	private String generateCode(Insert i) {
 		String generatedCode = "";
+		String key = i.getKey();
+		String value = i.getValue().getStringValue();
+		generatedCode += "\t\t jsonObject.put(" + key + ", " + value + ");\n";
+		generatedCode += writeJsonObjectContentToFile(baseFile);
 		return generatedCode;
 	}
 	
 	private String generateCode(Update u) {
 		String generatedCode = "";
 		String key = u.getKey();
-		Value val = u.getNewValue();
-		generatedCode += "JSONObject toUpdate = jsonObject.getJsonObject('"+key+"');";
-		generatedCode += "toUpdate.put("+val+")";
+		String newValue = u.getNewValue().getStringValue();
+		generatedCode += "\t\t jsonObject.put(" + key + ", " + newValue + ");\n";
+		generatedCode += writeJsonObjectContentToFile(baseFile);
 		return generatedCode;	
 	}
 	
@@ -125,12 +177,14 @@ public class JavaCompiler {
 		String generatedCode = "";
 
 		if(c instanceof Sum) {
-			generatedCode += "jsonObject.getJsonObject('"+key1+"') + jsonObject.getJsonObject('"+key2+"');";
-			generatedCode += "System.out.println(jsonObject.getJsonObject('"+key1+"') + jsonObject.getJsonObject('"+key2+"'));"; //to remove later
+			generatedCode += "\t\t value1 = (long) jsonObject.get(" + key1 + ");\n";
+			generatedCode += "\t\t value2 = (long) jsonObject.get(" + key2 + ");\n";				
+			generatedCode += "\t\t System.out.println(value1 + value2);\n"; // to remove later
 		}
 		if(c instanceof Product) {
-			generatedCode += "jsonObject.getJsonObject('"+key1+"') * jsonObject.getJsonObject('"+key2+"');";
-			generatedCode += "System.out.println(jsonObject.getJsonObject('"+key1+"') * jsonObject.getJsonObject('"+key2+"'))"; //to remove later
+			generatedCode += "\t\t value1 = (long) jsonObject.get(" + key1 + ");\n";
+			generatedCode += "\t\t value2 = (long) jsonObject.get(" + key2 + ");\n";				
+			generatedCode += "\t\t System.out.println(value1 * value2);\n"; // to remove later
 		}
 		return generatedCode;
 	}
