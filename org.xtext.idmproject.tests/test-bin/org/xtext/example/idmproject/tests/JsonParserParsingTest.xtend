@@ -38,6 +38,9 @@ class JsonParserParsingTest {
 		
 		val JavaCompiler cmplJava = new JavaCompiler(result)
 		cmplJava.compileAndRun	
+		
+		val JavaInterpreter intrJava = new JavaInterpreter(result);
+		intrJava.interpretAndRun
 	}
 	
 	@Test
@@ -56,7 +59,10 @@ class JsonParserParsingTest {
 		cmpPython.compileAndRun
 		
 		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun
+		cmplJava.compileAndRun	
+		
+		val JavaInterpreter intrJava = new JavaInterpreter(result);
+		intrJava.interpretAndRun
 	}
 
 	@Test
@@ -75,7 +81,10 @@ class JsonParserParsingTest {
 		cmpPython.compileAndRun
 		
 		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun
+		cmplJava.compileAndRun	
+		
+		val JavaInterpreter intrJava = new JavaInterpreter(result);
+		intrJava.interpretAndRun
 	}
 	
 	@Test
@@ -94,7 +103,10 @@ class JsonParserParsingTest {
 		cmpPython.compileAndRun
 		
 		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun
+		cmplJava.compileAndRun	
+		
+		val JavaInterpreter intrJava = new JavaInterpreter(result);
+		intrJava.interpretAndRun
 	}
 	
 	@Test
@@ -113,7 +125,10 @@ class JsonParserParsingTest {
 		cmpPython.compileAndRun
 		
 		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun
+		cmplJava.compileAndRun	
+		
+		val JavaInterpreter intrJava = new JavaInterpreter(result);
+		intrJava.interpretAndRun
 	}
 	
 	@Test
@@ -134,6 +149,9 @@ class JsonParserParsingTest {
 		
 		val JavaCompiler cmplJava = new JavaCompiler(result)
 		cmplJava.compileAndRun	
+		
+		val JavaInterpreter intrJava = new JavaInterpreter(result);
+		intrJava.interpretAndRun
 	}
 	
 	@Test
@@ -153,6 +171,9 @@ class JsonParserParsingTest {
 		
 		val JavaCompiler cmplJava = new JavaCompiler(result)
 		cmplJava.compileAndRun	
+		
+		val JavaInterpreter intrJava = new JavaInterpreter(result);
+		intrJava.interpretAndRun
 	}
 	
 	@Test
@@ -171,5 +192,8 @@ class JsonParserParsingTest {
 		
 		val JavaCompiler cmplJava = new JavaCompiler(result)
 		cmplJava.compileAndRun	
+		
+		val JavaInterpreter intrJava = new JavaInterpreter(result);
+		intrJava.interpretAndRun
 	}
 }

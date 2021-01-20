@@ -20,6 +20,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
 import org.xtext.example.idmproject.tests.JavaCompiler;
+import org.xtext.example.idmproject.tests.JavaInterpreter;
 import org.xtext.example.idmproject.tests.JsonParserInjectorProvider;
 import org.xtext.example.idmproject.tests.PythonCompiler;
 
@@ -51,6 +52,8 @@ public class JsonParserParsingTest {
       cmpPython.compileAndRun();
       final JavaCompiler cmplJava = new JavaCompiler(result);
       cmplJava.compileAndRun();
+      final JavaInterpreter intrJava = new JavaInterpreter(result);
+      intrJava.interpretAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -80,6 +83,8 @@ public class JsonParserParsingTest {
       cmpPython.compileAndRun();
       final JavaCompiler cmplJava = new JavaCompiler(result);
       cmplJava.compileAndRun();
+      final JavaInterpreter intrJava = new JavaInterpreter(result);
+      intrJava.interpretAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -109,6 +114,8 @@ public class JsonParserParsingTest {
       cmpPython.compileAndRun();
       final JavaCompiler cmplJava = new JavaCompiler(result);
       cmplJava.compileAndRun();
+      final JavaInterpreter intrJava = new JavaInterpreter(result);
+      intrJava.interpretAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -138,6 +145,8 @@ public class JsonParserParsingTest {
       cmpPython.compileAndRun();
       final JavaCompiler cmplJava = new JavaCompiler(result);
       cmplJava.compileAndRun();
+      final JavaInterpreter intrJava = new JavaInterpreter(result);
+      intrJava.interpretAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -167,6 +176,8 @@ public class JsonParserParsingTest {
       cmpPython.compileAndRun();
       final JavaCompiler cmplJava = new JavaCompiler(result);
       cmplJava.compileAndRun();
+      final JavaInterpreter intrJava = new JavaInterpreter(result);
+      intrJava.interpretAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -198,6 +209,8 @@ public class JsonParserParsingTest {
       cmpPython.compileAndRun();
       final JavaCompiler cmplJava = new JavaCompiler(result);
       cmplJava.compileAndRun();
+      final JavaInterpreter intrJava = new JavaInterpreter(result);
+      intrJava.interpretAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -227,6 +240,8 @@ public class JsonParserParsingTest {
       cmpPython.compileAndRun();
       final JavaCompiler cmplJava = new JavaCompiler(result);
       cmplJava.compileAndRun();
+      final JavaInterpreter intrJava = new JavaInterpreter(result);
+      intrJava.interpretAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -254,6 +269,8 @@ public class JsonParserParsingTest {
       cmpPython.compileAndRun();
       final JavaCompiler cmplJava = new JavaCompiler(result);
       cmplJava.compileAndRun();
+      final JavaInterpreter intrJava = new JavaInterpreter(result);
+      intrJava.interpretAndRun();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

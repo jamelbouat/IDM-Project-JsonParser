@@ -3,7 +3,6 @@ package org.xtext.example.idmproject.tests;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -31,11 +30,12 @@ public class JavaInterpreter {
 		parser = new JSONParser();
 	}
 	
-	public void interpretAndRun() {
-		
+	public void interpretAndRun() throws IOException {
+
 		try {
-			baseFile = _model.getBaseLoad().getFile();
-			Object obj = parser.parse(new FileReader(baseFile));
+			baseFile = _model.getBaseLoad().getFile().replaceAll("^.|.$", "");
+			FileReader fileReader = new FileReader(baseFile);
+			Object obj = parser.parse(fileReader);
 			jsonObject = (JSONObject)obj;
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
@@ -81,46 +81,48 @@ public class JavaInterpreter {
 
 	private void writeJsonObjectContentToFile(String file) throws IOException {
 		FileWriter fileWriter = new FileWriter(file);
-		fileWriter.write(jsonObject.toJSONString());
+		fileWriter.write(jsonObject.toString());
 		fileWriter.flush();	
 		fileWriter.close();	
+		
 	}
 
 	private void executeInstruction(Select select) {
-		String key = select.getKey();
+		String key = select.getKey().replaceAll("^.|.$", "");
 		jsonObject.get(key);
 	}
 	
 	private void executeInstruction(Store store) throws IOException {
-		String pathToFile = store.getFile();
+		String pathToFile = store.getFile().replaceAll("^.|.$", "");
 		writeJsonObjectContentToFile(pathToFile);
 	}
 	
 	private void executeInstruction(Print print) {
-		String key = print.getKey();
+		String key = print.getKey().replaceAll("^.|.$", "");
 		System.out.println(jsonObject.get(key));
 	}
 
 	private void executeInstruction(Insert insert) throws IOException {
-		String key = insert.getKey();
-		String value = insert.getValue().getStringValue();
+		String key = insert.getKey().replaceAll("^.|.$", "");
+		String value = insert.getValue().getStringValue().replaceAll("^.|.$", "");
 		jsonObject.put(key, value);
 		writeJsonObjectContentToFile(baseFile);
 	}
 	
 	private void executeInstruction(Update update) throws IOException {
-		String key = update.getKey();
-		String newValue = update.getNewValue().getStringValue();
+		String key = update.getKey().replaceAll("^.|.$", "");
+		String newValue = update.getNewValue().getStringValue().replaceAll("^.|.$", "");
 		jsonObject.put(key, newValue);
 		writeJsonObjectContentToFile(baseFile);
 	}
 	
 	private void executeInstruction(Compute compute) {
-		String key1 = compute.getKey1();
-		String key2 = compute.getKey2();
-		
+		String key1 = compute.getKey1().replaceAll("^.|.$", "");
+		String key2 = compute.getKey2().replaceAll("^.|.$", "");
+
 		if(compute instanceof Sum) {
 			long value1 = (long) jsonObject.get(key1);
+			System.out.println(value1);
 			long value2 = (long) jsonObject.get(key2);				
 			System.out.println(value1 + value2); // to remove later
 		}
