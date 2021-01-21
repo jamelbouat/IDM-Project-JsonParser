@@ -33,6 +33,15 @@ public class JavaCompiler {
 		baseFile = _model.getBaseLoad().getFile();
 		String javaCode =
 				  "import java.io.FileNotFoundException;\n"
+				+ "import java.io.File;\n"
+				+ "import java.io.FileReader;\n"
+				+ "import java.io.IOException;\n"
+				+ "import java.io.PrintWriter;\n"
+				+ "import java.util.ArrayList;\n"
+				+ "import java.util.Arrays;\n"
+				+ "import java.util.List;\n"
+				+ "import java.util.stream.Collectors;\n"
+				+ "import java.util.stream.Stream;"
 				+ "import java.io.FileReader;\n"
 				+ "import java.io.FileWriter;\n"
 				+ "import java.io.IOException;\n\n"
@@ -122,7 +131,7 @@ public class JavaCompiler {
 			generateCode();
 		}
 		if(i.getExport() instanceof Export) {
-			generateCode(i.getExport());
+			return generateCode(i.getExport());
 		}
 		return "";
 	}
@@ -220,43 +229,59 @@ public class JavaCompiler {
 	}
 	private String generateCode(Export e) {
 		String generatedCode ="";
-		generatedCode +="String[] keys = new String[jsonObject.keySet().size()];\n"
-				+ "		Arrays.fill(keys, \"\");\n"
-				+ "		int i =0;\n"
-				+ "		for(Object obj:jsonObject.keySet()) {\n"
-				+ "			if(obj instanceof String) {\n"
-				+ "				System.out.println(obj.toString());\n"
-				+ "				keys[i] = obj.toString();\n"
-				+ "			}\n"
-				+ "			if(obj instanceof Integer) {\n"
-				+ "				keys[i] = String.valueOf(obj);\n"
-				+ "			}\n"
-				+ "			i++;\n"
-				+ "		}\n"
-				+ "		String[] values =new String[jsonObject.values().size()];\n"
-				+ "		Arrays.fill(values, \"\");\n"
-				+ "		i=0;\n"
-				+ "		for(Object obj:jsonObject.values()) {\n"
-				+ "			if(obj instanceof String) {\n"
-				+ "				values[i] = obj.toString();\n"
-				+ "			}\n"
-				+ "			else {\n"
-				+ "				values[i] = String.valueOf(obj);\n"
-				+ "			}\n"
-				+ "			i++;\n"
-				+ "		}\n"
-				+ "		List<String[]> lines = new ArrayList<>();\n"
+		generatedCode += "\t\t ExporterToCsv exporter = new ExporterToCsv();\n";
+		generatedCode += "\t\t exporter.execute(jsonObject);\n";
+		generatedCode += " \n}\n}\n";
+		generatedCode += "class ExporterToCsv{\n";
+		generatedCode += " public void execute(JSONObject jsonObject){\n";
+		generatedCode += "\t\t String[] keys = new String[jsonObject.keySet().size()];\n";
+		generatedCode += "\t\t Arrays.fill(keys, \"\");\n";
+		generatedCode += "\t\t int i =0;\n";
+		generatedCode += "\t\t for(Object o:jsonObject.keySet()) {\n";
+		generatedCode += "\t\t	if(o instanceof String) {\n";
+		generatedCode += "\t\t		keys[i] = o.toString();}\n";
+		generatedCode += "\t\t	if(o instanceof Integer) {\n";
+		generatedCode += "\t\t		keys[i] = String.valueOf(o);\n}";
+		generatedCode += "\t\t	i++;}\n";
+		generatedCode += "\t\t String[] values = new String[jsonObject.values().size()];\n";
+		generatedCode += "\t\t Arrays.fill(values, \"\");\n";
+		generatedCode += "\t\t i =0;\n";
+		generatedCode += "\t\t for(Object o:jsonObject.values()) {\n";
+		generatedCode += "\t\t	if(o instanceof String) {\n";
+		generatedCode += "\t\t		values[i] = o.toString();}\n";
+		generatedCode += "\t\t	else {\n\n";
+		generatedCode += "\t\t		values[i] = String.valueOf(o);\n}";
+		generatedCode += "\t\t	i++;\n\t\t}\n";
+	
+		
+		generatedCode += "List<String[]> lines = new ArrayList<>();\n"
 				+ "		lines.add(keys);\n"
 				+ "		lines.add(values);\n"
-				+ "		File csvOutputFile = new File(\"newFile.csv\");\n"
+				+ "		File csvOutputFile = new File(\""+e.getCsvFileName()+"\");\n"
 				+ "	    try (PrintWriter pw = new PrintWriter(csvOutputFile)) {\n"
 				+ "	        lines.stream()\n"
-				+ "	          .map(Stream.of(this)\n"
-				+ "	      .collect(Collectors.joining(\",\")););\n"
+				+ "	          .map(this::convertToCSV)\n"
+				+ "           .forEach(pw::println);\n"
 				+ "	    } catch (Exception e) {\n"
 				+ "			e.printStackTrace();\n"
-				+ "		}";
+				+ "		}\n}";
+		
+		generatedCode += "private String convertToCSV(String[] data) {\n"
+				+ "	    return Stream.of(data)\n"
+				+ "	      .map(this::escapeSpecialCharacters)\n"
+				+ "	      .collect(Collectors.joining(\",\"));\n"
+				+ "	}\n";
+		
+		generatedCode += "private String escapeSpecialCharacters(String data) {\n"
+				+ "	    String escapedData = data.replaceAll(\"\\\\R\", \" \");\n"
+				+ "	    if (data.contains(\",\") || data.contains(\"\\\"\") || data.contains(\"'\")) {\n"
+				+ "	        data = data.replace(\"\\\"\", \"\\\"\\\"\");\n"
+				+ "	        escapedData = \"\\\"\" + data + \"\\\"\";\n"
+				+ "	    }\n"
+				+ "	    return escapedData;\n";
 		return generatedCode;
 		
-	}
+	}		
+	
+	
 }

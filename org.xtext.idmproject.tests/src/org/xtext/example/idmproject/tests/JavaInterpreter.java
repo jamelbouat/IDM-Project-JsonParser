@@ -194,7 +194,8 @@ public class JavaInterpreter {
 		File csvOutputFile = new File(export.getCsvFileName());
 	    try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
 	        lines.stream()
-	          .map(this::convertToCSV);
+	          .map(this::convertToCSV)
+	          .forEach(pw::println);
 	    } catch (Exception e) {
 			e.printStackTrace();
 		}
