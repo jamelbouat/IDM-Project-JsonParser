@@ -14,7 +14,7 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
-import org.xtext.example.idmproject.jsonParser.Expression;
+import org.xtext.example.idmproject.jsonParser.Export;
 import org.xtext.example.idmproject.jsonParser.GetValue;
 import org.xtext.example.idmproject.jsonParser.Insert;
 import org.xtext.example.idmproject.jsonParser.Instruction;
@@ -44,8 +44,8 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == JsonParserPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case JsonParserPackage.EXPRESSION:
-				sequence_Expression(context, (Expression) semanticObject); 
+			case JsonParserPackage.EXPORT:
+				sequence_Export(context, (Export) semanticObject); 
 				return; 
 			case JsonParserPackage.GET_VALUE:
 				sequence_GetValue(context, (GetValue) semanticObject); 
@@ -90,21 +90,18 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	
 	/**
 	 * Contexts:
-	 *     Expression returns Expression
+	 *     Export returns Export
 	 *
 	 * Constraint:
-	 *     (key=Key value=Value)
+	 *     csvFileName=STRING
 	 */
-	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
+	protected void sequence_Export(ISerializationContext context, Export semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.EXPRESSION__KEY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.EXPRESSION__KEY));
-			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.EXPRESSION__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.EXPRESSION__VALUE));
+			if (transientValues.isValueTransient(semanticObject, JsonParserPackage.Literals.EXPORT__CSV_FILE_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, JsonParserPackage.Literals.EXPORT__CSV_FILE_NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getExpressionAccess().getKeyKeyParserRuleCall_0_0(), semanticObject.getKey());
-		feeder.accept(grammarAccess.getExpressionAccess().getValueValueParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getExportAccess().getCsvFileNameSTRINGTerminalRuleCall_1_0(), semanticObject.getCsvFileName());
 		feeder.finish();
 	}
 	
@@ -161,7 +158,8 @@ public class JsonParserSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *         insert=Insert | 
 	 *         update=Update | 
 	 *         compute=Compute | 
-	 *         get=GetValue
+	 *         get=GetValue | 
+	 *         export=Export
 	 *     )
 	 */
 	protected void sequence_Instruction(ISerializationContext context, Instruction semanticObject) {

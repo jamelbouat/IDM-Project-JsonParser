@@ -19,6 +19,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/update"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/compute"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/get"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Instruction/export"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Load">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Load/file"/>
@@ -50,9 +51,8 @@
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Sum"/>
     <genClasses ecoreClass="JsonParser.ecore#//Product"/>
-    <genClasses ecoreClass="JsonParser.ecore#//Expression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Expression/key"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference JsonParser.ecore#//Expression/value"/>
+    <genClasses ecoreClass="JsonParser.ecore#//Export">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Export/csvFileName"/>
     </genClasses>
     <genClasses ecoreClass="JsonParser.ecore#//Value">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JsonParser.ecore#//Value/stringValue"/>

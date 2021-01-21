@@ -47,7 +47,7 @@ public class JsonParserParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getComputeAccess().getGroup(), "rule__Compute__Group__0");
 			builder.put(grammarAccess.getSumAccess().getGroup(), "rule__Sum__Group__0");
 			builder.put(grammarAccess.getProductAccess().getGroup(), "rule__Product__Group__0");
-			builder.put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
+			builder.put(grammarAccess.getExportAccess().getGroup(), "rule__Export__Group__0");
 			builder.put(grammarAccess.getArrayAccess().getGroup_0(), "rule__Array__Group_0__0");
 			builder.put(grammarAccess.getArrayAccess().getGroup_1(), "rule__Array__Group_1__0");
 			builder.put(grammarAccess.getJsonModelAccess().getBaseLoadAssignment_0(), "rule__JsonModel__BaseLoadAssignment_0");
@@ -60,6 +60,7 @@ public class JsonParserParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInstructionAccess().getUpdateAssignment_5(), "rule__Instruction__UpdateAssignment_5");
 			builder.put(grammarAccess.getInstructionAccess().getComputeAssignment_6(), "rule__Instruction__ComputeAssignment_6");
 			builder.put(grammarAccess.getInstructionAccess().getGetAssignment_7(), "rule__Instruction__GetAssignment_7");
+			builder.put(grammarAccess.getInstructionAccess().getExportAssignment_8(), "rule__Instruction__ExportAssignment_8");
 			builder.put(grammarAccess.getLoadAccess().getFileAssignment_1(), "rule__Load__FileAssignment_1");
 			builder.put(grammarAccess.getSelectAccess().getIdAssignment_1(), "rule__Select__IdAssignment_1");
 			builder.put(grammarAccess.getSelectAccess().getKeyAssignment_3(), "rule__Select__KeyAssignment_3");
@@ -74,8 +75,7 @@ public class JsonParserParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSumAccess().getKey2Assignment_3(), "rule__Sum__Key2Assignment_3");
 			builder.put(grammarAccess.getProductAccess().getKey1Assignment_1(), "rule__Product__Key1Assignment_1");
 			builder.put(grammarAccess.getProductAccess().getKey2Assignment_3(), "rule__Product__Key2Assignment_3");
-			builder.put(grammarAccess.getExpressionAccess().getKeyAssignment_0(), "rule__Expression__KeyAssignment_0");
-			builder.put(grammarAccess.getExpressionAccess().getValueAssignment_2(), "rule__Expression__ValueAssignment_2");
+			builder.put(grammarAccess.getExportAccess().getCsvFileNameAssignment_1(), "rule__Export__CsvFileNameAssignment_1");
 			builder.put(grammarAccess.getValueAccess().getStringValueAssignment_0(), "rule__Value__StringValueAssignment_0");
 			builder.put(grammarAccess.getValueAccess().getIntegerValueAssignment_1(), "rule__Value__IntegerValueAssignment_1");
 			builder.put(grammarAccess.getValueAccess().getArrayAssignment_2(), "rule__Value__ArrayAssignment_2");

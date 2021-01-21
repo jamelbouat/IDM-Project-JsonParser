@@ -1,13 +1,28 @@
 package org.xtext.example.idmproject.tests;
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import org.eclipse.xtext.xbase.testing.typesystem.TypeSystemSmokeTester;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.xtext.example.idmproject.jsonParser.Compute;
+import org.xtext.example.idmproject.jsonParser.Export;
 import org.xtext.example.idmproject.jsonParser.Insert;
 import org.xtext.example.idmproject.jsonParser.Instruction;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
@@ -71,6 +86,9 @@ public class JavaInterpreter {
 		}
 		if(i.getSave() instanceof String) {
 			executeInstruction();
+		}
+		if(i.getExport() instanceof Export) {
+			executeInstruction(i.getExport());
 		}
 	}
 	
@@ -145,5 +163,54 @@ public class JavaInterpreter {
 		}
 
 	}		
-
+	private void executeInstruction(Export export) {
+		String[] keys = new String[jsonObject.keySet().size()];
+		Arrays.fill(keys, "");
+		int i =0;
+		for(Object obj:jsonObject.keySet()) {
+			if(obj instanceof String) {
+				keys[i] = obj.toString();
+			}
+			if(obj instanceof Integer) {
+				keys[i] = String.valueOf(obj);
+			}
+			i++;
+		}
+		String[] values =new String[jsonObject.values().size()];
+		Arrays.fill(values, "");
+		i=0;
+		for(Object obj:jsonObject.values()) {
+			if(obj instanceof String) {
+				values[i] = obj.toString();
+			}
+			else {
+				values[i] = String.valueOf(obj);
+			}
+			i++;
+		}
+		List<String[]> lines = new ArrayList<>();
+		lines.add(keys);
+		lines.add(values);
+		File csvOutputFile = new File(export.getCsvFileName());
+	    try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
+	        lines.stream()
+	          .map(this::convertToCSV);
+	    } catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}		
+	private String convertToCSV(String[] data) {
+	    return Stream.of(data)
+	      .map(this::escapeSpecialCharacters)
+	      .collect(Collectors.joining(","));
+	}
+	private String escapeSpecialCharacters(String data) {
+	    String escapedData = data.replaceAll("\\R", " ");
+	    if (data.contains(",") || data.contains("\"") || data.contains("'")) {
+	        data = data.replace("\"", "\"\"");
+	        escapedData = "\"" + data + "\"";
+	    }
+	    return escapedData;
+	}
 }

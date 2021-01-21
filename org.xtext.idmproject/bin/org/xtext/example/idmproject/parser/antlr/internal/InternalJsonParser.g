@@ -292,6 +292,26 @@ ruleInstruction returns [EObject current=null]
 				}
 			)
 		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getInstructionAccess().getExportExportParserRuleCall_8_0());
+				}
+				lv_export_8_0=ruleExport
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getInstructionRule());
+					}
+					set(
+						$current,
+						"export",
+						lv_export_8_0,
+						"org.xtext.example.idmproject.JsonParser.Export");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -971,6 +991,58 @@ ruleProduct returns [EObject current=null]
 		otherlv_4=')'
 		{
 			newLeafNode(otherlv_4, grammarAccess.getProductAccess().getRightParenthesisKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleExport
+entryRuleExport returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExportRule()); }
+	iv_ruleExport=ruleExport
+	{ $current=$iv_ruleExport.current; }
+	EOF;
+
+// Rule Export
+ruleExport returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='.export('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getExportAccess().getExportKeyword_0());
+		}
+		(
+			(
+				lv_csvFileName_1_0=RULE_STRING
+				{
+					newLeafNode(lv_csvFileName_1_0, grammarAccess.getExportAccess().getCsvFileNameSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getExportRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"csvFileName",
+						lv_csvFileName_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getExportAccess().getRightParenthesisKeyword_2());
+		}
+		{
+			newCompositeNode(grammarAccess.getExportAccess().getEOLParserRuleCall_3());
+		}
+		ruleEOL
+		{
+			afterParserOrEnumRuleCall();
 		}
 	)
 ;

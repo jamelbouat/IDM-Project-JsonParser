@@ -132,13 +132,13 @@ public interface JsonParserFactory extends EFactory
   Product createProduct();
 
   /**
-   * Returns a new object of class '<em>Expression</em>'.
+   * Returns a new object of class '<em>Export</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expression</em>'.
+   * @return a new object of class '<em>Export</em>'.
    * @generated
    */
-  Expression createExpression();
+  Export createExport();
 
   /**
    * Returns a new object of class '<em>Value</em>'.

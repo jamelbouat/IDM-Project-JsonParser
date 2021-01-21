@@ -9,8 +9,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.xtext.example.idmproject.jsonParser.Instruction;
-import org.xtext.example.idmproject.jsonParser.JsonModel;
 import org.xtext.example.idmproject.jsonParser.*;
 
 public class PythonCompiler {
@@ -28,6 +26,7 @@ public class PythonCompiler {
 		String PYTHON_OUTPUT = "jsonparser_test.py";			
 		baseFile = _model.getBaseLoad().getFile();
 		String pythonCode = "import json\n" + 
+				"import csv\n"+	
 				"with open("+baseFile+") as f:\n" +
 				"\t data = json.load(f)\n";
 
@@ -87,6 +86,9 @@ public class PythonCompiler {
 		}
 		if(i.getSave() instanceof String) {
 			generateCode();
+		}
+		if(i.getExport() instanceof Export) {
+			return generateCode(i.getExport());
 		}
 		return "";
 	}
@@ -169,6 +171,19 @@ public class PythonCompiler {
 			generatedCode += "data["+key1+"] * data["+key2+"]\n";
 			generatedCode += "print(data["+key1+"] * data["+key2+"])\n"; //to remove later
 		}
+		return generatedCode;
+	}
+	private String generateCode(Export e) {
+		String csvFileName = e.getCsvFileName();
+		String generatedCode = "";
+		generatedCode += "keys = list(data.keys())\n";
+		generatedCode += "try:\n"
+				+ "    with open('"+csvFileName+"', 'w') as csvfile:\n"
+				+ "        writer = csv.DictWriter(csvfile, fieldnames=keys)\n"
+				+ "        writer.writeheader()\n"
+				+ "        writer.writerow(data)\n"
+				+ "except IOError:\n"
+				+ "    print(\"I/O error\")";
 		return generatedCode;
 	}
 }

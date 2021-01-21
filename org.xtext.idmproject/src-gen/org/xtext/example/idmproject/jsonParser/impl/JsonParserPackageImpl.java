@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.idmproject.jsonParser.Compute;
-import org.xtext.example.idmproject.jsonParser.Expression;
+import org.xtext.example.idmproject.jsonParser.Export;
 import org.xtext.example.idmproject.jsonParser.GetValue;
 import org.xtext.example.idmproject.jsonParser.Insert;
 import org.xtext.example.idmproject.jsonParser.Instruction;
@@ -124,7 +124,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass expressionEClass = null;
+  private EClass exportEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -326,6 +326,17 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
   public EReference getInstruction_Get()
   {
     return (EReference)instructionEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getInstruction_Export()
+  {
+    return (EReference)instructionEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -576,9 +587,9 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EClass getExpression()
+  public EClass getExport()
   {
-    return expressionEClass;
+    return exportEClass;
   }
 
   /**
@@ -587,20 +598,9 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
    * @generated
    */
   @Override
-  public EAttribute getExpression_Key()
+  public EAttribute getExport_CsvFileName()
   {
-    return (EAttribute)expressionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getExpression_Value()
-  {
-    return (EReference)expressionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)exportEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -691,6 +691,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     createEReference(instructionEClass, INSTRUCTION__UPDATE);
     createEReference(instructionEClass, INSTRUCTION__COMPUTE);
     createEReference(instructionEClass, INSTRUCTION__GET);
+    createEReference(instructionEClass, INSTRUCTION__EXPORT);
 
     loadEClass = createEClass(LOAD);
     createEAttribute(loadEClass, LOAD__FILE);
@@ -724,9 +725,8 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
 
     productEClass = createEClass(PRODUCT);
 
-    expressionEClass = createEClass(EXPRESSION);
-    createEAttribute(expressionEClass, EXPRESSION__KEY);
-    createEReference(expressionEClass, EXPRESSION__VALUE);
+    exportEClass = createEClass(EXPORT);
+    createEAttribute(exportEClass, EXPORT__CSV_FILE_NAME);
 
     valueEClass = createEClass(VALUE);
     createEAttribute(valueEClass, VALUE__STRING_VALUE);
@@ -780,6 +780,7 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
     initEReference(getInstruction_Update(), this.getUpdate(), null, "update", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstruction_Compute(), this.getCompute(), null, "compute", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstruction_Get(), this.getGetValue(), null, "get", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInstruction_Export(), this.getExport(), null, "export", null, 0, 1, Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(loadEClass, Load.class, "Load", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getLoad_File(), ecorePackage.getEString(), "file", null, 0, 1, Load.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -813,9 +814,8 @@ public class JsonParserPackageImpl extends EPackageImpl implements JsonParserPac
 
     initEClass(productEClass, Product.class, "Product", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getExpression_Key(), ecorePackage.getEString(), "key", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExpression_Value(), this.getValue(), null, "value", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(exportEClass, Export.class, "Export", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExport_CsvFileName(), ecorePackage.getEString(), "csvFileName", null, 0, 1, Export.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getValue_StringValue(), ecorePackage.getEString(), "stringValue", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

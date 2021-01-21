@@ -186,6 +186,22 @@ class JsonParserParsingTest {
 		
 		computeAndAssertOutAreAlike(result);
 	}
+	@Test
+	@Order(9)
+	def void exportDataToCsv() {
+		val result = parseHelper.parse('''
+			.load("file.json")
+			.insert("key3","2")
+			.insert("key4","3")
+			.export("newFile.csv")
+		''')
+		Assertions.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+		
+		computeAndAssertOutAreAlike(result)
+		
+	}
 		
 	def void computeAndAssertOutAreAlike(JsonModel result){
 		

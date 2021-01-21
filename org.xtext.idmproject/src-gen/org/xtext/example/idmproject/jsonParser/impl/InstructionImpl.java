@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.idmproject.jsonParser.Compute;
+import org.xtext.example.idmproject.jsonParser.Export;
 import org.xtext.example.idmproject.jsonParser.GetValue;
 import org.xtext.example.idmproject.jsonParser.Insert;
 import org.xtext.example.idmproject.jsonParser.Instruction;
@@ -38,6 +39,7 @@ import org.xtext.example.idmproject.jsonParser.Update;
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getUpdate <em>Update</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getCompute <em>Compute</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getGet <em>Get</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.impl.InstructionImpl#getExport <em>Export</em>}</li>
  * </ul>
  *
  * @generated
@@ -133,6 +135,16 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
    * @ordered
    */
   protected GetValue get;
+
+  /**
+   * The cached value of the '{@link #getExport() <em>Export</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getExport()
+   * @generated
+   * @ordered
+   */
+  protected Export export;
 
   /**
    * <!-- begin-user-doc -->
@@ -536,6 +548,56 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
    * @generated
    */
   @Override
+  public Export getExport()
+  {
+    return export;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExport(Export newExport, NotificationChain msgs)
+  {
+    Export oldExport = export;
+    export = newExport;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__EXPORT, oldExport, newExport);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setExport(Export newExport)
+  {
+    if (newExport != export)
+    {
+      NotificationChain msgs = null;
+      if (export != null)
+        msgs = ((InternalEObject)export).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__EXPORT, null, msgs);
+      if (newExport != null)
+        msgs = ((InternalEObject)newExport).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JsonParserPackage.INSTRUCTION__EXPORT, null, msgs);
+      msgs = basicSetExport(newExport, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, JsonParserPackage.INSTRUCTION__EXPORT, newExport, newExport));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -554,6 +616,8 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
         return basicSetCompute(null, msgs);
       case JsonParserPackage.INSTRUCTION__GET:
         return basicSetGet(null, msgs);
+      case JsonParserPackage.INSTRUCTION__EXPORT:
+        return basicSetExport(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -584,6 +648,8 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
         return getCompute();
       case JsonParserPackage.INSTRUCTION__GET:
         return getGet();
+      case JsonParserPackage.INSTRUCTION__EXPORT:
+        return getExport();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -621,6 +687,9 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
         return;
       case JsonParserPackage.INSTRUCTION__GET:
         setGet((GetValue)newValue);
+        return;
+      case JsonParserPackage.INSTRUCTION__EXPORT:
+        setExport((Export)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -660,6 +729,9 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
       case JsonParserPackage.INSTRUCTION__GET:
         setGet((GetValue)null);
         return;
+      case JsonParserPackage.INSTRUCTION__EXPORT:
+        setExport((Export)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -690,6 +762,8 @@ public class InstructionImpl extends MinimalEObjectImpl.Container implements Ins
         return compute != null;
       case JsonParserPackage.INSTRUCTION__GET:
         return get != null;
+      case JsonParserPackage.INSTRUCTION__EXPORT:
+        return export != null;
     }
     return super.eIsSet(featureID);
   }

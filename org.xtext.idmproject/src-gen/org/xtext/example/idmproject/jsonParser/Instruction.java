@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getUpdate <em>Update</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getCompute <em>Compute</em>}</li>
  *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getGet <em>Get</em>}</li>
+ *   <li>{@link org.xtext.example.idmproject.jsonParser.Instruction#getExport <em>Export</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction()
@@ -205,5 +206,27 @@ public interface Instruction extends EObject
    * @generated
    */
   void setGet(GetValue value);
+
+  /**
+   * Returns the value of the '<em><b>Export</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Export</em>' containment reference.
+   * @see #setExport(Export)
+   * @see org.xtext.example.idmproject.jsonParser.JsonParserPackage#getInstruction_Export()
+   * @model containment="true"
+   * @generated
+   */
+  Export getExport();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.idmproject.jsonParser.Instruction#getExport <em>Export</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Export</em>' containment reference.
+   * @see #getExport()
+   * @generated
+   */
+  void setExport(Export value);
 
 } // Instruction

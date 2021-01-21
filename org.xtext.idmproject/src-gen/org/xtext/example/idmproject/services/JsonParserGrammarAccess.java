@@ -69,13 +69,16 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final RuleCall cComputeComputeParserRuleCall_6_0 = (RuleCall)cComputeAssignment_6.eContents().get(0);
 		private final Assignment cGetAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
 		private final RuleCall cGetGetValueParserRuleCall_7_0 = (RuleCall)cGetAssignment_7.eContents().get(0);
+		private final Assignment cExportAssignment_8 = (Assignment)cAlternatives.eContents().get(8);
+		private final RuleCall cExportExportParserRuleCall_8_0 = (RuleCall)cExportAssignment_8.eContents().get(0);
 		
 		//Instruction:
-		//	select=Select | store=Store | save=Save | print=Print | insert=Insert | update=Update | compute=Compute |
-		//	get=GetValue;
+		//	select=Select | store=Store | save=Save | print=Print | insert=Insert | update=Update | compute=Compute | get=GetValue
+		//	| export=Export;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//select=Select | store=Store | save=Save | print=Print | insert=Insert | update=Update | compute=Compute | get=GetValue
+		//select=Select | store=Store | save=Save | print=Print | insert=Insert | update=Update | compute=Compute | get=GetValue |
+		//export=Export
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//select=Select
@@ -125,6 +128,12 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//GetValue
 		public RuleCall getGetGetValueParserRuleCall_7_0() { return cGetGetValueParserRuleCall_7_0; }
+		
+		//export=Export
+		public Assignment getExportAssignment_8() { return cExportAssignment_8; }
+		
+		//Export
+		public RuleCall getExportExportParserRuleCall_8_0() { return cExportExportParserRuleCall_8_0; }
 	}
 	public class LoadElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Load");
@@ -514,36 +523,36 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
-	public class ExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Expression");
+	public class ExportElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Export");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cKeyAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cKeyKeyParserRuleCall_0_0 = (RuleCall)cKeyAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		private final Keyword cExportKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cCsvFileNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cCsvFileNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cCsvFileNameAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cEOLParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//Expression:
-		//	key=Key ':' value=Value;
+		//Export:
+		//	'.export(' csvFileName=STRING ')' EOL;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//key=Key ':' value=Value
+		//'.export(' csvFileName=STRING ')' EOL
 		public Group getGroup() { return cGroup; }
 		
-		//key=Key
-		public Assignment getKeyAssignment_0() { return cKeyAssignment_0; }
+		//'.export('
+		public Keyword getExportKeyword_0() { return cExportKeyword_0; }
 		
-		//Key
-		public RuleCall getKeyKeyParserRuleCall_0_0() { return cKeyKeyParserRuleCall_0_0; }
+		//csvFileName=STRING
+		public Assignment getCsvFileNameAssignment_1() { return cCsvFileNameAssignment_1; }
 		
-		//':'
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		//STRING
+		public RuleCall getCsvFileNameSTRINGTerminalRuleCall_1_0() { return cCsvFileNameSTRINGTerminalRuleCall_1_0; }
 		
-		//value=Value
-		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 		
-		//Value
-		public RuleCall getValueValueParserRuleCall_2_0() { return cValueValueParserRuleCall_2_0; }
+		//EOL
+		public RuleCall getEOLParserRuleCall_3() { return cEOLParserRuleCall_3; }
 	}
 	public class KeyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.idmproject.JsonParser.Key");
@@ -653,7 +662,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	private final ComputeElements pCompute;
 	private final SumElements pSum;
 	private final ProductElements pProduct;
-	private final ExpressionElements pExpression;
+	private final ExportElements pExport;
 	private final KeyElements pKey;
 	private final ValueElements pValue;
 	private final ArrayElements pArray;
@@ -682,7 +691,7 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.pCompute = new ComputeElements();
 		this.pSum = new SumElements();
 		this.pProduct = new ProductElements();
-		this.pExpression = new ExpressionElements();
+		this.pExport = new ExportElements();
 		this.pKey = new KeyElements();
 		this.pValue = new ValueElements();
 		this.pArray = new ArrayElements();
@@ -728,8 +737,8 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Instruction:
-	//	select=Select | store=Store | save=Save | print=Print | insert=Insert | update=Update | compute=Compute |
-	//	get=GetValue;
+	//	select=Select | store=Store | save=Save | print=Print | insert=Insert | update=Update | compute=Compute | get=GetValue
+	//	| export=Export;
 	public InstructionElements getInstructionAccess() {
 		return pInstruction;
 	}
@@ -858,14 +867,14 @@ public class JsonParserGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getProductAccess().getRule();
 	}
 	
-	//Expression:
-	//	key=Key ':' value=Value;
-	public ExpressionElements getExpressionAccess() {
-		return pExpression;
+	//Export:
+	//	'.export(' csvFileName=STRING ')' EOL;
+	public ExportElements getExportAccess() {
+		return pExport;
 	}
 	
-	public ParserRule getExpressionRule() {
-		return getExpressionAccess().getRule();
+	public ParserRule getExportRule() {
+		return getExportAccess().getRule();
 	}
 	
 	//Key:

@@ -77,7 +77,7 @@ public class JsonParserFactoryImpl extends EFactoryImpl implements JsonParserFac
       case JsonParserPackage.COMPUTE: return createCompute();
       case JsonParserPackage.SUM: return createSum();
       case JsonParserPackage.PRODUCT: return createProduct();
-      case JsonParserPackage.EXPRESSION: return createExpression();
+      case JsonParserPackage.EXPORT: return createExport();
       case JsonParserPackage.VALUE: return createValue();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -234,10 +234,10 @@ public class JsonParserFactoryImpl extends EFactoryImpl implements JsonParserFac
    * @generated
    */
   @Override
-  public Expression createExpression()
+  public Export createExport()
   {
-    ExpressionImpl expression = new ExpressionImpl();
-    return expression;
+    ExportImpl export = new ExportImpl();
+    return export;
   }
 
   /**

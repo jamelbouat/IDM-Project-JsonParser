@@ -177,13 +177,22 @@ public interface JsonParserPackage extends EPackage
   int INSTRUCTION__GET = 7;
 
   /**
+   * The feature id for the '<em><b>Export</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION__EXPORT = 8;
+
+  /**
    * The number of structural features of the '<em>Instruction</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSTRUCTION_FEATURE_COUNT = 8;
+  int INSTRUCTION_FEATURE_COUNT = 9;
 
   /**
    * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.LoadImpl <em>Load</em>}' class.
@@ -520,41 +529,32 @@ public interface JsonParserPackage extends EPackage
   int PRODUCT_FEATURE_COUNT = COMPUTE_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.ExpressionImpl <em>Expression</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.ExportImpl <em>Export</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.idmproject.jsonParser.impl.ExpressionImpl
-   * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getExpression()
+   * @see org.xtext.example.idmproject.jsonParser.impl.ExportImpl
+   * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getExport()
    * @generated
    */
-  int EXPRESSION = 12;
+  int EXPORT = 12;
 
   /**
-   * The feature id for the '<em><b>Key</b></em>' attribute.
+   * The feature id for the '<em><b>Csv File Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION__KEY = 0;
+  int EXPORT__CSV_FILE_NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * The number of structural features of the '<em>Export</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION__VALUE = 1;
-
-  /**
-   * The number of structural features of the '<em>Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPRESSION_FEATURE_COUNT = 2;
+  int EXPORT_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.idmproject.jsonParser.impl.ValueImpl <em>Value</em>}' class.
@@ -732,6 +732,17 @@ public interface JsonParserPackage extends EPackage
    * @generated
    */
   EReference getInstruction_Get();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Instruction#getExport <em>Export</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Export</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Instruction#getExport()
+   * @see #getInstruction()
+   * @generated
+   */
+  EReference getInstruction_Export();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Load <em>Load</em>}'.
@@ -966,36 +977,25 @@ public interface JsonParserPackage extends EPackage
   EClass getProduct();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Expression <em>Expression</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Export <em>Export</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expression</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Expression
+   * @return the meta object for class '<em>Export</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Export
    * @generated
    */
-  EClass getExpression();
+  EClass getExport();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Expression#getKey <em>Key</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.idmproject.jsonParser.Export#getCsvFileName <em>Csv File Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Key</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Expression#getKey()
-   * @see #getExpression()
+   * @return the meta object for the attribute '<em>Csv File Name</em>'.
+   * @see org.xtext.example.idmproject.jsonParser.Export#getCsvFileName()
+   * @see #getExport()
    * @generated
    */
-  EAttribute getExpression_Key();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.idmproject.jsonParser.Expression#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see org.xtext.example.idmproject.jsonParser.Expression#getValue()
-   * @see #getExpression()
-   * @generated
-   */
-  EReference getExpression_Value();
+  EAttribute getExport_CsvFileName();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.idmproject.jsonParser.Value <em>Value</em>}'.
@@ -1162,6 +1162,14 @@ public interface JsonParserPackage extends EPackage
      * @generated
      */
     EReference INSTRUCTION__GET = eINSTANCE.getInstruction_Get();
+
+    /**
+     * The meta object literal for the '<em><b>Export</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSTRUCTION__EXPORT = eINSTANCE.getInstruction_Export();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.LoadImpl <em>Load</em>}' class.
@@ -1360,30 +1368,22 @@ public interface JsonParserPackage extends EPackage
     EClass PRODUCT = eINSTANCE.getProduct();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.ExpressionImpl <em>Expression</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.ExportImpl <em>Export</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.idmproject.jsonParser.impl.ExpressionImpl
-     * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getExpression()
+     * @see org.xtext.example.idmproject.jsonParser.impl.ExportImpl
+     * @see org.xtext.example.idmproject.jsonParser.impl.JsonParserPackageImpl#getExport()
      * @generated
      */
-    EClass EXPRESSION = eINSTANCE.getExpression();
+    EClass EXPORT = eINSTANCE.getExport();
 
     /**
-     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Csv File Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute EXPRESSION__KEY = eINSTANCE.getExpression_Key();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPRESSION__VALUE = eINSTANCE.getExpression_Value();
+    EAttribute EXPORT__CSV_FILE_NAME = eINSTANCE.getExport_CsvFileName();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.idmproject.jsonParser.impl.ValueImpl <em>Value</em>}' class.

@@ -136,9 +136,9 @@ public class JsonParserAdapterFactory extends AdapterFactoryImpl
         return createProductAdapter();
       }
       @Override
-      public Adapter caseExpression(Expression object)
+      public Adapter caseExport(Export object)
       {
-        return createExpressionAdapter();
+        return createExportAdapter();
       }
       @Override
       public Adapter caseValue(Value object)
@@ -348,16 +348,16 @@ public class JsonParserAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.idmproject.jsonParser.Expression <em>Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.idmproject.jsonParser.Export <em>Export</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.idmproject.jsonParser.Expression
+   * @see org.xtext.example.idmproject.jsonParser.Export
    * @generated
    */
-  public Adapter createExpressionAdapter()
+  public Adapter createExportAdapter()
   {
     return null;
   }

@@ -1,13 +1,18 @@
 package org.xtext.example.idmproject.tests;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.xtext.example.idmproject.jsonParser.*;
 
@@ -116,6 +121,9 @@ public class JavaCompiler {
 		if(i.getSave() instanceof String) {
 			generateCode();
 		}
+		if(i.getExport() instanceof Export) {
+			generateCode(i.getExport());
+		}
 		return "";
 	}
 	
@@ -209,5 +217,46 @@ public class JavaCompiler {
 			generatedCode += "\t\t System.out.println(value1 * value2);\n"; // to remove later
 		}
 		return generatedCode;
+	}
+	private String generateCode(Export e) {
+		String generatedCode ="";
+		generatedCode +="String[] keys = new String[jsonObject.keySet().size()];\n"
+				+ "		Arrays.fill(keys, \"\");\n"
+				+ "		int i =0;\n"
+				+ "		for(Object obj:jsonObject.keySet()) {\n"
+				+ "			if(obj instanceof String) {\n"
+				+ "				System.out.println(obj.toString());\n"
+				+ "				keys[i] = obj.toString();\n"
+				+ "			}\n"
+				+ "			if(obj instanceof Integer) {\n"
+				+ "				keys[i] = String.valueOf(obj);\n"
+				+ "			}\n"
+				+ "			i++;\n"
+				+ "		}\n"
+				+ "		String[] values =new String[jsonObject.values().size()];\n"
+				+ "		Arrays.fill(values, \"\");\n"
+				+ "		i=0;\n"
+				+ "		for(Object obj:jsonObject.values()) {\n"
+				+ "			if(obj instanceof String) {\n"
+				+ "				values[i] = obj.toString();\n"
+				+ "			}\n"
+				+ "			else {\n"
+				+ "				values[i] = String.valueOf(obj);\n"
+				+ "			}\n"
+				+ "			i++;\n"
+				+ "		}\n"
+				+ "		List<String[]> lines = new ArrayList<>();\n"
+				+ "		lines.add(keys);\n"
+				+ "		lines.add(values);\n"
+				+ "		File csvOutputFile = new File(\"newFile.csv\");\n"
+				+ "	    try (PrintWriter pw = new PrintWriter(csvOutputFile)) {\n"
+				+ "	        lines.stream()\n"
+				+ "	          .map(Stream.of(this)\n"
+				+ "	      .collect(Collectors.joining(\",\")););\n"
+				+ "	    } catch (Exception e) {\n"
+				+ "			e.printStackTrace();\n"
+				+ "		}";
+		return generatedCode;
+		
 	}
 }

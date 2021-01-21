@@ -14,7 +14,8 @@ Instruction:
 	insert = Insert        |
 	update = Update        |
 	compute = Compute      |
-	get = GetValue
+	get = GetValue		   |
+	export = Export	
 	;
 
 Load:
@@ -55,9 +56,8 @@ Sum:
 Product:
 	'.product('key1 = Key '*' key2 = Key')'
 ;
-
-Expression:
-	key = Key ':' value = Value 
+Export:
+	'.export('csvFileName = STRING ')' EOL
 ;
 
 Key:

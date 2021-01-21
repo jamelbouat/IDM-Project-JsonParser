@@ -159,10 +159,10 @@ public class JsonParserSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case JsonParserPackage.EXPRESSION:
+      case JsonParserPackage.EXPORT:
       {
-        Expression expression = (Expression)theEObject;
-        T result = caseExpression(expression);
+        Export export = (Export)theEObject;
+        T result = caseExport(export);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -370,17 +370,17 @@ public class JsonParserSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Export</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Export</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExpression(Expression object)
+  public T caseExport(Export object)
   {
     return null;
   }
