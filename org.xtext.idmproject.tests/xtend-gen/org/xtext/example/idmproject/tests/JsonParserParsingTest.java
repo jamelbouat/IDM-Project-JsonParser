@@ -4,6 +4,9 @@
 package org.xtext.example.idmproject.tests;
 
 import com.google.inject.Inject;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -12,7 +15,9 @@ import org.eclipse.xtext.testing.extensions.InjectionExtension;
 import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -32,6 +37,54 @@ public class JsonParserParsingTest {
   @Inject
   private ParseHelper<JsonModel> parseHelper;
   
+  /**
+   * On va utiliser des tests sur les outputs pour bien verifier que nos sorties et erreurs des compilateurs python java et de l'interpreteur java soit les mêmes
+   */
+  private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  
+  private ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+  
+  /**
+   * On garde de coté les Flux originaux de sortie pour rediriger ceux de nos tests vers ceux ci dessus
+   */
+  private PrintStream originalOut = System.out;
+  
+  private PrintStream originalErr = System.err;
+  
+  private PythonCompiler pythonCompiler;
+  
+  private JavaCompiler javaCompiler;
+  
+  private JavaInterpreter javaInterpreter;
+  
+  @BeforeEach
+  public void setUpStreams() {
+    PrintStream _printStream = new PrintStream(this.outContent);
+    System.setOut(_printStream);
+    PrintStream _printStream_1 = new PrintStream(this.errContent);
+    System.setErr(_printStream_1);
+  }
+  
+  @BeforeEach
+  public void setUp() {
+    try {
+      final PrintWriter prw = new PrintWriter("file.json");
+      prw.println("{\"key1\" : \"value1\"}");
+      prw.close();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @AfterEach
+  public void restoreStreams() {
+    System.setOut(this.originalOut);
+    System.setErr(this.originalErr);
+  }
+  
+  /**
+   * Premier test , juste le load, on attends rien en sortie et aucune erreur
+   */
   @Test
   @Order(1)
   public void loadBaseFile() {
@@ -48,12 +101,7 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final PythonCompiler cmpPython = new PythonCompiler(result);
-      cmpPython.compileAndRun();
-      final JavaCompiler cmplJava = new JavaCompiler(result);
-      cmplJava.compileAndRun();
-      final JavaInterpreter intrJava = new JavaInterpreter(result);
-      intrJava.interpretAndRun();
+      this.computeAndAssertOutAreAlike(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -79,12 +127,9 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final PythonCompiler cmpPython = new PythonCompiler(result);
-      cmpPython.compileAndRun();
-      final JavaCompiler cmplJava = new JavaCompiler(result);
-      cmplJava.compileAndRun();
-      final JavaInterpreter intrJava = new JavaInterpreter(result);
-      intrJava.interpretAndRun();
+      this.computeAndAssertOutAreAlike(result);
+      Assertions.assertTrue(this.javaCompiler.getVars().contains("id1"));
+      Assertions.assertTrue(this.javaCompiler.getVars().contains("id2"));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -110,12 +155,7 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final PythonCompiler cmpPython = new PythonCompiler(result);
-      cmpPython.compileAndRun();
-      final JavaCompiler cmplJava = new JavaCompiler(result);
-      cmplJava.compileAndRun();
-      final JavaInterpreter intrJava = new JavaInterpreter(result);
-      intrJava.interpretAndRun();
+      this.computeAndAssertOutAreAlike(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -141,12 +181,7 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final PythonCompiler cmpPython = new PythonCompiler(result);
-      cmpPython.compileAndRun();
-      final JavaCompiler cmplJava = new JavaCompiler(result);
-      cmplJava.compileAndRun();
-      final JavaInterpreter intrJava = new JavaInterpreter(result);
-      intrJava.interpretAndRun();
+      this.computeAndAssertOutAreAlike(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -172,12 +207,7 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final PythonCompiler cmpPython = new PythonCompiler(result);
-      cmpPython.compileAndRun();
-      final JavaCompiler cmplJava = new JavaCompiler(result);
-      cmplJava.compileAndRun();
-      final JavaInterpreter intrJava = new JavaInterpreter(result);
-      intrJava.interpretAndRun();
+      this.computeAndAssertOutAreAlike(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -205,12 +235,7 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final PythonCompiler cmpPython = new PythonCompiler(result);
-      cmpPython.compileAndRun();
-      final JavaCompiler cmplJava = new JavaCompiler(result);
-      cmplJava.compileAndRun();
-      final JavaInterpreter intrJava = new JavaInterpreter(result);
-      intrJava.interpretAndRun();
+      this.computeAndAssertOutAreAlike(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -222,6 +247,10 @@ public class JsonParserParsingTest {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
+      _builder.newLine();
+      _builder.append(".insert(\"key3\",\"2\")");
+      _builder.newLine();
+      _builder.append(".insert(\"key4\",\"3\")");
       _builder.newLine();
       _builder.append(".sum(\"key3\" + \"key4\")");
       _builder.newLine();
@@ -236,12 +265,7 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final PythonCompiler cmpPython = new PythonCompiler(result);
-      cmpPython.compileAndRun();
-      final JavaCompiler cmplJava = new JavaCompiler(result);
-      cmplJava.compileAndRun();
-      final JavaInterpreter intrJava = new JavaInterpreter(result);
-      intrJava.interpretAndRun();
+      this.computeAndAssertOutAreAlike(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -265,12 +289,50 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final PythonCompiler cmpPython = new PythonCompiler(result);
-      cmpPython.compileAndRun();
-      final JavaCompiler cmplJava = new JavaCompiler(result);
-      cmplJava.compileAndRun();
-      final JavaInterpreter intrJava = new JavaInterpreter(result);
-      intrJava.interpretAndRun();
+      this.computeAndAssertOutAreAlike(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public void computeAndAssertOutAreAlike(final JsonModel result) {
+    try {
+      PythonCompiler _pythonCompiler = new PythonCompiler(result);
+      this.pythonCompiler = _pythonCompiler;
+      this.pythonCompiler.compileAndRun();
+      final String pythonCompilerOut = this.outContent.toString();
+      final String pythonCompilerErr = this.errContent.toString();
+      this.outContent.flush();
+      ByteArrayOutputStream _byteArrayOutputStream = new ByteArrayOutputStream();
+      this.outContent = _byteArrayOutputStream;
+      this.setUpStreams();
+      JavaCompiler _javaCompiler = new JavaCompiler(result);
+      this.javaCompiler = _javaCompiler;
+      this.javaCompiler.compileAndRun();
+      final String javaCompilerOut = this.outContent.toString();
+      final String javaCompilerErr = this.errContent.toString();
+      this.outContent.flush();
+      ByteArrayOutputStream _byteArrayOutputStream_1 = new ByteArrayOutputStream();
+      this.outContent = _byteArrayOutputStream_1;
+      this.setUpStreams();
+      JavaInterpreter _javaInterpreter = new JavaInterpreter(result);
+      this.javaInterpreter = _javaInterpreter;
+      this.javaInterpreter.interpretAndRun();
+      final String javaInterpreterOut = this.outContent.toString();
+      final String javaInterpreterErr = this.errContent.toString();
+      this.outContent.flush();
+      ByteArrayOutputStream _byteArrayOutputStream_2 = new ByteArrayOutputStream();
+      this.outContent = _byteArrayOutputStream_2;
+      this.setUpStreams();
+      this.originalOut.println(("python compiler : " + pythonCompilerOut));
+      this.originalOut.println(("java compiler : " + javaCompilerOut));
+      this.originalOut.println(("java interpreter : " + javaInterpreterOut));
+      Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
+      Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
+      Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
+      Assertions.assertEquals(pythonCompilerErr, javaCompilerErr);
+      Assertions.assertEquals(pythonCompilerErr, javaInterpreterErr);
+      Assertions.assertEquals(javaCompilerErr, javaInterpreterErr);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

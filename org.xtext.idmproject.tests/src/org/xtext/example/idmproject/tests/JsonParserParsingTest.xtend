@@ -15,14 +15,47 @@ import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.TestMethodOrder
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Disabled
+import java.io.ByteArrayOutputStream
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.AfterEach
+import java.io.PrintStream
+import java.io.PrintWriter
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JsonParserInjectorProvider)
 @TestMethodOrder(OrderAnnotation) 
 class JsonParserParsingTest {
 	@Inject
-	ParseHelper<JsonModel> parseHelper
+	ParseHelper<JsonModel> parseHelper 
+	/* On va utiliser des tests sur les outputs pour bien verifier que nos sorties et erreurs des compilateurs python java et de l'interpreteur java soit les mêmes*/
+	ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+	/*On garde de coté les Flux originaux de sortie pour rediriger ceux de nos tests vers ceux ci dessus */
+	PrintStream originalOut = System.out;
+	PrintStream originalErr = System.err;
+	PythonCompiler pythonCompiler;
+	JavaCompiler javaCompiler;
+	JavaInterpreter javaInterpreter;
 	
+	@BeforeEach
+	def void setUpStreams() {
+	    System.setOut(new PrintStream(outContent));
+	    System.setErr(new PrintStream(errContent));
+	}
+	@BeforeEach
+	def void setUp() {
+	    val PrintWriter prw= new PrintWriter("file.json");
+      	prw.println('{"key1" : "value1"}');          
+      	prw.close();
+	}
+	
+	@AfterEach
+	def void restoreStreams() {
+	    System.setOut(originalOut);
+	    System.setErr(originalErr);
+	}
+	
+	/* Premier test , juste le load, on attends rien en sortie et aucune erreur */
 	@Test
 	@Order(1)
 	def void loadBaseFile() {
@@ -33,14 +66,9 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun
+		computeAndAssertOutAreAlike(result);
+
 		
-		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun	
-		
-		val JavaInterpreter intrJava = new JavaInterpreter(result);
-		intrJava.interpretAndRun
 	}
 	
 	@Test
@@ -55,14 +83,12 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun
+		computeAndAssertOutAreAlike(result);
+
 		
-		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun	
-		
-		val JavaInterpreter intrJava = new JavaInterpreter(result);
-		intrJava.interpretAndRun
+		/* On test que la variable est bien ajouté dans les variables stockées */
+		Assertions.assertTrue(javaCompiler.vars.contains("id1"))
+		Assertions.assertTrue(javaCompiler.vars.contains("id2"))
 	}
 
 	@Test
@@ -77,14 +103,8 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun
-		
-		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun	
-		
-		val JavaInterpreter intrJava = new JavaInterpreter(result);
-		intrJava.interpretAndRun
+		computeAndAssertOutAreAlike(result);
+
 	}
 	
 	@Test
@@ -99,14 +119,8 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun
-		
-		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun	
-		
-		val JavaInterpreter intrJava = new JavaInterpreter(result);
-		intrJava.interpretAndRun
+		computeAndAssertOutAreAlike(result);
+
 	}
 	
 	@Test
@@ -121,14 +135,9 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun
+		computeAndAssertOutAreAlike(result);
 		
-		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun	
-		
-		val JavaInterpreter intrJava = new JavaInterpreter(result);
-		intrJava.interpretAndRun
+
 	}
 	
 	@Test
@@ -144,14 +153,7 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun
-		
-		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun	
-		
-		val JavaInterpreter intrJava = new JavaInterpreter(result);
-		intrJava.interpretAndRun
+		computeAndAssertOutAreAlike(result);
 	}
 	
 	@Test
@@ -159,6 +161,8 @@ class JsonParserParsingTest {
 	def void computeData() {
 		val result = parseHelper.parse('''
 			.load("file.json")
+			.insert("key3","2")
+			.insert("key4","3")
 			.sum("key3" + "key4")
 			.product("key3" * "key4")
 		''')
@@ -166,14 +170,7 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun
-		
-		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun	
-		
-		val JavaInterpreter intrJava = new JavaInterpreter(result);
-		intrJava.interpretAndRun
+		computeAndAssertOutAreAlike(result);
 	}
 	
 	@Test
@@ -187,13 +184,49 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val PythonCompiler cmpPython = new PythonCompiler(result)
-		cmpPython.compileAndRun
+		computeAndAssertOutAreAlike(result);
+	}
 		
-		val JavaCompiler cmplJava = new JavaCompiler(result)
-		cmplJava.compileAndRun	
+	def void computeAndAssertOutAreAlike(JsonModel result){
 		
-		val JavaInterpreter intrJava = new JavaInterpreter(result);
-		intrJava.interpretAndRun
+		/*On assigne un nouveau compilateur ou interpreteur */
+		pythonCompiler = new PythonCompiler(result)
+		pythonCompiler.compileAndRun
+		val pythonCompilerOut =  outContent.toString()
+		val pythonCompilerErr =  errContent.toString()
+
+		/*Les lignes suivantes servent a vider le contenu pour ne pas garder celui d'avant lors de la comparaison */
+		outContent.flush
+		outContent = new ByteArrayOutputStream();
+		setUpStreams
+	    
+		javaCompiler = new JavaCompiler(result)
+		javaCompiler.compileAndRun
+		val javaCompilerOut =  outContent.toString()
+		val javaCompilerErr =  errContent.toString()
+			
+		outContent.flush
+		outContent = new ByteArrayOutputStream();
+		setUpStreams
+	
+		javaInterpreter = new JavaInterpreter(result);
+		javaInterpreter.interpretAndRun
+		val javaInterpreterOut =  outContent.toString()
+		val javaInterpreterErr =  errContent.toString()
+	
+		outContent.flush
+		outContent = new ByteArrayOutputStream();
+		setUpStreams		
+		originalOut.println("python compiler : " + pythonCompilerOut)
+		originalOut.println("java compiler : " + javaCompilerOut)
+		originalOut.println("java interpreter : " + javaInterpreterOut)
+	
+		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
+		Assertions.assertEquals(pythonCompilerOut,javaInterpreterOut);
+		Assertions.assertEquals(javaCompilerOut,javaInterpreterOut);
+		
+		Assertions.assertEquals(pythonCompilerErr,javaCompilerErr);
+		Assertions.assertEquals(pythonCompilerErr,javaInterpreterErr);
+		Assertions.assertEquals(javaCompilerErr,javaInterpreterErr);
 	}
 }

@@ -44,7 +44,6 @@ public class JavaInterpreter {
 		for(Instruction i : _model.getInstructions()) {
 			try {
 				executeInstruction(i);
-			    System.out.println("instruction executed"); // to remove later
 			} catch (Exception e) {
 				e.printStackTrace();
 			}			
@@ -99,30 +98,43 @@ public class JavaInterpreter {
 	
 	private void executeInstruction(Print print) {
 		String key = print.getKey().replaceAll("^.|.$", "");
-		System.out.println(jsonObject.get(key));
+		Object valToPrint = jsonObject.get(key);
+		//On choisit de ne pas afficher null qd la valeur est nulle et d'afficher un saut de ligne
+		//Ceci est fait pour que le résultat soit pareil que le compilateur pyton et donc le dsl coherent
+		if(valToPrint!=null) {
+			System.out.println(valToPrint);
+		}
 	}
 
 	private void executeInstruction(Insert insert) throws IOException {
 		String key = insert.getKey().replaceAll("^.|.$", "");
-		String value = insert.getValue().getStringValue().replaceAll("^.|.$", "");
-		jsonObject.put(key, value);
-		writeJsonObjectContentToFile(baseFile);
+		Object rawValue = insert.getValue();
+		if(rawValue instanceof String) {
+			String value = rawValue.toString();
+			jsonObject.put(key, value);
+			writeJsonObjectContentToFile(baseFile);
+		}
+		if(rawValue instanceof Integer) {
+			int value = (int)rawValue;
+			jsonObject.put(key, value);
+			writeJsonObjectContentToFile(baseFile);
+		}
 	}
 	
 	private void executeInstruction(Update update) throws IOException {
 		String key = update.getKey().replaceAll("^.|.$", "");
 		String newValue = update.getNewValue().getStringValue().replaceAll("^.|.$", "");
 		jsonObject.put(key, newValue);
+		System.out.println(newValue);
 		writeJsonObjectContentToFile(baseFile);
 	}
 	
 	private void executeInstruction(Compute compute) {
 		String key1 = compute.getKey1().replaceAll("^.|.$", "");
 		String key2 = compute.getKey2().replaceAll("^.|.$", "");
-
 		if(compute instanceof Sum) {
+
 			long value1 = (long) jsonObject.get(key1);
-			System.out.println(value1);
 			long value2 = (long) jsonObject.get(key2);				
 			System.out.println(value1 + value2); // to remove later
 		}
@@ -131,7 +143,7 @@ public class JavaInterpreter {
 			long value2 = (long) jsonObject.get(key2);				
 			System.out.println(value1 * value2); // to remove later
 		}
-		
+
 	}		
 
 }

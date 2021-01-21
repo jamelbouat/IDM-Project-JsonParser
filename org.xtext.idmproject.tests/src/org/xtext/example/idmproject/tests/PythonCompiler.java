@@ -40,7 +40,6 @@ public class PythonCompiler {
 				Files.write(Paths.get(PYTHON_OUTPUT), instructionCode.getBytes(), StandardOpenOption.APPEND);
 
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

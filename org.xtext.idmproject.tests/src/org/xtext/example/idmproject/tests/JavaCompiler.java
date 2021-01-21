@@ -49,7 +49,6 @@ public class JavaCompiler {
 			try {
 				instructionCode = generateCode(i);
 				Files.write(Paths.get(JAVA_OUTPUT), instructionCode.getBytes(), StandardOpenOption.APPEND);
-			    System.out.println("instruction executed"); // to remove later
 			} catch (Exception e) {
 				e.printStackTrace();
 			}			
@@ -87,6 +86,14 @@ public class JavaCompiler {
 		}
 	}
 	
+	public List<String> getVars() {
+		return vars;
+	}
+
+	public void setVars(List<String> vars) {
+		this.vars = vars;
+	}
+
 	private String generateCode(Instruction i) throws Exception {
 		if(i.getSelect() instanceof Select) {
 			return generateCode(i.getSelect());
@@ -119,7 +126,7 @@ public class JavaCompiler {
 	private String writeJsonObjectContentToFile(String file) {
 		String codeWrittenToFile = "";
 		codeWrittenToFile += "\t\t fileWriter = new FileWriter(" + file + ");\n";
-		codeWrittenToFile += "\t\t fileWriter.write(jsonObject.toJSONString(4));\n";
+		codeWrittenToFile += "\t\t fileWriter.write(jsonObject.toJSONString());\n";
 		codeWrittenToFile += "\t\t fileWriter.flush();\n";	
 		codeWrittenToFile += "\t\t fileWriter.close();\n";	
 		return codeWrittenToFile;		
@@ -135,7 +142,7 @@ public class JavaCompiler {
 		}
 
 		vars.add(var);
-		generatedCode += "\t\t Object " + var + " = jsonObject.get(" + key + ");\n";
+		generatedCode += "\t\t Object " + var + " = jsonObject.get(\"" + key + "\");\n";
 		return generatedCode;
 	}
 	
@@ -148,17 +155,31 @@ public class JavaCompiler {
 	
 	private String generateCode(Print p) {
 		String generatedCode = "";
-		String key = p.getKey();
-		generatedCode += "\t\t System.out.println(jsonObject.get(" + key + "));\n";
+		String key = p.getKey().replaceAll("^.|.$", "");
+		generatedCode += "\t\t Object "+key+"Val = jsonObject.get(\"" + key + "\");\n";
+		//On choisit de ne pas afficher null qd la valeur est nulle et d'afficher un saut de ligne
+		//Ceci est fait pour que le résultat soit pareil que le compilateur pyton et donc le dsl coherent
+		generatedCode += "\t\t if("+key+"Val !=null){\n";
+		generatedCode += "\t\t\t System.out.println("+key+"Val);\n";
+		generatedCode += "\t\t }\n";
 		return generatedCode;
 	}
 	
 	private String generateCode(Insert i) {
 		String generatedCode = "";
 		String key = i.getKey();
-		String value = i.getValue().getStringValue();
-		generatedCode += "\t\t jsonObject.put(" + key + ", " + value + ");\n";
-		generatedCode += writeJsonObjectContentToFile(baseFile);
+		Object rawValue = i.getValue();
+		if(rawValue instanceof String) {
+			String value = rawValue.toString();
+			generatedCode += "\t\t jsonObject.put(" + key + ", " + value + ");\n";
+			generatedCode += writeJsonObjectContentToFile(baseFile);
+		}
+		if(rawValue instanceof Integer) {
+			int value = (int)rawValue;
+			generatedCode += "\t\t jsonObject.put(" + key + ", " + value + ");\n";
+			generatedCode += writeJsonObjectContentToFile(baseFile);
+		}
+		
 		return generatedCode;
 	}
 	
@@ -167,6 +188,7 @@ public class JavaCompiler {
 		String key = u.getKey();
 		String newValue = u.getNewValue().getStringValue();
 		generatedCode += "\t\t jsonObject.put(" + key + ", " + newValue + ");\n";
+		generatedCode += "\t\t System.out.println ("+newValue + ");\n";
 		generatedCode += writeJsonObjectContentToFile(baseFile);
 		return generatedCode;	
 	}
