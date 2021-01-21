@@ -14,5 +14,17 @@ public class JsonParserTest {
 		 JSONObject jsonObject = (JSONObject)obj;
 		 FileWriter fileWriter;
 		 long value1, value2;
+		 jsonObject.put("key1", "updatedValue1");
+		 System.out.println ("updatedValue1");
+		 fileWriter = new FileWriter("file.json");
+		 fileWriter.write(jsonObject.toJSONString());
+		 fileWriter.flush();
+		 fileWriter.close();
+		 jsonObject.put("key2", "updatedValue2");
+		 System.out.println ("updatedValue2");
+		 fileWriter = new FileWriter("file.json");
+		 fileWriter.write(jsonObject.toJSONString());
+		 fileWriter.flush();
+		 fileWriter.close();
 	 }
 }
