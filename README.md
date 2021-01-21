@@ -16,11 +16,13 @@ Le résultat actuel du modèle correspond donc à la grammaire voir [JsonParser.
 Les opérations réalisées à ce jour sont : 
 - Chargement stockage de fichier
 - Selection d'object spécifique
-- Calcul entre 2 valaurs d'expressions(∑, ∏)
+- Calcul entre 2 valeurs d'expressions(∑, ∏)
 - Affichage de valeur
 - Insertion de clef valeur
 - Mis à jour de valeur
+- Export dans un csv (pas complet)
 
 Nous avons réalisé un interpréteur java, un compilateur java et un compilateur pyton chacun servant l'execution de notre DSL.
+Nous n'avons pas eu le temps de réaliser la gestion des tableaux JSON juste les couples clefs valeur ou la valeur est une chaine de caractère ou un nombre
 
 
