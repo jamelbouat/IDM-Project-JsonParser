@@ -8,13 +8,11 @@ import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension
 import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
 import org.xtext.example.idmproject.jsonParser.JsonModel
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.TestMethodOrder
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Disabled
 import java.io.ByteArrayOutputStream
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.AfterEach
@@ -25,13 +23,20 @@ import java.io.BufferedReader
 import java.util.ArrayList
 import java.io.FileReader
 import java.util.Arrays
+import org.junit.jupiter.api.Test
+import org.junit.Before
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.RepeatedTest
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JsonParserInjectorProvider)
 @TestMethodOrder(OrderAnnotation) 
 class JsonParserParsingTest {
+	
+	
 	@Inject
 	ParseHelper<JsonModel> parseHelper 
+	Benchmark benchmark = Benchmark.instance;
 	/* On va utiliser des tests sur les outputs pour bien verifier que nos sorties et erreurs des compilateurs python java et de l'interpreteur java soit les mêmes*/
 	ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -41,7 +46,7 @@ class JsonParserParsingTest {
 	PythonCompiler pythonCompiler;
 	JavaCompiler javaCompiler;
 	JavaInterpreter javaInterpreter;
-	
+
 	@BeforeEach
 	def void setUpStreams() {
 	    System.setOut(new PrintStream(outContent));
@@ -59,11 +64,21 @@ class JsonParserParsingTest {
 	    System.setOut(originalOut);
 	    System.setErr(originalErr);
 	}
+	@AfterEach
+	def void computeBenchmarkRows() {
+		originalOut.println(benchmark.count)
+		benchmark.count += 1;
+		if(benchmark.count==10){
+			 benchmark.computeNewRowForEach();
+			 benchmark.count = 0;
+		}
+	}
 	
 	/* Premier test , juste le load, on attends rien en sortie et aucune erreur */
-	@Test
+	@RepeatedTest(10)
 	@Order(1)
 	def void loadBaseFile() {
+		benchmark.instruction = "load"
 		val result = parseHelper.parse('''
 			.load("file.json")
 		''')
@@ -71,11 +86,25 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
+		var startTime = System.nanoTime();
 		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		var stopTime = System.nanoTime();
+		benchmark.pythonCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaInterpreterValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
 		
 		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
@@ -84,9 +113,10 @@ class JsonParserParsingTest {
 	
 	}
 	
-	@Test
+	@RepeatedTest(10)
 	@Order(2)
 	def void selectData() {
+		benchmark.instruction = "load and 2 select"
 		val result = parseHelper.parse('''
 			.load("file.json")
 			expr id1 =.select("key1")
@@ -96,11 +126,25 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
+		var startTime = System.nanoTime();
 		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		var stopTime = System.nanoTime();
+		benchmark.pythonCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaInterpreterValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
 		
 		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
@@ -112,9 +156,10 @@ class JsonParserParsingTest {
 		Assertions.assertTrue(javaCompiler.vars.contains("id2"))
 	}
 
-	@Test
+	@RepeatedTest(10)
 	@Order(3)
 	def void storeData() {
+		benchmark.instruction = "load and 2 store"
 		val result = parseHelper.parse('''
 			.load("file.json")
 			.store("newFile1.json")
@@ -124,11 +169,25 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
+		var startTime = System.nanoTime();
 		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		var stopTime = System.nanoTime();
+		benchmark.pythonCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaInterpreterValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
 		
 		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
@@ -136,9 +195,10 @@ class JsonParserParsingTest {
 		Assertions.assertEquals(javaCompilerOut,javaInterpreterOut);
 	}
 	
-	@Test
+	@RepeatedTest(10)
 	@Order(4)
 	def void insertData() {
+		benchmark.instruction = "load and 2 insert"
 		val result = parseHelper.parse('''
 			.load("file.json")
 			.insert("newKey1","\"newValue1\"")
@@ -148,11 +208,25 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
+		var startTime = System.nanoTime();
 		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		var stopTime = System.nanoTime();
+		benchmark.pythonCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaInterpreterValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
 		
 		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
@@ -160,9 +234,10 @@ class JsonParserParsingTest {
 		Assertions.assertEquals(javaCompilerOut,javaInterpreterOut);
 	}
 	
-	@Test
+	@RepeatedTest(10)
 	@Order(5)
 	def void printData() {
+		benchmark.instruction = "load and 2 print"
 		val result = parseHelper.parse('''
 			.load("file.json")
 			.print("key1")
@@ -172,11 +247,25 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
+		var startTime = System.nanoTime();
 		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		var stopTime = System.nanoTime();
+		benchmark.pythonCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaInterpreterValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
 		
 		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
@@ -185,9 +274,10 @@ class JsonParserParsingTest {
 
 	}
 	
-	@Test
+	@RepeatedTest(10)
 	@Order(6)
 	def void updateData() {
+		benchmark.instruction = "load and 2 update"
 		val result = parseHelper.parse('''
 			.load("file.json")
 			.update("key1","\"updatedValue1\"")
@@ -198,20 +288,35 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
+		var startTime = System.nanoTime();
 		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		var stopTime = System.nanoTime();
+		benchmark.pythonCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaInterpreterValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
 		
 		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
 		Assertions.assertEquals(pythonCompilerOut,javaInterpreterOut);
 		Assertions.assertEquals(javaCompilerOut,javaInterpreterOut);	}
 	
-	@Test
+	@RepeatedTest(10)
 	@Order(7)
 	def void computeData() {
+		benchmark.instruction = "load + 2 insert +sum +product"
 		val result = parseHelper.parse('''
 			.load("file.json")
 			.insert("key3","2")
@@ -223,21 +328,35 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
+		var startTime = System.nanoTime();
 		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		var stopTime = System.nanoTime();
+		benchmark.pythonCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
 		
+		startTime = System.nanoTime();
 		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaInterpreterValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
 		
 		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
 		Assertions.assertEquals(pythonCompilerOut,javaInterpreterOut);
 		Assertions.assertEquals(javaCompilerOut,javaInterpreterOut);	}
 	
-	@Test
+	@RepeatedTest(10)
 	@Order(8)
 	def void saveData() {
+		benchmark.instruction = "load and save"
 		val result = parseHelper.parse('''
 			.load("file.json")
 			.save()
@@ -246,17 +365,31 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
+		var startTime = System.nanoTime();
 		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		var stopTime = System.nanoTime();
+		benchmark.pythonCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
+		startTime = System.nanoTime();
 		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaInterpreterValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
 		
 		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
 		Assertions.assertEquals(pythonCompilerOut,javaInterpreterOut);
 		Assertions.assertEquals(javaCompilerOut,javaInterpreterOut);	}
-	@Test
+	@RepeatedTest(10)
 	@Order(9)
 	def void exportDataToCsv() {
 		val result = parseHelper.parse('''
@@ -270,17 +403,30 @@ class JsonParserParsingTest {
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
 		
-		
+		var startTime = System.nanoTime();
 		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		var stopTime = System.nanoTime();
+		benchmark.pythonCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
 		val List<List<String>> csvWithPythonCompiler = getCsvToString("newFile.csv"); 
 		
+		startTime = System.nanoTime();
 		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaCompilerValue.add((stopTime - startTime)/1000000)
+		
 		reInitStream
+		
 		val List<List<String>> csvWithJavaCompiler = getCsvToString("newFile.csv"); 
 		
+		startTime = System.nanoTime();
 		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		stopTime = System.nanoTime();
+		benchmark.javaInterpreterValue.add((stopTime - startTime)/1000000)
 		reInitStream
+		
 		val List<List<String>> csvWithJavaInterpreter = getCsvToString("newFile.csv"); 
 		
 		originalOut.println(javaInterpreterOut)

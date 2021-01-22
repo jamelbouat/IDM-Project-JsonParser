@@ -26,10 +26,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
+import org.xtext.example.idmproject.tests.Benchmark;
 import org.xtext.example.idmproject.tests.JavaCompiler;
 import org.xtext.example.idmproject.tests.JavaInterpreter;
 import org.xtext.example.idmproject.tests.JsonParserInjectorProvider;
@@ -42,6 +43,8 @@ import org.xtext.example.idmproject.tests.PythonCompiler;
 public class JsonParserParsingTest {
   @Inject
   private ParseHelper<JsonModel> parseHelper;
+  
+  private Benchmark benchmark = Benchmark.getInstance();
   
   /**
    * On va utiliser des tests sur les outputs pour bien verifier que nos sorties et erreurs des compilateurs python java et de l'interpreteur java soit les mêmes
@@ -88,13 +91,29 @@ public class JsonParserParsingTest {
     System.setErr(this.originalErr);
   }
   
+  @AfterEach
+  public void computeBenchmarkRows() {
+    try {
+      this.originalOut.println(this.benchmark.count);
+      int _count = this.benchmark.count;
+      this.benchmark.count = (_count + 1);
+      if ((this.benchmark.count == 10)) {
+        this.benchmark.computeNewRowForEach();
+        this.benchmark.count = 0;
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
   /**
    * Premier test , juste le load, on attends rien en sortie et aucune erreur
    */
-  @Test
+  @RepeatedTest(10)
   @Order(1)
   public void loadBaseFile() {
     try {
+      this.benchmark.setInstruction("load");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
@@ -107,11 +126,20 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      long startTime = System.nanoTime();
       final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      long stopTime = System.nanoTime();
+      this.benchmark.getPythonCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaInterpreterValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
       Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
@@ -121,10 +149,11 @@ public class JsonParserParsingTest {
     }
   }
   
-  @Test
+  @RepeatedTest(10)
   @Order(2)
   public void selectData() {
     try {
+      this.benchmark.setInstruction("load and 2 select");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
@@ -141,11 +170,20 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      long startTime = System.nanoTime();
       final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      long stopTime = System.nanoTime();
+      this.benchmark.getPythonCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaInterpreterValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
       Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
@@ -157,10 +195,11 @@ public class JsonParserParsingTest {
     }
   }
   
-  @Test
+  @RepeatedTest(10)
   @Order(3)
   public void storeData() {
     try {
+      this.benchmark.setInstruction("load and 2 store");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
@@ -177,11 +216,20 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      long startTime = System.nanoTime();
       final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      long stopTime = System.nanoTime();
+      this.benchmark.getPythonCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaInterpreterValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
       Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
@@ -191,10 +239,11 @@ public class JsonParserParsingTest {
     }
   }
   
-  @Test
+  @RepeatedTest(10)
   @Order(4)
   public void insertData() {
     try {
+      this.benchmark.setInstruction("load and 2 insert");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
@@ -211,11 +260,20 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      long startTime = System.nanoTime();
       final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      long stopTime = System.nanoTime();
+      this.benchmark.getPythonCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaInterpreterValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
       Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
@@ -225,10 +283,11 @@ public class JsonParserParsingTest {
     }
   }
   
-  @Test
+  @RepeatedTest(10)
   @Order(5)
   public void printData() {
     try {
+      this.benchmark.setInstruction("load and 2 print");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
@@ -245,11 +304,20 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      long startTime = System.nanoTime();
       final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      long stopTime = System.nanoTime();
+      this.benchmark.getPythonCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaInterpreterValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
       Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
@@ -259,10 +327,11 @@ public class JsonParserParsingTest {
     }
   }
   
-  @Test
+  @RepeatedTest(10)
   @Order(6)
   public void updateData() {
     try {
+      this.benchmark.setInstruction("load and 2 update");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
@@ -281,11 +350,20 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      long startTime = System.nanoTime();
       final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      long stopTime = System.nanoTime();
+      this.benchmark.getPythonCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaInterpreterValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
       Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
@@ -295,10 +373,11 @@ public class JsonParserParsingTest {
     }
   }
   
-  @Test
+  @RepeatedTest(10)
   @Order(7)
   public void computeData() {
     try {
+      this.benchmark.setInstruction("load + 2 insert +sum +product");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
@@ -319,11 +398,20 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      long startTime = System.nanoTime();
       final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      long stopTime = System.nanoTime();
+      this.benchmark.getPythonCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaInterpreterValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
       Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
@@ -333,10 +421,11 @@ public class JsonParserParsingTest {
     }
   }
   
-  @Test
+  @RepeatedTest(10)
   @Order(8)
   public void saveData() {
     try {
+      this.benchmark.setInstruction("load and save");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
@@ -351,11 +440,20 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      long startTime = System.nanoTime();
       final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      long stopTime = System.nanoTime();
+      this.benchmark.getPythonCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
+      startTime = System.nanoTime();
       final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaInterpreterValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
       Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
@@ -365,7 +463,7 @@ public class JsonParserParsingTest {
     }
   }
   
-  @Test
+  @RepeatedTest(10)
   @Order(9)
   public void exportDataToCsv() {
     try {
@@ -387,13 +485,22 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
+      long startTime = System.nanoTime();
       final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      long stopTime = System.nanoTime();
+      this.benchmark.getPythonCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       final List<List<String>> csvWithPythonCompiler = this.getCsvToString("newFile.csv");
+      startTime = System.nanoTime();
       final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaCompilerValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       final List<List<String>> csvWithJavaCompiler = this.getCsvToString("newFile.csv");
+      startTime = System.nanoTime();
       final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      stopTime = System.nanoTime();
+      this.benchmark.getJavaInterpreterValue().add(Long.valueOf(((stopTime - startTime) / 1000000)));
       this.reInitStream();
       final List<List<String>> csvWithJavaInterpreter = this.getCsvToString("newFile.csv");
       this.originalOut.println(javaInterpreterOut);
