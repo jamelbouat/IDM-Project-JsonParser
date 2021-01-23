@@ -92,6 +92,9 @@ public class Benchmark {
 		       
 		        pw.flush();
 		        pw.close();
+		        this.javaCompilerValue.clear();
+		        this.javaInterpreterValue.clear();
+		        this.pythonCompilerValue.clear();
 	}
 	public void setInstruction(String instruction) {
 		this.instruction = instruction;

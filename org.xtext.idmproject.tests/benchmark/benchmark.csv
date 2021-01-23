@@ -1,28 +1,28 @@
 name,instruction,average execution time(ms),minimum execution time(ms),maximum execution time(ms)
-compilateur Python,load,40,24,109
-compilateur Java,load,545,508,634
-interpreteur Java,load,0,0,5
-compilateur Python,load and 2 select,34,24,109
-compilateur Java,load and 2 select,490,385,634
-interpreteur Java,load and 2 select,0,0,5
-compilateur Python,load and 2 store,30,24,109
-compilateur Java,load and 2 store,510,385,634
-interpreteur Java,load and 2 store,0,0,5
-compilateur Python,load and 2 insert,29,24,109
-compilateur Java,load and 2 insert,515,385,634
-interpreteur Java,load and 2 insert,0,0,5
-compilateur Python,load and 2 print,28,24,109
-compilateur Java,load and 2 print,520,385,634
-interpreteur Java,load and 2 print,0,0,5
-compilateur Python,load and 2 update,29,24,109
-compilateur Java,load and 2 update,526,385,634
-interpreteur Java,load and 2 update,0,0,5
-compilateur Python,load + 2 insert +sum +product,29,24,109
-compilateur Java,load + 2 insert +sum +product,528,385,634
-interpreteur Java,load + 2 insert +sum +product,0,0,5
-compilateur Python,load and save,29,24,109
-compilateur Java,load and save,527,385,634
-interpreteur Java,load and save,0,0,5
-compilateur Python,load and save,28,24,109
-compilateur Java,load and save,540,385,688
-interpreteur Java,load and save,0,0,5
+compilateur Python,load,29,24,65
+compilateur Java,load,514,502,535
+interpreteur Java,load,0,0,4
+compilateur Python,load and 2 select,24,24,25
+compilateur Java,load and 2 select,411,395,433
+interpreteur Java,load and 2 select,0,0,0
+compilateur Python,load and 2 store,25,24,26
+compilateur Java,load and 2 store,538,516,604
+interpreteur Java,load and 2 store,0,0,0
+compilateur Python,load and 2 insert,25,25,26
+compilateur Java,load and 2 insert,526,509,559
+interpreteur Java,load and 2 insert,0,0,0
+compilateur Python,load and 2 print,24,24,26
+compilateur Java,load and 2 print,544,510,565
+interpreteur Java,load and 2 print,0,0,0
+compilateur Python,load and 2 update,27,24,44
+compilateur Java,load and 2 update,541,523,557
+interpreteur Java,load and 2 update,0,0,0
+compilateur Python,load + 2 insert +sum +product,25,24,26
+compilateur Java,load + 2 insert +sum +product,538,514,571
+interpreteur Java,load + 2 insert +sum +product,0,0,0
+compilateur Python,load and save,24,24,25
+compilateur Java,load and save,508,489,580
+interpreteur Java,load and save,0,0,0
+compilateur Python,load + 2 insert +export,25,25,29
+compilateur Java,load + 2 insert +export,634,606,666
+interpreteur Java,load + 2 insert +export,0,0,0

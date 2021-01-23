@@ -392,6 +392,7 @@ class JsonParserParsingTest {
 	@RepeatedTest(10)
 	@Order(9)
 	def void exportDataToCsv() {
+		benchmark.instruction = "load + 2 insert +export" 
 		val result = parseHelper.parse('''
 			.load("file.json")
 			.insert("key3","2")

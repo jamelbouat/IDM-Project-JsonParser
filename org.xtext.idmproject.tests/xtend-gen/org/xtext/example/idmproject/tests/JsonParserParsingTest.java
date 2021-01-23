@@ -467,6 +467,7 @@ public class JsonParserParsingTest {
   @Order(9)
   public void exportDataToCsv() {
     try {
+      this.benchmark.setInstruction("load + 2 insert +export");
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
