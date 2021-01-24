@@ -1,0 +1,30 @@
+Compiler/Interpreter,Operation,Minimum_duration,Maximum_duration,Average_duration
+Python Compiler,load & insert & export,310,967,536
+Java Compiler,load & insert & export,11494,13811,12346
+Java Interpreter,load & insert & export,4,43,26
+Python Compiler,load,295,586,356
+Java Compiler,load,8710,9998,9525
+Java Interpreter,load,1,12,4
+Python Compiler,load & insert,306,469,364
+Java Compiler,load & insert,8870,13093,10305
+Java Interpreter,load & insert,2,4,3
+Python Compiler,load & select,295,313,302
+Java Compiler,load & select,6627,7684,7282
+Java Interpreter,load & select,2,11,4
+Python Compiler,load & insert & sum & product,302,633,378
+Java Compiler,load & insert & sum & product,9406,10036,9756
+Java Interpreter,load & insert & sum & product,3,9,5
+Python Compiler,load & print,301,557,385
+Java Compiler,load & print,9228,10227,9606
+Java Interpreter,load & print,3,5,4
+Python Compiler,load & update & save,302,646,411
+Java Compiler,load & update & save,9629,10781,10209
+Java Interpreter,load & update & save,7,22,11
+Python Compiler,load & save,293,379,321
+Java Compiler,load & save,8949,11727,9800
+Java Interpreter,load & save,2,3,3
+Python Compiler,load & store,296,386,322
+Java Compiler,load & store,9277,10487,9786
+Java Interpreter,load & store,5,13,7
+,Duration in ms,,,
+,Number of execution : 5,,,

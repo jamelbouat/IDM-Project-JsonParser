@@ -21,15 +21,20 @@ import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.example.idmproject.jsonParser.JsonModel;
+import org.xtext.example.idmproject.tests.BenchmarkProgram;
 import org.xtext.example.idmproject.tests.JavaCompiler;
 import org.xtext.example.idmproject.tests.JavaInterpreter;
 import org.xtext.example.idmproject.tests.JsonParserInjectorProvider;
@@ -38,6 +43,7 @@ import org.xtext.example.idmproject.tests.PythonCompiler;
 @ExtendWith(InjectionExtension.class)
 @InjectWith(JsonParserInjectorProvider.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SuppressWarnings("all")
 public class JsonParserParsingTest {
   @Inject
@@ -62,6 +68,14 @@ public class JsonParserParsingTest {
   private JavaCompiler javaCompiler;
   
   private JavaInterpreter javaInterpreter;
+  
+  private BenchmarkProgram benchmarkProgram;
+  
+  @BeforeAll
+  public void setBenchmark() {
+    BenchmarkProgram _benchmarkProgram = new BenchmarkProgram();
+    this.benchmarkProgram = _benchmarkProgram;
+  }
   
   @BeforeEach
   public void setUpStreams() {
@@ -88,10 +102,20 @@ public class JsonParserParsingTest {
     System.setErr(this.originalErr);
   }
   
+  @AfterAll
+  public void callIt() {
+    try {
+      this.benchmarkProgram.calculateExecutionTimesAndInsertTabularDataToFile();
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
   /**
    * Premier test , juste le load, on attends rien en sortie et aucune erreur
    */
   @Test
+  @RepeatedTest(4)
   @Order(1)
   public void loadBaseFile() {
     try {
@@ -99,13 +123,14 @@ public class JsonParserParsingTest {
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      this.runAssetionsOnCompilersAndInterpreter(result);
+      this.runAssetionsOnCompilersAndInterpreter(result, "load");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
   @Test
+  @RepeatedTest(4)
   @Order(2)
   public void selectData() {
     try {
@@ -117,7 +142,7 @@ public class JsonParserParsingTest {
       _builder.append("expr id2 =.select(\"key1\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      this.runAssetionsOnCompilersAndInterpreter(result);
+      this.runAssetionsOnCompilersAndInterpreter(result, "load & select");
       Assertions.assertTrue(this.javaCompiler.getVars().contains("id1"));
       Assertions.assertTrue(this.javaCompiler.getVars().contains("id2"));
     } catch (Throwable _e) {
@@ -126,6 +151,7 @@ public class JsonParserParsingTest {
   }
   
   @Test
+  @RepeatedTest(4)
   @Order(3)
   public void storeData() {
     try {
@@ -137,13 +163,14 @@ public class JsonParserParsingTest {
       _builder.append(".store(\"newFile2.json\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      this.runAssetionsOnCompilersAndInterpreter(result);
+      this.runAssetionsOnCompilersAndInterpreter(result, "load & store");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
   @Test
+  @RepeatedTest(4)
   @Order(4)
   public void insertData() {
     try {
@@ -155,13 +182,14 @@ public class JsonParserParsingTest {
       _builder.append(".insert(\"newKey2\",\"\\\"newValue2\\\"\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      this.runAssetionsOnCompilersAndInterpreter(result);
+      this.runAssetionsOnCompilersAndInterpreter(result, "load & insert");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
   @Test
+  @RepeatedTest(4)
   @Order(5)
   public void printData() {
     try {
@@ -173,13 +201,14 @@ public class JsonParserParsingTest {
       _builder.append(".print(\"key2\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      this.runAssetionsOnCompilersAndInterpreter(result);
+      this.runAssetionsOnCompilersAndInterpreter(result, "load & print");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
   @Test
+  @RepeatedTest(4)
   @Order(6)
   public void updateData() {
     try {
@@ -193,13 +222,14 @@ public class JsonParserParsingTest {
       _builder.append(".save()");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      this.runAssetionsOnCompilersAndInterpreter(result);
+      this.runAssetionsOnCompilersAndInterpreter(result, "load & update & save");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
   @Test
+  @RepeatedTest(4)
   @Order(7)
   public void computeData() {
     try {
@@ -215,13 +245,14 @@ public class JsonParserParsingTest {
       _builder.append(".product(\"key3\" * \"key4\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      this.runAssetionsOnCompilersAndInterpreter(result);
+      this.runAssetionsOnCompilersAndInterpreter(result, "load & insert & sum & product");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
   @Test
+  @RepeatedTest(4)
   @Order(8)
   public void saveData() {
     try {
@@ -231,13 +262,14 @@ public class JsonParserParsingTest {
       _builder.append(".save()");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      this.runAssetionsOnCompilersAndInterpreter(result);
+      this.runAssetionsOnCompilersAndInterpreter(result, "load & save");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
   @Test
+  @RepeatedTest(4)
   @Order(9)
   public void exportDataToCsv() {
     try {
@@ -259,13 +291,13 @@ public class JsonParserParsingTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result, "load & insert & export");
       this.reInitStream();
       final List<List<String>> csvWithPythonCompiler = this.getCsvToString("newFile.csv");
-      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result, "load & insert & export");
       this.reInitStream();
       final List<List<String>> csvWithJavaCompiler = this.getCsvToString("newFile.csv");
-      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result, "load & insert & export");
       this.reInitStream();
       final List<List<String>> csvWithJavaInterpreter = this.getCsvToString("newFile.csv");
       this.originalOut.println(javaInterpreterOut);
@@ -280,7 +312,7 @@ public class JsonParserParsingTest {
     }
   }
   
-  public void runAssetionsOnCompilersAndInterpreter(final JsonModel result) {
+  public void runAssetionsOnCompilersAndInterpreter(final JsonModel result, final String operation) {
     Assertions.assertNotNull(result);
     final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
     boolean _isEmpty = errors.isEmpty();
@@ -289,11 +321,11 @@ public class JsonParserParsingTest {
     String _join = IterableExtensions.join(errors, ", ");
     _builder.append(_join);
     Assertions.assertTrue(_isEmpty, _builder.toString());
-    final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+    final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result, operation);
     this.reInitStream();
-    final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+    final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result, operation);
     this.reInitStream();
-    final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+    final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result, operation);
     this.reInitStream();
     Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
     Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
@@ -311,33 +343,45 @@ public class JsonParserParsingTest {
     }
   }
   
-  public String pythonCompilerComputeAndAssertOutAreAlike(final JsonModel result) {
+  public String pythonCompilerComputeAndAssertOutAreAlike(final JsonModel result, final String operation) {
     try {
       PythonCompiler _pythonCompiler = new PythonCompiler(result);
       this.pythonCompiler = _pythonCompiler;
+      final long startTimePy = System.nanoTime();
       this.pythonCompiler.compileAndRun();
+      long _nanoTime = System.nanoTime();
+      final long durationPy = (_nanoTime - startTimePy);
+      this.benchmarkProgram.addToPythonCompilerBenchmark(operation, Long.valueOf(durationPy));
       return this.outContent.toString();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public String javaCompilerComputeAndAssertOutAreAlike(final JsonModel result) {
+  public String javaCompilerComputeAndAssertOutAreAlike(final JsonModel result, final String operation) {
     try {
       JavaCompiler _javaCompiler = new JavaCompiler(result);
       this.javaCompiler = _javaCompiler;
+      final long startTimeJv = System.nanoTime();
       this.javaCompiler.compileAndRun();
+      long _nanoTime = System.nanoTime();
+      final long durationJv = (_nanoTime - startTimeJv);
+      this.benchmarkProgram.addToJavaCompilerBenchmark(operation, Long.valueOf(durationJv));
       return this.outContent.toString();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public String javaInterpreterComputeAndAssertOutAreAlike(final JsonModel result) {
+  public String javaInterpreterComputeAndAssertOutAreAlike(final JsonModel result, final String operation) {
     try {
       JavaInterpreter _javaInterpreter = new JavaInterpreter(result);
       this.javaInterpreter = _javaInterpreter;
+      final long startTimeInt = System.nanoTime();
       this.javaInterpreter.interpretAndRun();
+      long _nanoTime = System.nanoTime();
+      final long durationInt = (_nanoTime - startTimeInt);
+      this.benchmarkProgram.addToInterpreterBenchmark(operation, Long.valueOf(durationInt));
       return this.outContent.toString();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

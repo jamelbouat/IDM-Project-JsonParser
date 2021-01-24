@@ -14,6 +14,7 @@ import org.xtext.example.idmproject.jsonParser.JsonModel
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.TestMethodOrder
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Disabled
 import java.io.ByteArrayOutputStream
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.AfterEach
@@ -24,10 +25,15 @@ import java.io.BufferedReader
 import java.util.ArrayList
 import java.io.FileReader
 import java.util.Arrays
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.RepeatedTest
 
 @ExtendWith(InjectionExtension)
 @InjectWith(JsonParserInjectorProvider)
 @TestMethodOrder(OrderAnnotation)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class JsonParserParsingTest {
 	@Inject
 	ParseHelper<JsonModel> parseHelper 
@@ -40,6 +46,12 @@ class JsonParserParsingTest {
 	PythonCompiler pythonCompiler;
 	JavaCompiler javaCompiler;
 	JavaInterpreter javaInterpreter;
+	BenchmarkProgram benchmarkProgram
+	
+	@BeforeAll
+	def void setBenchmark() {
+		benchmarkProgram = new BenchmarkProgram();
+	}
 	
 	@BeforeEach
 	def void setUpStreams() {
@@ -59,19 +71,26 @@ class JsonParserParsingTest {
 	    System.setOut(originalOut);
 	    System.setErr(originalErr);
 	}
+	
+	@AfterAll
+	def void callIt() {
+		benchmarkProgram.calculateExecutionTimesAndInsertTabularDataToFile();
+	}
 
 	/* Premier test , juste le load, on attends rien en sortie et aucune erreur */
 	@Test
+	@RepeatedTest(4)
 	@Order(1)
 	def void loadBaseFile() {
 		val result = parseHelper.parse('''
 			.load("file.json")
 		''')
 		
-		runAssetionsOnCompilersAndInterpreter(result);
+		runAssetionsOnCompilersAndInterpreter(result, "load");
 	}
 	
 	@Test
+	@RepeatedTest(4)
 	@Order(2)
 	def void selectData() {
 		val result = parseHelper.parse('''
@@ -80,7 +99,7 @@ class JsonParserParsingTest {
 			expr id2 =.select("key1")
 		''')
 		
-		runAssetionsOnCompilersAndInterpreter(result);
+		runAssetionsOnCompilersAndInterpreter(result, "load & select");
 		
 		/* On test que la variable est bien ajouté dans les variables stockées */
 		Assertions.assertTrue(javaCompiler.vars.contains("id1"))
@@ -88,6 +107,7 @@ class JsonParserParsingTest {
 	}
 
 	@Test
+	@RepeatedTest(4)
 	@Order(3)
 	def void storeData() {
 		val result = parseHelper.parse('''
@@ -96,10 +116,11 @@ class JsonParserParsingTest {
 			.store("newFile2.json")
 		''')
 		
-		runAssetionsOnCompilersAndInterpreter(result);
+		runAssetionsOnCompilersAndInterpreter(result, "load & store");
 	}
 	
 	@Test
+	@RepeatedTest(4)
 	@Order(4)
 	def void insertData() {
 		val result = parseHelper.parse('''
@@ -108,10 +129,11 @@ class JsonParserParsingTest {
 			.insert("newKey2","\"newValue2\"")
 		''')
 		
-		runAssetionsOnCompilersAndInterpreter(result);
+		runAssetionsOnCompilersAndInterpreter(result, "load & insert");
 	}
 	
 	@Test
+	@RepeatedTest(4)
 	@Order(5)
 	def void printData() {
 		val result = parseHelper.parse('''
@@ -120,10 +142,11 @@ class JsonParserParsingTest {
 			.print("key2")
 		''')
 		
-		runAssetionsOnCompilersAndInterpreter(result);	
+		runAssetionsOnCompilersAndInterpreter(result, "load & print");	
 	}
 	
 	@Test
+	@RepeatedTest(4)
 	@Order(6)
 	def void updateData() {
 		val result = parseHelper.parse('''
@@ -133,10 +156,11 @@ class JsonParserParsingTest {
 			.save()
 		''')
 		
-		runAssetionsOnCompilersAndInterpreter(result);
+		runAssetionsOnCompilersAndInterpreter(result, "load & update & save");
 	}
 	
 	@Test
+	@RepeatedTest(4)
 	@Order(7)
 	def void computeData() {
 		val result = parseHelper.parse('''
@@ -147,10 +171,11 @@ class JsonParserParsingTest {
 			.product("key3" * "key4")
 		''')
 		
-		runAssetionsOnCompilersAndInterpreter(result);
+		runAssetionsOnCompilersAndInterpreter(result, "load & insert & sum & product");
 	}
 	
 	@Test
+	@RepeatedTest(4)
 	@Order(8)
 	def void saveData() {
 		val result = parseHelper.parse('''
@@ -158,10 +183,11 @@ class JsonParserParsingTest {
 			.save()
 		''')
 		
-		runAssetionsOnCompilersAndInterpreter(result);
+		runAssetionsOnCompilersAndInterpreter(result, "load & save");
 	}
 	
 	@Test
+	@RepeatedTest(4)
 	@Order(9)
 	def void exportDataToCsv() {
 		val result = parseHelper.parse('''
@@ -174,15 +200,15 @@ class JsonParserParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result, "load & insert & export");
 		reInitStream
 		val List<List<String>> csvWithPythonCompiler = getCsvToString("newFile.csv"); 
 		
-		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result, "load & insert & export");
 		reInitStream
 		val List<List<String>> csvWithJavaCompiler = getCsvToString("newFile.csv"); 
 		
-		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
+		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result, "load & insert & export");
 		reInitStream
 		val List<List<String>> csvWithJavaInterpreter = getCsvToString("newFile.csv"); 
 		
@@ -196,17 +222,19 @@ class JsonParserParsingTest {
 		Assertions.assertEquals(csvWithPythonCompiler,csvWithJavaInterpreter);		
 	}
 	
-	def runAssetionsOnCompilersAndInterpreter(JsonModel result) {
+	def runAssetionsOnCompilersAndInterpreter(JsonModel result, String operation) {
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result);
+		val pythonCompilerOut = pythonCompilerComputeAndAssertOutAreAlike(result, operation);
 		reInitStream
-		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result);
+		
+		val javaCompilerOut = javaCompilerComputeAndAssertOutAreAlike(result, operation);
 		reInitStream
-		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result);
-		reInitStream	
+		
+		val javaInterpreterOut = javaInterpreterComputeAndAssertOutAreAlike(result, operation);
+		reInitStream
 	
 		Assertions.assertEquals(pythonCompilerOut,javaCompilerOut);
 		Assertions.assertEquals(pythonCompilerOut,javaInterpreterOut);
@@ -220,22 +248,37 @@ class JsonParserParsingTest {
 		setUpStreams
 	}
 	
-	def String pythonCompilerComputeAndAssertOutAreAlike(JsonModel result){
+	def String pythonCompilerComputeAndAssertOutAreAlike(JsonModel result, String operation){
 		/*On assigne un nouveau compilateur ou interpreteur */
 		pythonCompiler = new PythonCompiler(result)
+		
+		val startTimePy = System.nanoTime;
 		pythonCompiler.compileAndRun
+		val durationPy = System.nanoTime - startTimePy;
+		benchmarkProgram.addToPythonCompilerBenchmark(operation, durationPy);
+		
 		return outContent.toString()
 	}
 	
-	def String javaCompilerComputeAndAssertOutAreAlike(JsonModel result){
+	def String javaCompilerComputeAndAssertOutAreAlike(JsonModel result, String operation){
 		javaCompiler = new JavaCompiler(result)
+		
+		val startTimeJv = System.nanoTime;
 		javaCompiler.compileAndRun
+		val durationJv = System.nanoTime - startTimeJv;
+		benchmarkProgram.addToJavaCompilerBenchmark(operation, durationJv);
+		
 		return outContent.toString()
 	}
 	
-	def String javaInterpreterComputeAndAssertOutAreAlike(JsonModel result){
+	def String javaInterpreterComputeAndAssertOutAreAlike(JsonModel result, String operation){
 		javaInterpreter = new JavaInterpreter(result);
+		
+		val startTimeInt = System.nanoTime;
 		javaInterpreter.interpretAndRun
+		val durationInt = System.nanoTime - startTimeInt;
+		benchmarkProgram.addToInterpreterBenchmark(operation, durationInt);
+		
 		return outContent.toString()
 	}		
 	
