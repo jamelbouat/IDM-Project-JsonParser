@@ -99,23 +99,7 @@ public class JsonParserParsingTest {
       _builder.append(".load(\"file.json\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
-      Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
-      Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
+      this.runAssetionsOnCompilersAndInterpreter(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -133,23 +117,7 @@ public class JsonParserParsingTest {
       _builder.append("expr id2 =.select(\"key1\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
-      Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
-      Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
+      this.runAssetionsOnCompilersAndInterpreter(result);
       Assertions.assertTrue(this.javaCompiler.getVars().contains("id1"));
       Assertions.assertTrue(this.javaCompiler.getVars().contains("id2"));
     } catch (Throwable _e) {
@@ -169,23 +137,7 @@ public class JsonParserParsingTest {
       _builder.append(".store(\"newFile2.json\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
-      Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
-      Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
+      this.runAssetionsOnCompilersAndInterpreter(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -203,23 +155,7 @@ public class JsonParserParsingTest {
       _builder.append(".insert(\"newKey2\",\"\\\"newValue2\\\"\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
-      Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
-      Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
+      this.runAssetionsOnCompilersAndInterpreter(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -237,23 +173,7 @@ public class JsonParserParsingTest {
       _builder.append(".print(\"key2\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
-      Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
-      Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
+      this.runAssetionsOnCompilersAndInterpreter(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -273,23 +193,7 @@ public class JsonParserParsingTest {
       _builder.append(".save()");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
-      Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
-      Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
+      this.runAssetionsOnCompilersAndInterpreter(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -311,23 +215,7 @@ public class JsonParserParsingTest {
       _builder.append(".product(\"key3\" * \"key4\")");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
-      Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
-      Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
+      this.runAssetionsOnCompilersAndInterpreter(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -343,23 +231,7 @@ public class JsonParserParsingTest {
       _builder.append(".save()");
       _builder.newLine();
       final JsonModel result = this.parseHelper.parse(_builder);
-      Assertions.assertNotNull(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      boolean _isEmpty = errors.isEmpty();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: ");
-      String _join = IterableExtensions.join(errors, ", ");
-      _builder_1.append(_join);
-      Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
-      this.reInitStream();
-      Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
-      Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
-      Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
+      this.runAssetionsOnCompilersAndInterpreter(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -406,6 +278,26 @@ public class JsonParserParsingTest {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  public void runAssetionsOnCompilersAndInterpreter(final JsonModel result) {
+    Assertions.assertNotNull(result);
+    final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+    boolean _isEmpty = errors.isEmpty();
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Unexpected errors: ");
+    String _join = IterableExtensions.join(errors, ", ");
+    _builder.append(_join);
+    Assertions.assertTrue(_isEmpty, _builder.toString());
+    final String pythonCompilerOut = this.pythonCompilerComputeAndAssertOutAreAlike(result);
+    this.reInitStream();
+    final String javaCompilerOut = this.javaCompilerComputeAndAssertOutAreAlike(result);
+    this.reInitStream();
+    final String javaInterpreterOut = this.javaInterpreterComputeAndAssertOutAreAlike(result);
+    this.reInitStream();
+    Assertions.assertEquals(pythonCompilerOut, javaCompilerOut);
+    Assertions.assertEquals(pythonCompilerOut, javaInterpreterOut);
+    Assertions.assertEquals(javaCompilerOut, javaInterpreterOut);
   }
   
   public void reInitStream() {
